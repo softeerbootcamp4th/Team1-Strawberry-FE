@@ -5,11 +5,11 @@ import Typography from "./typography";
 import "styled-components";
 
 const theme = {
-    Border,
-    Color,
-    Shadow,
-    Typography
-}
+  Border,
+  Color,
+  Shadow,
+  Typography,
+};
 export default theme;
 
 type ThemeType = typeof theme;
