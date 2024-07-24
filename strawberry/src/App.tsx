@@ -1,5 +1,11 @@
+import { GlobalContextProvider } from "./modules/core/contexts/globalContext";
+
 function App() {
-  return <></>;
+  return (
+    <GlobalContextProvider>
+      <></>
+    </GlobalContextProvider>
+  );
 }
 
 export default App;
