@@ -3,11 +3,11 @@ import styled from "styled-components";
 
 // onclick 나중에 추가
 
-function LoginButton() {
+function LogoutButton() {
   return <StyledButton>로그아웃</StyledButton>;
 }
 
-export default LoginButton;
+export default LogoutButton;
 
 const StyledButton = styled(DefaultButton)`
   background-color: ${({ theme }) => theme.Color.Primary.normal};
