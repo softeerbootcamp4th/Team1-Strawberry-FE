@@ -24,6 +24,7 @@ function Header() {
 export default Header;
 
 const StyledHeader = styled.header`
+  ${({ theme }) => theme.Shadow.Normal};
   width: 100%;
   background-color: white;
   display: flex;
