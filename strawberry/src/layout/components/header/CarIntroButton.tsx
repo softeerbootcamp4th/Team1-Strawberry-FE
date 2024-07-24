@@ -1,4 +1,4 @@
-import DefaultButton from "../../../modules/core/design_system/styles/DefaultButton";
+import DefaultButton from "../../../core/design_system/styles/DefaultButton";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 

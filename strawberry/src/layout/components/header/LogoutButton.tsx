@@ -1,4 +1,4 @@
-import DefaultButton from "../../../modules/core/design_system/styles/DefaultButton";
+import DefaultButton from "../../../core/design_system/styles/DefaultButton";
 import styled from "styled-components";
 
 // onclick 나중에 추가
