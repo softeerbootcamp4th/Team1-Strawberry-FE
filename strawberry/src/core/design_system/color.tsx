@@ -59,12 +59,20 @@ const Red = {
   red600: "#C82333",
 };
 
+const Event = {
+  quiz_default: "#FF8126",
+  quiz_disabled: "#FFCDA8",
+  drawing_default: "#B7CE61",
+  drawing_disabled: "#DBE7B0",
+};
+
 const Color = {
   Blue,
   Ivory,
   Common,
   Neutral,
   Red,
+  Event,
 
   Primary: {
     normal: Blue.blue500,
