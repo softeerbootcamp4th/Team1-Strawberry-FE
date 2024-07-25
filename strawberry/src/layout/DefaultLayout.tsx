@@ -1,16 +1,20 @@
+import { ReactNode } from "react";
 import Header from "./components/header";
 import Footer from "./components/footer";
-import { Outlet } from "react-router-dom";
 import styled from "styled-components";
 
-function DefaultLayout() {
+interface DefaultLayoutProps {
+  children?: ReactNode;
+}
+
+function DefaultLayout({ children }: DefaultLayoutProps) {
   return (
     <>
       <PageWrapper>
         <HeaderWrapper>
           <Header />
         </HeaderWrapper>
-        <Outlet />
+        {children}
         <FooterWrapper>
           <Footer />
         </FooterWrapper>

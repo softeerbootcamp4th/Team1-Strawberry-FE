@@ -1,15 +1,19 @@
+import { ReactNode } from "react";
 import Header from "./components/header";
-import { Outlet } from "react-router-dom";
 import styled from "styled-components";
 
-function HeaderLayout() {
+interface HeaderLayoutProps {
+  children?: ReactNode;
+}
+
+function HeaderLayout({ children }: HeaderLayoutProps) {
   return (
     <>
       <PageWrapper>
         <HeaderWrapper>
           <Header />
         </HeaderWrapper>
-        <Outlet />
+        {children}
       </PageWrapper>
     </>
   );
