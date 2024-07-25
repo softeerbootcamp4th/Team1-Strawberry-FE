@@ -35,7 +35,12 @@ function Arrow({ type, status }: { type: ButtonType; status: ButtonStatus }) {
 
 function EventButton({ type, status, content, onClick }: EventButtonProps) {
   return (
-    <StyledButton type={type} status={status} onClick={onClick}>
+    <StyledButton
+      type={type}
+      status={status}
+      onClick={onClick}
+      disabled={status !== "DEFAULT"}
+    >
       <ContentWrapper>
         <p>{content}</p>
         <Arrow type={type} status={status} />
