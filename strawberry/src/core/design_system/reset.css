@@ -65,3 +65,14 @@ table {
 	font-family: "Hyundai Sans Head KR Light";
 	src: url(../../../fonts/Hyundai\ Sans\ Head\ KR\ Light.ttf);
 }
+
+button {
+	background: none;
+	border: none;
+	padding: 0;
+	margin: 0;
+	font: inherit;
+	color: inherit;
+	cursor: pointer;
+	outline: none;
+}
