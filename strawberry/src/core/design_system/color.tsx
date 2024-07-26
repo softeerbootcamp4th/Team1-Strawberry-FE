@@ -26,6 +26,7 @@ const Ivory = {
 
 const Common = {
   black: "#000000",
+  white: "#FFFFFF",
 };
 
 const Neutral = {
