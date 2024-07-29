@@ -1,4 +1,5 @@
-// Typography.tsx
+// src/typography.tsx
+
 import { css } from "styled-components";
 
 const weight = {
@@ -46,7 +47,6 @@ const createTypographyStyle = (
   fontWeight: keyof typeof weight,
   lineHeightKey: keyof typeof lineHeight,
 ) => css`
-  /* font-family: 'Hyundai Sans Head KR ${fontWeight}'; */
   font-size: ${fontSize[fontSizeKey]};
   font-weight: ${weight[fontWeight]};
   line-height: ${lineHeight[lineHeightKey]};
@@ -88,6 +88,7 @@ const Typography = {
   CaptionMedium: createTypographyStyle("Caption", "Medium", "Caption"),
   CaptionRegular: createTypographyStyle("Caption", "Regular", "Caption"),
   CaptionLight: createTypographyStyle("Caption", "Light", "Caption"),
-};
+} as const;
 
 export default Typography;
+export type TypographyVariant = keyof typeof Typography;
