@@ -1,7 +1,7 @@
-import Border from "./border";
-import Color from "./color";
-import Shadow from "./shadow";
-import Typography from "./typography";
+import Border from "./foundation/border";
+import Color from "./foundation/color";
+import Shadow from "./foundation/shadow";
+import Typography from "./foundation/typography";
 import "styled-components";
 
 const theme = {
