@@ -76,3 +76,8 @@ button {
 	cursor: pointer;
 	outline: none;
 }
+
+p {
+	/* 개행 문자*/
+	white-space: pre-wrap;
+}
