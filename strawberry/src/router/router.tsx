@@ -4,6 +4,8 @@ import HeaderLayout from "../layout/HeaderLayout";
 import PublicRoute from "./PublicRoute";
 import ProtectedRoute from "./ProtectedRoute";
 
+import QuizLandingPage from "../pages/quiz/QuizLandingPage";
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -27,7 +29,7 @@ const router = createBrowserRouter([
       },
       {
         path: "quiz",
-        element: <>{/* <QuizLandingPage /> */}</>,
+        element: <>{<QuizLandingPage />}</>,
       },
       {
         path: "drawing",
