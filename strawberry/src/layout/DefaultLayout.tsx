@@ -10,7 +10,9 @@ function DefaultLayout() {
         <HeaderWrapper>
           <Header />
         </HeaderWrapper>
-        <Outlet />
+        <ContentWrapper>
+          <Outlet />
+        </ContentWrapper>
         <FooterWrapper>
           <Footer />
         </FooterWrapper>
@@ -22,18 +24,23 @@ function DefaultLayout() {
 export default DefaultLayout;
 
 const PageWrapper = styled.div`
-  width: 100vw;
+  max-width: 100vw;
   min-height: 100vh;
-  position: relative;
+  display: flex;
+  flex-direction: column;
 `;
+
 const HeaderWrapper = styled.div`
   width: 100%;
   position: fixed;
   top: 0;
 `;
 
+const ContentWrapper = styled.div`
+  padding-top: 70px;
+  min-height: calc(100vh - 330px);
+`;
+
 const FooterWrapper = styled.div`
   width: 100%;
-  position: absolute;
-  bottom: 0;
 `;
