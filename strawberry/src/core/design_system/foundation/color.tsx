@@ -1,4 +1,4 @@
-// Colors.ts
+// src/color.ts
 
 const Blue = {
   blue100: "#CCD5DF",
@@ -74,13 +74,11 @@ const Color = {
   Neutral,
   Red,
   Event,
-
   Primary: {
     normal: Blue.blue500,
     hover: Blue.blue400,
     active: Blue.blue600,
   },
-
   TextIcon: {
     default: Neutral.neutral10,
     strong: Common.black,
@@ -90,38 +88,38 @@ const Color = {
     disable: Neutral.neutral96,
     reverse: Neutral.neutral99,
   },
-
   Background: {
     default: Ivory.ivory500,
     alternative: Neutral.neutral99,
     strong: Neutral.neutral95,
     hover: Neutral.neutral98,
   },
-
   Dimmer: {
     default: "rgba(0, 0, 0, 0.6)",
   },
-
   Border: {
     default: Neutral.neutral96,
     sub: Neutral.neutral97,
     alternative: Neutral.neutral98,
     strong: Neutral.neutral80,
   },
-
   Danger: {
     text: Red.red600,
     base: Red.red500,
     border: Red.red200,
     surface: Red.red100,
   },
-
   Information: {
     text: Blue.blue400,
     base: Blue.blue500,
     border: Blue.blue200,
     surface: Blue.blue100,
   },
-};
+} as const;
+
+type ColorGroups = keyof typeof Color;
+type ColorValues<T extends ColorGroups> = keyof (typeof Color)[T];
+type ColorVariant = `${ColorGroups}.${ColorValues<ColorGroups>}`;
 
 export default Color;
+export type { ColorGroups, ColorValues, ColorVariant };
