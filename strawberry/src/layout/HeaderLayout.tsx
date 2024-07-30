@@ -1,40 +1,30 @@
 import Header from "./components/header";
-import styled from "styled-components";
 import { Outlet } from "react-router-dom";
+import { Wrapper } from "../core/design_system";
 import { Modal } from "../pages/common/components/modal/Modal";
 
 function HeaderLayout() {
   return (
     <>
-      <PageWrapper>
+      {/* LayoutWrapper */}
+      <Wrapper
+        $maxwidth="100vw"
+        $minheight="100vh"
+        display="flex"
+        $flexdirection="column"
+      >
         <Modal />
-        <HeaderWrapper>
+        {/* HeaderWrapper */}
+        <Wrapper width="100%" height="70px" $position="fixed" top="0">
           <Header />
-        </HeaderWrapper>
-        <ContentWrapper>
+        </Wrapper>
+        {/* PageWrapper */}
+        <Wrapper $padding="70px 0 0 0" width="100%">
           <Outlet />
-        </ContentWrapper>
-      </PageWrapper>
+        </Wrapper>
+      </Wrapper>
     </>
   );
 }
 
 export default HeaderLayout;
-
-const PageWrapper = styled.div`
-  max-width: 100vw;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-`;
-
-const HeaderWrapper = styled.div`
-  width: 100%;
-  position: fixed;
-  top: 0;
-`;
-
-const ContentWrapper = styled.div`
-  padding-top: 70px;
-  min-height: calc(100vh - 70px);
-`;
