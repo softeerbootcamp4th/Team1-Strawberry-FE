@@ -24,9 +24,11 @@ function TwoButtonModal() {
         <Label $token="Title1Medium" color={theme.Color.Primary.normal}>
           {title}
         </Label>
-        <Wrapper width="100%" $margin="24px 0">
-          <img src={imgPath} width={"100%"} height={"100%"} />
-        </Wrapper>
+        {imgPath && (
+          <Wrapper width="100%" $margin="24px 0">
+            <img src={imgPath} width={"100%"} height={"100%"} />
+          </Wrapper>
+        )}
         <Label
           width="100%"
           $token="Heading2Regular"
