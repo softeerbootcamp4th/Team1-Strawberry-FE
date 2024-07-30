@@ -2,11 +2,13 @@ import Header from "./components/header";
 import Footer from "./components/footer";
 import styled from "styled-components";
 import { Outlet } from "react-router-dom";
+import { Modal } from "../pages/common/components/modal/Modal";
 
 function DefaultLayout() {
   return (
     <>
       <PageWrapper>
+        <Modal />
         <HeaderWrapper>
           <Header />
         </HeaderWrapper>

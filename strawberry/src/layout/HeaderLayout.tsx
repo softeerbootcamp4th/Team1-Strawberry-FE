@@ -1,11 +1,13 @@
 import Header from "./components/header";
 import styled from "styled-components";
 import { Outlet } from "react-router-dom";
+import { Modal } from "../pages/common/components/modal/Modal";
 
 function HeaderLayout() {
   return (
     <>
       <PageWrapper>
+        <Modal />
         <HeaderWrapper>
           <Header />
         </HeaderWrapper>
