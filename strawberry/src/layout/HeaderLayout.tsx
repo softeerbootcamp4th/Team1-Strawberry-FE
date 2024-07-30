@@ -15,7 +15,7 @@ function HeaderLayout() {
       >
         <Modal />
         {/* HeaderWrapper */}
-        <Wrapper width="100%" height="70px" $position="fixed" top="0">
+        <Wrapper width="100%" height="70px" $position="fixed" $top="0">
           <Header />
         </Wrapper>
         {/* PageWrapper */}
