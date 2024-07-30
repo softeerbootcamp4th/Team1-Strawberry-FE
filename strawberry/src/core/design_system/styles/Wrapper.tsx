@@ -11,6 +11,7 @@ interface WrapperStyleProps {
   $minheight?: string;
 
   $backgroundcolor?: string;
+  borderRadius?: string;
 
   $position?: string;
   $bottom?: string;
@@ -50,6 +51,7 @@ const StyledWrapper = styled.div<WrapperStyleProps>`
 
   ${({ $backgroundcolor }) =>
     $backgroundcolor && `background-color: ${$backgroundcolor}`};
+  ${({ borderRadius }) => borderRadius && `border-radius: ${borderRadius}`}
 
   ${({ $bottom }) => $bottom && `bottom: ${$bottom};`};
   ${({ left }) => left && `left: ${left};`};
