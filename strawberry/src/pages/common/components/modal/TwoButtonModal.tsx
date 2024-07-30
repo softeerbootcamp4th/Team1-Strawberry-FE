@@ -1,8 +1,15 @@
 import ModalButton from "../buttons/ModalButton";
 import { Label, theme, Wrapper } from "../../../../core/design_system";
 import { useGlobalState } from "../../../../core/hooks/useGlobalState";
+import { useGlobalDispatch } from "../../../../core/hooks/useGlobalDispatch";
 
 function TwoButtonModal() {
+  const globalDispatch = useGlobalDispatch();
+
+  function closeModal() {
+    globalDispatch?.({ type: "CLOSE_MODAL" });
+  }
+
   const {
     title,
     imgPath,
@@ -47,7 +54,7 @@ function TwoButtonModal() {
           <ModalButton
             modalType="WHITE_SMALL"
             content={whiteBtnContent || ""}
-            onClick={onWhiteBtnClick}
+            onClick={onWhiteBtnClick || closeModal}
           />
           <ModalButton
             modalType="PRIMARY_SMALL"
