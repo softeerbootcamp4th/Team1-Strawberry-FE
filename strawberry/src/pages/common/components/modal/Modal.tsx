@@ -1,11 +1,8 @@
-import { MouseEvent, useContext, useRef } from "react";
+import { MouseEvent, useRef } from "react";
 import styled from "styled-components";
-import QuizRewardModal from "./QuizRewardModal";
-import {
-  GlobalStateContext,
-  GlobalDispatchContext,
-  GlobalState,
-} from "../../../../core/contexts/globalContext";
+import TwoButtonModal from "./TwoButtonModal";
+import { useGlobalState } from "../../../../core/hooks/useGlobalState";
+import { useGlobalDispatch } from "../../../../core/hooks/useGlobalDispatch";
 
 type CustomMouseEvent = MouseEvent<HTMLElement>;
 
@@ -32,10 +29,8 @@ const ModalWrapper = styled.div`
 `;
 
 export const Modal = () => {
-  const { isModalOpen, modalType } = useContext<GlobalState | undefined>(
-    GlobalStateContext,
-  );
-  const globalDispatch = useContext(GlobalDispatchContext);
+  const { isModalOpen, modalCategory } = useGlobalState();
+  const globalDispatch = useGlobalDispatch();
 
   const backgroundRef = useRef<HTMLDivElement>(null);
 
@@ -51,7 +46,7 @@ export const Modal = () => {
         <ModalBackground ref={backgroundRef} onClick={clickBackground}>
           <ModalWrapper>
             {/* 모달 구현 후 밑에 배치 */}
-            {modalType === "quizReward" && <QuizRewardModal />}
+            {modalCategory === "TWO_BUTTON" && <TwoButtonModal />}
           </ModalWrapper>
         </ModalBackground>
       )}
