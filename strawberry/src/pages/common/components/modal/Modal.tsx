@@ -1,8 +1,8 @@
-import { MouseEvent, useContext, useRef } from "react";
+import { MouseEvent, useRef } from "react";
 import styled from "styled-components";
 import TwoButtonModal from "./TwoButtonModal";
-import { GlobalDispatchContext } from "../../../../core/contexts/globalContext";
 import { useGlobalState } from "../../../../core/hooks/useGlobalState";
+import { useGlobalDispatch } from "../../../../core/hooks/useGlobalDispatch";
 
 type CustomMouseEvent = MouseEvent<HTMLElement>;
 
@@ -30,7 +30,7 @@ const ModalWrapper = styled.div`
 
 export const Modal = () => {
   const { isModalOpen, modalCategory } = useGlobalState();
-  const globalDispatch = useContext(GlobalDispatchContext);
+  const globalDispatch = useGlobalDispatch();
 
   const backgroundRef = useRef<HTMLDivElement>(null);
 
