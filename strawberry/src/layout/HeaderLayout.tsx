@@ -1,6 +1,7 @@
 import Header from "./components/header";
 import { Outlet } from "react-router-dom";
 import { Wrapper } from "../core/design_system";
+import { Modal } from "../pages/common/components/modal/Modal";
 
 function HeaderLayout() {
   return (
@@ -12,6 +13,7 @@ function HeaderLayout() {
         display="flex"
         $flexdirection="column"
       >
+        <Modal />
         {/* HeaderWrapper */}
         <Wrapper width="100%" height="70px" $position="fixed" top="0">
           <Header />

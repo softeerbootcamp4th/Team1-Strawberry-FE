@@ -2,6 +2,7 @@ import Header from "./components/header";
 import Footer from "./components/footer";
 import { Outlet } from "react-router-dom";
 import { Wrapper } from "../core/design_system";
+import { Modal } from "../pages/common/components/modal/Modal";
 
 function DefaultLayout() {
   return (
@@ -13,6 +14,7 @@ function DefaultLayout() {
         display="flex"
         $flexdirection="column"
       >
+        <Modal />
         {/* HeaderWrapper */}
         <Wrapper
           $zindex="100"
