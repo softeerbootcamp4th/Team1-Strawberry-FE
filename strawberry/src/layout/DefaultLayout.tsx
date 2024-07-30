@@ -26,11 +26,11 @@ function DefaultLayout() {
           <Header />
         </Wrapper>
         {/* ContentWrapper */}
-        <Wrapper $padding="70px 0 0 0" width="100%" $backgroundcolor="red">
+        <Wrapper $padding="70px 0 0 0" width="100%">
           <Outlet />
         </Wrapper>
         {/* FooterWrapper */}
-        <Wrapper width="100%" height="260px" $backgroundcolor="blue">
+        <Wrapper width="100%" height="260px">
           <Footer />
         </Wrapper>
       </Wrapper>
