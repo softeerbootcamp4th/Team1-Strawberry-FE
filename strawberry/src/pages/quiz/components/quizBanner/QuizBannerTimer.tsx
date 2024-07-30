@@ -32,7 +32,11 @@ function QuizBannerTimer({ initialSeconds }: Props) {
   const time = convertSeconds(leftSeconds);
 
   return (
-    <Wrapper $margin="38px 0 0 0" $backgroundcolor={theme.Color.Dimmer.default}>
+    <Wrapper
+      height="242px"
+      $margin="38px 0 0 0"
+      $backgroundcolor={theme.Color.Dimmer.default}
+    >
       <Wrapper
         display="flex"
         width="fit-content"

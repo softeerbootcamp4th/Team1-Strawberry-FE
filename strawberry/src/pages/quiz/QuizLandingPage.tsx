@@ -1,18 +1,20 @@
-import styled from "styled-components";
-
-import QuizBanner from "./components/quizBanner/QuizBanner";
+import QuizBanner from "./components/quizBanner";
+import QuizInfo from "./components/quizInfo";
+import { Wrapper } from "../../core/design_system";
+import QuizOpen from "./components/quizOpen";
+import QuizReward from "./components/quizReward";
+import QuizNotice from "./components/quizNotice";
 
 function QuizLandingPage() {
   return (
-    <QuizLandingWrapper>
-      <QuizBanner></QuizBanner>
-    </QuizLandingWrapper>
+    <Wrapper>
+      <QuizBanner />
+      <QuizInfo />
+      <QuizOpen />
+      <QuizReward />
+      <QuizNotice />
+    </Wrapper>
   );
 }
-
-const QuizLandingWrapper = styled.div`
-  width: 100%;
-  min-height: fit-content;
-`;
 
 export default QuizLandingPage;
