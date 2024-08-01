@@ -15,6 +15,7 @@
     "react-dom": "^18.3.1",
     "react-query": "^3.39.3",
     "react-router-dom": "^6.25.1",
+    "roughjs": "^4.6.6",
     "styled-components": "^6.1.12"
   },
   "devDependencies": {
