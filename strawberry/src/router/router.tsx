@@ -6,6 +6,7 @@ import ProtectedRoute from "./ProtectedRoute";
 
 import QuizLandingPage from "../pages/quiz/QuizLandingPage";
 import QuizPlayPage from "../pages/quiz/QuizPlayPage";
+import DrawingLandingPage from "../pages/drawingLanding/DrawingLandingPage";
 
 const router = createBrowserRouter([
   {
@@ -30,11 +31,11 @@ const router = createBrowserRouter([
       },
       {
         path: "quiz",
-        element: <>{<QuizLandingPage />}</>,
+        element: <QuizLandingPage />,
       },
       {
         path: "drawing",
-        element: <>{/* <DrawingLandingPage /> */}</>,
+        element: <DrawingLandingPage />,
       },
     ],
   },

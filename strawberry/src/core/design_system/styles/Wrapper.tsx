@@ -26,6 +26,8 @@ interface WrapperStyleProps {
 
   $justifycontent?: string;
   $alignitems?: string;
+
+  $boxsizing?: string;
 }
 
 interface WrapperProps extends WrapperStyleProps {
@@ -66,4 +68,5 @@ const StyledWrapper = styled.div<WrapperStyleProps>`
   ${({ $justifycontent }) =>
     $justifycontent && `justify-content: ${$justifycontent}`};
   ${({ $alignitems }) => $alignitems && `align-items: ${$alignitems}`};
+  ${({ $boxsizing }) => $boxsizing && `box-sizing: ${$boxsizing}`};
 `;

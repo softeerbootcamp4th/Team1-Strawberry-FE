@@ -23,7 +23,7 @@ function HeaderMenuButtons() {
         </Link>
       </li>
       <li>
-        <Link to="/draw">
+        <Link to="/drawing">
           <MenuButton>드로잉 이벤트</MenuButton>
         </Link>
       </li>
