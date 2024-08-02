@@ -13,6 +13,7 @@ dist-ssr
 *.local
 fonts
 fonts/
+.env
 
 # Editor directories and files
 .vscode/*
