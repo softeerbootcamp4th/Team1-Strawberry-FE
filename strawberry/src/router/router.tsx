@@ -8,6 +8,7 @@ import QuizLandingPage from "../pages/quiz/QuizLandingPage";
 import QuizPlayPage from "../pages/quiz/QuizPlayPage";
 import DrawingPlayPage from "../pages/drawing/DrawingPlayPage";
 import DrawingLandingPage from "../pages/drawingLanding/DrawingLandingPage";
+import LoginPage from "../pages/login/LoginPage";
 
 const router = createBrowserRouter([
   {
@@ -16,7 +17,11 @@ const router = createBrowserRouter([
     children: [
       {
         path: "login",
-        element: <PublicRoute>{/* <LoginPage /> */}</PublicRoute>,
+        element: (
+          <PublicRoute>
+            <LoginPage />
+          </PublicRoute>
+        ),
       },
       {
         path: "",
