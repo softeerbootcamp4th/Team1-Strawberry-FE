@@ -10,11 +10,7 @@ function QuizBanner() {
   const placeholder = "ㄷㅇㄴㅆㅌㅍ";
 
   return (
-    <Wrapper
-      $position="relative"
-      height="calc(100vh - 70px)"
-      $backgroundcolor="blue"
-    >
+    <Wrapper $position="relative" height="calc(100vh - 70px)">
       <BannerImage src={QuizBannerImage}></BannerImage>
       <Wrapper
         $padding="146px 0px 0px 356px"
