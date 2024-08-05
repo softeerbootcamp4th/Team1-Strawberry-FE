@@ -35,7 +35,6 @@ export function useLoginCallbackQuery(type: string, code: string) {
   const query = useQuery<Oauth, Error>({
     queryKey: ["oauth"],
     queryFn: getLoginCallback,
-    enabled: !!code,
   });
 
   return query;
