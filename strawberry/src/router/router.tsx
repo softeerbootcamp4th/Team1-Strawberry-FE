@@ -10,7 +10,7 @@ import DrawingPlayPage from "../pages/drawing/DrawingPlayPage";
 import DrawingLandingPage from "../pages/drawingLanding/DrawingLandingPage";
 import LoginPage from "../pages/login/LoginPage";
 import ExpectationPage from "../pages/expectation/ExpectationPage";
-import LoginRedirectPage from "../pages/login/LoginRedirectPage";
+import LoginRedirectedPage from "../pages/login/LoginRedirectPage";
 
 const router = createBrowserRouter([
   {
@@ -54,9 +54,11 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: (
-      <HeaderLayout>
-        <ProtectedRoute />
-      </HeaderLayout>
+      <>
+        <HeaderLayout>
+          <ProtectedRoute />
+        </HeaderLayout>
+      </>
     ),
     children: [
       {
@@ -83,7 +85,11 @@ const router = createBrowserRouter([
   },
   {
     path: "auth/:sns/callback",
-    element: <PublicRoute>{/* <LoginRedirectPage /> */}</PublicRoute>,
+    element: (
+      <PublicRoute>
+        <LoginRedirectedPage /> {/* 리다이렉트 페이지 렌더링 */}
+      </PublicRoute>
+    ),
   },
 ]);
 

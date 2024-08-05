@@ -20,7 +20,9 @@ export function useFetch<T>({
   body,
 }: RequestConfig<T>): () => Promise<T> {
   return async () => {
-    const finalURL = buildURL(url, params, queryParams);
+    const Server_IP = `${import.meta.env.VITE_APP_Server_IP}/api/v1/`;
+    const finalURL = Server_IP + buildURL(url, params, queryParams);
+
     const finalHeader = { "Content-Type": "application/json" };
     const finalBody = body ? JSON.stringify(body) : undefined;
 
