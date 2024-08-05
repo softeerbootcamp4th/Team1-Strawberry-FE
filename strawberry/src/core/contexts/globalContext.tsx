@@ -1,4 +1,10 @@
-import { createContext, Dispatch, useReducer, ReactNode } from "react";
+import {
+  createContext,
+  Dispatch,
+  useReducer,
+  ReactNode,
+  useEffect,
+} from "react";
 
 // User Data Types
 export type UserData = {
@@ -37,7 +43,7 @@ export const GlobalDispatchContext = createContext<
 
 // Actions
 type Action =
-  | { type: "LOGIN"; status: boolean }
+  | { type: "SET_LOGIN"; status: boolean }
   | { type: "LOGOUT"; status: boolean }
   | { type: "UPDATE_USER"; data: UserData }
   | {
@@ -52,9 +58,7 @@ type Action =
 // Reducer
 function globalReducer(state: GlobalState, action: Action): GlobalState {
   switch (action.type) {
-    case "LOGIN":
-      return { ...state, isLogin: action.status };
-    case "LOGOUT":
+    case "SET_LOGIN":
       return { ...state, isLogin: action.status };
     case "UPDATE_USER":
       return { ...state, user: action.data };
@@ -86,6 +90,11 @@ export function GlobalContextProvider({ children }: { children: ReactNode }) {
     modalCategory: null,
     modalProps: null,
   });
+
+  useEffect(() => {
+    const accessToken = localStorage.getItem("accessToken");
+    dispatch({ type: "SET_LOGIN", status: accessToken !== null });
+  }, []);
 
   return (
     <GlobalDispatchContext.Provider value={dispatch}>
