@@ -4,7 +4,7 @@ import HeaderLayout from "../layout/HeaderLayout";
 import PublicRoute from "./PublicRoute";
 import ProtectedRoute from "./ProtectedRoute";
 
-import QuizLandingPage from "../pages/quiz/QuizLandingPage";
+import QuizLandingPage from "../pages/quizLanding/QuizLandingPage";
 import QuizPlayPage from "../pages/quiz/QuizPlayPage";
 import DrawingPlayPage from "../pages/drawing/DrawingPlayPage";
 import DrawingLandingPage from "../pages/drawingLanding/DrawingLandingPage";
