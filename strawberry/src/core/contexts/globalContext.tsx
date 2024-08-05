@@ -44,7 +44,6 @@ export const GlobalDispatchContext = createContext<
 // Actions
 type Action =
   | { type: "SET_LOGIN"; status: boolean }
-  | { type: "LOGOUT"; status: boolean }
   | { type: "UPDATE_USER"; data: UserData }
   | {
       type: "OPEN_MODAL";
