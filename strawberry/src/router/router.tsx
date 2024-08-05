@@ -9,6 +9,8 @@ import QuizPlayPage from "../pages/quiz/QuizPlayPage";
 import DrawingPlayPage from "../pages/drawing/DrawingPlayPage";
 import DrawingLandingPage from "../pages/drawingLanding/DrawingLandingPage";
 import LoginPage from "../pages/login/LoginPage";
+import ExpectationPage from "../pages/expectation/ExpectationPage";
+import LoginRedirectPage from "../pages/login/LoginRedirectPage";
 
 const router = createBrowserRouter([
   {
@@ -33,7 +35,11 @@ const router = createBrowserRouter([
       },
       {
         path: "expectation",
-        element: <>{/* <ExpectationPage />, */}</>,
+        element: (
+          <>
+            <ExpectationPage />
+          </>
+        ),
       },
       {
         path: "quiz",
