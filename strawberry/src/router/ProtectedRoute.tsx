@@ -1,7 +1,17 @@
-import { Outlet } from "react-router-dom";
+import { useEffect } from "react";
+import { Outlet, useNavigate } from "react-router-dom";
+import { useGlobalDispatch } from "../core/hooks/useGlobalDispatch";
 
 function ProtectedRoute() {
-  // 로그인 하지 않으면 navigate
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const token = localStorage.getItem("accessToken");
+
+    if (!token) {
+      navigate("/login");
+    }
+  }, [navigate]);
 
   return <Outlet />;
 }

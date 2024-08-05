@@ -1,9 +1,13 @@
 import Header from "./components/header";
-import { Outlet } from "react-router-dom";
+import React from "react";
 import { Wrapper } from "../core/design_system";
 import { Modal } from "../pages/common/components/modal/Modal";
 
-function HeaderLayout() {
+interface HeaderLayoutProps {
+  children?: React.ReactNode;
+}
+
+function HeaderLayout({ children }: HeaderLayoutProps) {
   return (
     <>
       {/* LayoutWrapper */}
@@ -20,7 +24,7 @@ function HeaderLayout() {
         </Wrapper>
         {/* PageWrapper */}
         <Wrapper $padding="70px 0 0 0" width="100%">
-          <Outlet />
+          {children}
         </Wrapper>
       </Wrapper>
     </>

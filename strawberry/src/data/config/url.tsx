@@ -7,7 +7,7 @@ export function buildURL(
 
   if (params) {
     Object.keys(params).forEach((key) => {
-      finalURL += params[key];
+      finalURL += "/" + params[key];
     });
   }
 
