@@ -5,9 +5,14 @@ import naverLoginButton from "/src/assets/images/login/naverLoginButton.svg";
 import hyundaiLoginButton from "/src/assets/images/login/hyundaiLoginButton.svg";
 
 import { useLogin } from "./hooks/useLogin";
+import { throttle } from "../../core/utils";
 
 function LoginPage() {
   const login = useLogin();
+
+  const throttledLogin = throttle()((social: string) =>
+    login({ social: social }),
+  );
 
   return (
     <>
@@ -32,10 +37,10 @@ function LoginPage() {
           $alignitems="center"
           $padding="85px 0 0 0"
         >
-          <button onClick={() => login({ social: "hyundai" })}>
+          <button onClick={() => throttledLogin("hyundai")}>
             <img src={hyundaiLoginButton} />
           </button>
-          <StyledButton onClick={() => login({ social: "naver" })}>
+          <StyledButton onClick={() => throttledLogin("naver")}>
             <img src={naverLoginButton} />
           </StyledButton>
         </Wrapper>
