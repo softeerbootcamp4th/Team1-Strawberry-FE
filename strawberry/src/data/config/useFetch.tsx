@@ -12,6 +12,12 @@ async function handleError(response: Response): Promise<never> {
   throw new CustomError("UNKNOWN_ERROR");
 }
 
+interface BaseResponse<T> {
+  state: number;
+  message: string;
+  data: T;
+}
+
 export function useFetch<T>({
   url,
   method,
@@ -43,7 +49,8 @@ export function useFetch<T>({
 
     const text = await response.text();
     try {
-      return JSON.parse(text) as T;
+      const result: BaseResponse<T> = JSON.parse(text);
+      return result.data;
     } catch {
       throw new CustomError("PARSE_ERROR");
     }
