@@ -7,8 +7,7 @@ import { useQuizLandingState } from "../../hooks";
 import QuizBannerTimer from "./QuizBannerTimer";
 
 function QuizBanner() {
-  const state = useQuizLandingState();
-  const data = state.quizLandingData;
+  const { quizLandingData: data } = useQuizLandingState();
 
   return (
     <Wrapper $position="relative" height="calc(100vh - 70px)">

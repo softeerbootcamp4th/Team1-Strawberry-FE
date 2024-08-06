@@ -35,9 +35,8 @@ function formatEventDateTime(
 
   if (startDay === endDay && startMonth === endMonth) {
     return `${startMonth}월 ${startDay}일 ${startPeriod} ${formattedStartHours}:${formattedStartMinutes}~${formattedEndHours}:${formattedEndMinutes}`;
-  } else {
-    return `${startMonth}월 ${startDay}일 ${startPeriod} ${formattedStartHours}:${formattedStartMinutes}~${endMonth}월 ${endDay}일 ${endPeriod} ${formattedEndHours}:${formattedEndMinutes}`;
   }
+  return `${startMonth}월 ${startDay}일 ${startPeriod} ${formattedStartHours}:${formattedStartMinutes}~${endMonth}월 ${endDay}일 ${endPeriod} ${formattedEndHours}:${formattedEndMinutes}`;
 }
 
 export default formatEventDateTime;
