@@ -5,6 +5,7 @@ import DrawingParticipantGuide from "../../../../assets/images/temp/DrawingParti
 import DrawingReward from "../../../../assets/images/temp/DrawingReward.svg";
 import GreenBadge from "../../../../assets/images/icons/GreenBadgeInfo.svg";
 import BlueBadge from "../../../../assets/images/icons/BlueBadgeInfo.svg";
+
 import DrawingBadgeInfo from "./DrawingBadgeInfo";
 
 function DrawingInfo() {

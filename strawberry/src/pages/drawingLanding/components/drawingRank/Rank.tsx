@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 import { Label, theme, Wrapper } from "../../../../core/design_system";
+
 import GoldRankBadge from "../../../../assets/images/icons/GoldRankBadge.svg";
 import SilverRankBadge from "../../../../assets/images/icons/SilverRankBadge.svg";
 import BronzeRankBadge from "../../../../assets/images/icons/BronzeRankBadge.svg";
@@ -25,18 +26,11 @@ function Rank(props: RankProps) {
       >
         <Wrapper $position="relative" width="54px" height="54px">
           <img src={getRankBadgeImg(rank)}></img>
-          <Wrapper
-            $position="absolute"
-            left="0"
-            $top="0"
-            display="flex"
-            $justifycontent="center"
-            $alignitems="center"
-          >
+          <RankLabelWrapper>
             <Label $token="Title2Medium" color={theme.Color.TextIcon.reverse}>
               {rank}
             </Label>
-          </Wrapper>
+          </RankLabelWrapper>
         </Wrapper>
         <Label $token="Title2Medium" color={theme.Color.TextIcon.strong}>
           {name}
@@ -63,6 +57,15 @@ function Rank(props: RankProps) {
 }
 
 export default Rank;
+
+const RankLabelWrapper = styled.div`
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
 
 const RankStyle = styled.div`
   width: auto;
