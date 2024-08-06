@@ -1,24 +1,17 @@
 import styled from "styled-components";
+
 import { Wrapper, EventButton } from "../../../../core/design_system";
 
-import QuizBannerContent from "./QuizBannerContent";
-import QuizBannerImage from "../../../../assets/images/temp/QuizBannerImg.svg";
+import { useQuizLandingState } from "../../hooks";
+
 import QuizBannerTimer from "./QuizBannerTimer";
 
 function QuizBanner() {
-  const title = "매주 일요일 선착순으로 열리는\n퀴즈를 풀어보세요!";
-  const placeholder = "ㄷㅇㄴㅆㅌㅍ";
+  const { quizLandingData: data } = useQuizLandingState();
 
   return (
     <Wrapper $position="relative" height="calc(100vh - 70px)">
-      <BannerImage src={QuizBannerImage}></BannerImage>
-      <Wrapper
-        $padding="146px 0px 0px 356px"
-        $position="absolute"
-        width="fit-content"
-      >
-        <QuizBannerContent title={title} placeholder={placeholder} />
-      </Wrapper>
+      <BannerImage src={data?.bannerImg}></BannerImage>
       <Wrapper $position="absolute" $bottom="0" height="352px">
         <Wrapper
           display="flex"
@@ -32,7 +25,7 @@ function QuizBanner() {
             content="이벤트 참여하기"
           ></EventButton>
         </Wrapper>
-        <QuizBannerTimer initialSeconds={604799}></QuizBannerTimer>
+        <QuizBannerTimer></QuizBannerTimer>
       </Wrapper>
     </Wrapper>
   );

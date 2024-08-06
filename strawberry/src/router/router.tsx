@@ -3,14 +3,13 @@ import DefaultLayout from "../layout/DefaultLayout";
 import HeaderLayout from "../layout/HeaderLayout";
 import PublicRoute from "./PublicRoute";
 import ProtectedRoute from "./ProtectedRoute";
-
-import QuizLandingPage from "../pages/quizLanding/QuizLandingPage";
 import QuizPlayPage from "../pages/quiz/QuizPlayPage";
 import DrawingPlayPage from "../pages/drawing/DrawingPlayPage";
 import DrawingLandingPage from "../pages/drawingLanding/DrawingLandingPage";
 import LoginPage from "../pages/login/LoginPage";
 import ExpectationPage from "../pages/expectation/ExpectationPage";
 import LoginRedirectedPage from "../pages/login/LoginRedirectPage";
+import QuizLandingWrapper from "../pages/quizLanding/QuizLandingWrapper";
 
 const router = createBrowserRouter([
   {
@@ -43,7 +42,7 @@ const router = createBrowserRouter([
       },
       {
         path: "quiz",
-        element: <QuizLandingPage />,
+        element: <QuizLandingWrapper />,
       },
       {
         path: "drawing",

@@ -1,11 +1,17 @@
 import styled from "styled-components";
+
 import { theme, Label, Wrapper } from "../../../../core/design_system";
+
+import { useQuizLandingState } from "../../hooks";
+
 import QuizRewardItem from "./QuizRewardItem";
-import QuizRewardImage from "../../../../assets/images/temp/QuizReward.svg";
 
 function QuizReward() {
+  const { quizLandingData } = useQuizLandingState();
+
   const notice =
     "* 이벤트는 로그인 후 참여 가능합니다.\n* 퀴즈의 정답을 정확히 기재한 경우에만 경품을 지급해 드립니다.";
+
   return (
     <Wrapper
       $backgroundcolor={theme.Color.Ivory.ivory500}
@@ -32,11 +38,11 @@ function QuizReward() {
           </Label>
         </Wrapper>
         <Wrapper display="flex" $gap="24px" $justifycontent="center">
-          {Array.from({ length: 3 }, (_, index) => (
+          {quizLandingData?.prizeInfos.map((reward, index) => (
             <QuizRewardItem
               key={index}
-              isClosed={index === 0}
-              image={QuizRewardImage}
+              isClosed={!reward.validPrize}
+              image={reward.prizeImgUrl}
             />
           ))}
         </Wrapper>

@@ -1,14 +1,25 @@
 import styled from "styled-components";
 
 import { theme, Label, Line, Wrapper } from "../../../../core/design_system";
+import { formatEventDateTime } from "../../../../core/utils";
+
+import { useQuizLandingState } from "../../hooks";
+
 import QuizOpenStep from "./QuizOpenStep";
 
 function QuizOpen() {
-  const question =
-    "디 올 뉴 싼타페는 ‘ㅇㅅ' 과 아웃도어를 넘나드는 새로운 라이프 제공을 목표로 합니다.\n‘ㅇㅅ’은 무엇을 의미할까요?";
+  const { quizLandingData } = useQuizLandingState();
+  const eventDate = formatEventDateTime(
+    quizLandingData?.startAt,
+    quizLandingData?.endAt,
+  );
+
   return (
     <Wrapper width="66%" $margin="0 auto" $padding="42px 0 120px 0">
-      <QuizOpenStep total={3} current={1} />
+      <QuizOpenStep
+        total={quizLandingData?.prizeInfos.length ?? 0}
+        current={quizLandingData?.quizSequence ?? 0}
+      />
       <QuestionWrapper>
         <Label
           width="100%"
@@ -17,7 +28,7 @@ function QuizOpen() {
           color={theme.Color.Event.quiz_default}
           $margin="0 0 0 8px"
         >
-          9월 1일 오후 12:00~15:00
+          {eventDate}
         </Label>
         <Label
           width="100%"
@@ -34,23 +45,14 @@ function QuizOpen() {
           $textalign="center"
           $margin="44px 0"
         >
-          {question}
+          {quizLandingData?.problem}
         </Label>
-        <Wrapper
-          width="max-content"
-          display="flex"
-          $gap="72px"
-          $justifycontent="space-between"
-          $backgroundcolor={theme.Color.Neutral.neutral97}
-          borderRadius="6px"
-          $padding="17px 97px"
-          $margin="0 auto"
-        >
+        <HintWrapper>
           <Label $token="Heading1Regular" color={theme.Color.Neutral.neutral60}>
-            Hint. ‘디 올 뉴 싼타페’ 신차 소개 페이지
+            Hint. {quizLandingData?.hint}
           </Label>
           <UnderLineButton>바로가기</UnderLineButton>
-        </Wrapper>
+        </HintWrapper>
       </QuestionWrapper>
     </Wrapper>
   );
@@ -61,6 +63,17 @@ const QuestionWrapper = styled.div`
   padding: 33px 28px;
   background-color: ${({ theme }) => theme.Color.TextIcon.reverse};
   box-shadow: 4px 4px 20px 0px rgba(0, 0, 0, 0.1);
+`;
+
+const HintWrapper = styled.div`
+  width: max-content;
+  display: flex;
+  gap: 72px;
+  justify-content: space-between;
+  background-color: ${({ theme }) => theme.Color.Neutral.neutral97};
+  border-radius: 6px;
+  padding: 17px 97px;
+  margin: 0 auto;
 `;
 
 const UnderLineButton = styled.button`
