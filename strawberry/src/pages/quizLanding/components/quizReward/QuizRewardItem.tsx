@@ -1,14 +1,14 @@
 import styled from "styled-components";
 
 import { Wrapper } from "../../../../core/design_system";
-import QuizReward from "../../../../assets/images/temp/QuizReward.svg";
-
 interface QuizRewardItemProps {
   isClosed: boolean;
   image: string;
 }
 
-function QuizRewardItem({ isClosed }: QuizRewardItemProps) {
+function QuizRewardItem(props: QuizRewardItemProps) {
+  const { isClosed, image } = props;
+
   return (
     <Wrapper
       width="348px"
@@ -21,7 +21,7 @@ function QuizRewardItem({ isClosed }: QuizRewardItemProps) {
           <ClosedMark>선착순 마감</ClosedMark>
         </Dimmer>
       )}
-      <img width="100%" height="100%" src={QuizReward} alt="Quiz Reward" />
+      <img width="100%" height="100%" src={image} alt="Quiz Reward" />
     </Wrapper>
   );
 }

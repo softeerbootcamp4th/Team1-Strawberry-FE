@@ -1,12 +1,13 @@
 import styled from "styled-components";
+
 import { theme, Label, Line, Wrapper } from "../../../../core/design_system";
 
-interface Props {
+interface QuizBannerContentProps {
   placeholder: string;
   title: string;
 }
 
-function QuizBannerContent(props: Props) {
+function QuizBannerContent(props: QuizBannerContentProps) {
   const { title, placeholder } = props;
 
   return (

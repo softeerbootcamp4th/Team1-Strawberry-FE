@@ -6,8 +6,6 @@ function formatEventDateTime(
     return "이벤트 날짜가 유효하지 않습니다.";
   }
 
-  console.log(startAt, endAt);
-
   const startDate = new Date(startAt);
   const endDate = new Date(endAt);
 

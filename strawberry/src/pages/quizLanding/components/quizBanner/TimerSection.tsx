@@ -1,4 +1,5 @@
 import styled from "styled-components";
+
 import { Label, theme, Wrapper } from "../../../../core/design_system";
 
 interface TimerSectionProps {

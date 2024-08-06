@@ -1,10 +1,13 @@
 import { Wrapper } from "../../../../core/design_system";
-import QuizInfoImg from "../../../../assets/images/temp/QuizInfoImg.svg";
+
+import { useQuizLandingState } from "../../hooks";
 
 function QuizInfo() {
+  const { quizLandingData } = useQuizLandingState();
+
   return (
-    <Wrapper $padding="95px 0 58px 0" display="flex" $justifycontent="center">
-      <img width="75%" src={QuizInfoImg}></img>
+    <Wrapper display="flex" $justifycontent="center">
+      <img width="100%" src={quizLandingData?.eventImg.main}></img>
     </Wrapper>
   );
 }
