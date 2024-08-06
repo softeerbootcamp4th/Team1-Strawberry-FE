@@ -5,11 +5,11 @@ import PublicRoute from "./PublicRoute";
 import ProtectedRoute from "./ProtectedRoute";
 import QuizPlayPage from "../pages/quiz/QuizPlayPage";
 import DrawingPlayPage from "../pages/drawing/DrawingPlayPage";
-import DrawingLandingPage from "../pages/drawingLanding/DrawingLandingPage";
 import LoginPage from "../pages/login/LoginPage";
 import ExpectationPage from "../pages/expectation/ExpectationPage";
 import LoginRedirectedPage from "../pages/login/LoginRedirectPage";
 import QuizLandingWrapper from "../pages/quizLanding/QuizLandingWrapper";
+import DrawingLandingWrapper from "../pages/drawingLanding/DrawingLandingWrapper";
 
 const router = createBrowserRouter([
   {
@@ -46,7 +46,7 @@ const router = createBrowserRouter([
       },
       {
         path: "drawing",
-        element: <DrawingLandingPage />,
+        element: <DrawingLandingWrapper />,
       },
     ],
   },
