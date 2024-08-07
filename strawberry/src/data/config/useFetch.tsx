@@ -12,7 +12,7 @@ async function handleError(response: Response): Promise<never> {
   throw new CustomError("UNKNOWN_ERROR");
 }
 
-async function makeHeader() {
+function makeHeader() {
   const baseHeader = { "Content-Type": "application/json" };
 
   const token = localStorage.getItem("accessToken");
@@ -44,7 +44,7 @@ export function useFetch<T>({
     const Server_IP = `${import.meta.env.VITE_APP_Server_IP}/api/v1/`;
     const finalURL = Server_IP + buildURL(url, params, queryParams);
 
-    const finalHeader = await makeHeader();
+    const finalHeader = makeHeader();
     const finalBody = body ? JSON.stringify(body) : undefined;
 
     let requestConfig: RequestInit = {
