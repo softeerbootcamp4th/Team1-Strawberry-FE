@@ -1,4 +1,5 @@
 export interface EventImageUrl {
-  description_url: string;
-  main_url: string;
+  how: string;
+  reward: string;
+  description: string;
 }

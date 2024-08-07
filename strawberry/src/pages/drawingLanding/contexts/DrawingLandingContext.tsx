@@ -4,6 +4,7 @@ import { DrawingLandingState, DrawingLandingAction } from "../models";
 
 const initialState: DrawingLandingState = {
   drawingLandingData: undefined,
+  drawingRankData: undefined,
 };
 
 export const DrawingLandingStateContext = createContext<
@@ -19,8 +20,12 @@ function drawingLandingReducer(
   action: DrawingLandingAction,
 ): DrawingLandingState {
   switch (action.type) {
-    case "SET_DATA":
+    case "SET_LAND_DATA":
       return { ...state, drawingLandingData: action.data };
+    case "SET_RANK_DATA":
+      return { ...state, drawingRankData: action.data };
+    case "SET_EVENT_USER_DATA":
+      return { ...state, eventUserData: action.data };
     default:
       throw new Error("ACTION NOT FOUND");
   }

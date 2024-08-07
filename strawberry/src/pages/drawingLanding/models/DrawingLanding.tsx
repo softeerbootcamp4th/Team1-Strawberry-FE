@@ -1,7 +1,8 @@
-import { UserInfo } from "./UserInfo";
-import { EventInfo } from "./EventInfo";
+import { EventImageUrl } from "./EventmageUrl";
 
 export interface DrawingLanding {
-  userInfo: UserInfo;
-  eventInfo: EventInfo;
+  bannerImgUrl: string;
+  eventImgUrls: EventImageUrl;
+  startAt: string;
+  endAt: string;
 }
