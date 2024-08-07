@@ -1,19 +1,11 @@
 import { theme, Label, Wrapper } from "../../../../core/design_system";
 
-import DrawingInfoImg from "../../../../assets/images/temp/DrawingInfoImg.svg";
-import DrawingParticipantGuide from "../../../../assets/images/temp/DrawingParticipantGuide.svg";
-import DrawingReward from "../../../../assets/images/temp/DrawingReward.svg";
-import GreenBadge from "../../../../assets/images/icons/GreenBadgeInfo.svg";
-import BlueBadge from "../../../../assets/images/icons/BlueBadgeInfo.svg";
+import { useDrawingLandingState } from "../../hooks/useDrawingLandingState";
 
-import DrawingBadgeInfo from "./DrawingBadgeInfo";
+import DrawingBadges from "./DrawingBadges";
 
 function DrawingInfo() {
-  const descriptions = [
-    "마지막 게임 참여 시간으로부터\n4시간마다 배지가 하나씩 자동으로 충전됩니다.\n배지는 최대 2개까지 충전되며,\n사용한 후 다시 충전할 수 있어요!",
-    "신차 기대평 최초 작성 시\n1개가 주어져요!",
-    "게임 최초 공유 시\n1개가 주어져요!",
-  ];
+  const { drawingLandingData: landData } = useDrawingLandingState();
 
   return (
     <Wrapper
@@ -21,8 +13,12 @@ function DrawingInfo() {
       display="flex"
       $flexdirection="column"
     >
-      <img width="100%" height="100%" src={DrawingInfoImg} />
-      <img width="100%" height="100%" src={DrawingParticipantGuide} />
+      <img
+        width="100%"
+        height="100%"
+        src={landData?.eventImgUrls.description}
+      />
+      <img width="100%" height="100%" src={landData?.eventImgUrls.how} />
       <Wrapper
         $padding="64px 0 80px 0"
         display="flex"
@@ -49,28 +45,9 @@ function DrawingInfo() {
             드로잉 이벤트 참여 가능 횟수
           </Label>
         </Wrapper>
-        <Wrapper display="flex" width="75%" $gap="24px" height="340px">
-          <DrawingBadgeInfo
-            isSmallGap={false}
-            isAcquired={false}
-            imgSource={GreenBadge}
-            description={descriptions[0]}
-          />
-          <DrawingBadgeInfo
-            isSmallGap={true}
-            isAcquired={true}
-            imgSource={BlueBadge}
-            description={descriptions[1]}
-          />
-          <DrawingBadgeInfo
-            isSmallGap={true}
-            isAcquired={false}
-            imgSource={BlueBadge}
-            description={descriptions[2]}
-          />
-        </Wrapper>
+        <DrawingBadges />
       </Wrapper>
-      <img width="100%" height="100%" src={DrawingReward} />
+      <img width="100%" height="100%" src={landData?.eventImgUrls.reward} />
     </Wrapper>
   );
 }

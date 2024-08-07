@@ -1,33 +1,19 @@
 import styled from "styled-components";
 
-import {
-  theme,
-  EventButton,
-  Label,
-  Wrapper,
-} from "../../../../core/design_system";
+import { EventButton, Wrapper } from "../../../../core/design_system";
+
+import { useDrawingLandingState } from "../../hooks/useDrawingLandingState";
+
+import DrawingChance from "./DrawingChance";
 
 function DrawingBanner() {
+  const { drawingLandingData: landData } = useDrawingLandingState();
+
   return (
     <Wrapper $position="relative" height="calc(100vh - 70px)">
-      <BannerImage src={QuizBannerImage}></BannerImage>
+      <BannerImage src={landData?.bannerImgUrl}></BannerImage>
       <BannerContentWrapper>
-        <Wrapper
-          $backgroundcolor={theme.Color.Dimmer.default}
-          width="fit-content"
-          height="fit-content"
-          $padding="12px 100px"
-          borderRadius="6px"
-        >
-          <Label
-            width="100%"
-            $token="Body1Regular"
-            color={theme.Color.TextIcon.reverse}
-            $textalign="center"
-          >
-            마지막 게임 참여 시간 : 14시 30분
-          </Label>
-        </Wrapper>
+        <DrawingChance />
         <EventButton
           type="DRAWING"
           status="DEFAULT"
@@ -41,8 +27,14 @@ function DrawingBanner() {
 export default DrawingBanner;
 
 const BannerContentWrapper = styled.div`
+  position: absolute;
+  bottom: 0;
+
+  width: 100%;
+
   display: flex;
   align-items: center;
+  justify-content: center;
   flex-direction: column;
   height: fit-content;
   padding-bottom: 77px;
