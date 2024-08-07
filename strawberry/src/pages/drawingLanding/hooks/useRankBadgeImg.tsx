@@ -1,9 +1,9 @@
 import { useMemo } from "react";
 
-import GoldRankBadge from "../../assets/images/icons/GoldRankBadge.svg";
-import SilverRankBadge from "../../assets/images/icons/SilverRankBadge.svg";
-import BronzeRankBadge from "../../assets/images/icons/BronzeRankBadge.svg";
-import NormalRankBadge from "../../assets/images/icons/NormalRankBadge.svg";
+import GoldRankBadge from "../../../assets/images/icons/GoldRankBadge.svg";
+import SilverRankBadge from "../../../assets/images/icons/SilverRankBadge.svg";
+import BronzeRankBadge from "../../../assets/images/icons/BronzeRankBadge.svg";
+import NormalRankBadge from "../../../assets/images/icons/NormalRankBadge.svg";
 
 export function useRankBadgeImage(rank: number): string {
   return useMemo(() => {
