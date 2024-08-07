@@ -15,7 +15,7 @@ export function useHandleLoginRedirect() {
 
   useEffect(() => {
     if (data) {
-      const { user, token } = data.data;
+      const { user, token } = data;
 
       localStorage.setItem("accessToken", token.accessToken);
       dispatch?.({ type: "SET_LOGIN", status: true });
