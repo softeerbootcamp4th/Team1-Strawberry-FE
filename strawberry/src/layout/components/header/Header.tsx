@@ -2,9 +2,14 @@ import styled from "styled-components";
 import HeaderMenuButtons from "./HeaderMenuButtons";
 import HeaderLogo from "./HeaderLogo";
 import LoginButton from "./LoginButton";
+import LogoutButton from "./LogoutButton";
 import CarIntroButton from "./CarIntroButton";
 
+import { useGlobalState } from "../../../core/hooks/useGlobalState";
+
 function Header() {
+  const { isLogin } = useGlobalState();
+
   return (
     <StyledHeader>
       <HeaderWrapper>
@@ -13,8 +18,9 @@ function Header() {
           <HeaderMenuButtons></HeaderMenuButtons>
         </nav>
         <ButtonWrapper>
-          <LoginButton></LoginButton>
-          <CarIntroButton></CarIntroButton>
+          {!isLogin && <LoginButton />}
+          {isLogin && <LogoutButton />}
+          <CarIntroButton />
         </ButtonWrapper>
       </HeaderWrapper>
     </StyledHeader>
