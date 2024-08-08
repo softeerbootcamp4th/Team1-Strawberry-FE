@@ -27,8 +27,8 @@ const PrimaryLargeButton = styled.button`
 
 const WhiteLargeButton = styled.button`
   width: 100%;
+  height: 56px;
   ${({ theme }) => theme.Typography.Body1Medium}
-  padding: 16px 32px;
   border: ${({ theme }) => `1px solid ${theme.Color.Border.strong}`};
   box-sizing: border-box;
 `;
