@@ -10,16 +10,9 @@ interface User {
 interface Token {
   accessToken: string;
 }
-
-interface OauthData {
+interface Oauth {
   user: User;
   token: Token;
-}
-
-interface Oauth {
-  status: number;
-  message: string;
-  data: OauthData;
 }
 
 export function useLoginCallbackQuery(type: string, code: string) {

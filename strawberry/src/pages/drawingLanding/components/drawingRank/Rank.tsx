@@ -1,10 +1,8 @@
 import styled from "styled-components";
 
 import { Label, theme, Wrapper } from "../../../../core/design_system";
-import GoldRankBadge from "../../../../assets/images/icons/GoldRankBadge.svg";
-import SilverRankBadge from "../../../../assets/images/icons/SilverRankBadge.svg";
-import BronzeRankBadge from "../../../../assets/images/icons/BronzeRankBadge.svg";
-import NormalRankBadge from "../../../../assets/images/icons/NormalRankBadge.svg";
+
+import { useRankBadgeImage } from "../../hooks/useRankBadgeImg";
 
 interface RankProps {
   rank: number;
@@ -15,6 +13,8 @@ interface RankProps {
 function Rank(props: RankProps) {
   const { rank, name, score } = props;
 
+  const badgeImg = useRankBadgeImage(rank);
+
   return (
     <RankStyle>
       <Wrapper
@@ -24,19 +24,12 @@ function Rank(props: RankProps) {
         width="fit-content"
       >
         <Wrapper $position="relative" width="54px" height="54px">
-          <img src={getRankBadgeImg(rank)}></img>
-          <Wrapper
-            $position="absolute"
-            left="0"
-            $top="0"
-            display="flex"
-            $justifycontent="center"
-            $alignitems="center"
-          >
+          <img src={badgeImg} alt={`Rank ${rank} Badge`} />
+          <RankLabelWrapper>
             <Label $token="Title2Medium" color={theme.Color.TextIcon.reverse}>
               {rank}
             </Label>
-          </Wrapper>
+          </RankLabelWrapper>
         </Wrapper>
         <Label $token="Title2Medium" color={theme.Color.TextIcon.strong}>
           {name}
@@ -47,22 +40,22 @@ function Rank(props: RankProps) {
       </Label>
     </RankStyle>
   );
-
-  function getRankBadgeImg(rank: number) {
-    switch (rank) {
-      case 1:
-        return GoldRankBadge;
-      case 2:
-        return SilverRankBadge;
-      case 3:
-        return BronzeRankBadge;
-      default:
-        return NormalRankBadge;
-    }
-  }
 }
 
 export default Rank;
+
+const RankLabelWrapper = styled.div`
+  position: absolute;
+  left: 0;
+  top: 0;
+
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
 
 const RankStyle = styled.div`
   width: auto;

@@ -12,6 +12,21 @@ async function handleError(response: Response): Promise<never> {
   throw new CustomError("UNKNOWN_ERROR");
 }
 
+function makeHeader() {
+  const baseHeader = { "Content-Type": "application/json" };
+
+  const token = localStorage.getItem("accessToken");
+
+  if (token) {
+    return {
+      ...baseHeader,
+      Authorization: `Bearer ${token}`,
+    };
+  } else {
+    return baseHeader;
+  }
+}
+
 interface BaseResponse<T> {
   state: number;
   message: string;
@@ -29,7 +44,7 @@ export function useFetch<T>({
     const Server_IP = `${import.meta.env.VITE_APP_Server_IP}/api/v1/`;
     const finalURL = Server_IP + buildURL(url, params, queryParams);
 
-    const finalHeader = { "Content-Type": "application/json" };
+    const finalHeader = makeHeader();
     const finalBody = body ? JSON.stringify(body) : undefined;
 
     let requestConfig: RequestInit = {
