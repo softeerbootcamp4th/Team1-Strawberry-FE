@@ -6,7 +6,7 @@ import ProtectedRoute from "./ProtectedRoute";
 import QuizPlayPage from "../pages/quiz/QuizPlayPage";
 import DrawingPlayPage from "../pages/drawing/DrawingPlayPage";
 import LoginPage from "../pages/login/LoginPage";
-import ExpectationPage from "../pages/expectation/ExpectationPage";
+import ExpectationPageWrapper from "../pages/expectation/ExpectationPageWrapper";
 import LoginRedirectedPage from "../pages/login/LoginRedirectPage";
 import QuizLandingWrapper from "../pages/quizLanding/QuizLandingWrapper";
 import DrawingLandingWrapper from "../pages/drawingLanding/DrawingLandingWrapper";
@@ -36,7 +36,7 @@ const router = createBrowserRouter([
         path: "expectation",
         element: (
           <>
-            <ExpectationPage />
+            <ExpectationPageWrapper />
           </>
         ),
       },
