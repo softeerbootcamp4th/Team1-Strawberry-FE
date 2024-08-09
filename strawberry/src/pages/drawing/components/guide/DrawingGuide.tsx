@@ -1,4 +1,5 @@
 import { Label, theme, Wrapper } from "../../../../core/design_system";
+
 import GuideSlick from "./GuideSlick";
 
 function DrawingGuide() {
