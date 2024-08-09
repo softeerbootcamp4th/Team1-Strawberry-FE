@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 const PrimarySmallButton = styled.button`
-  width: 220px;
+  width: 100%;
   ${({ theme }) => theme.Typography.Body1Medium}
   padding: 16px 32px;
   background-color: ${({ theme }) => theme.Color.Primary.normal};
@@ -10,7 +10,7 @@ const PrimarySmallButton = styled.button`
 `;
 
 const WhiteSmallButton = styled.button`
-  width: 220px;
+  width: 100%;
   ${({ theme }) => theme.Typography.Body1Medium}
   padding: 16px 32px;
   border: ${({ theme }) => `1px solid ${theme.Color.Border.strong}`};
@@ -18,7 +18,7 @@ const WhiteSmallButton = styled.button`
 `;
 
 const PrimaryLargeButton = styled.button`
-  width: 455px;
+  width: 100%;
   ${({ theme }) => theme.Typography.Body1Medium}
   padding: 16px 32px;
   background-color: ${({ theme }) => theme.Color.Primary.normal};
@@ -26,7 +26,7 @@ const PrimaryLargeButton = styled.button`
 `;
 
 const WhiteLargeButton = styled.button`
-  width: 455px;
+  width: 100%;
   ${({ theme }) => theme.Typography.Body1Medium}
   padding: 16px 32px;
   border: ${({ theme }) => `1px solid ${theme.Color.Border.strong}`};

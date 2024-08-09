@@ -50,6 +50,7 @@ function TwoButtonModal() {
           $flexdirection="row"
           $justifycontent="space-between"
           $margin="48px 0 0 0"
+          $gap="15px"
         >
           <ModalButton
             modalType="WHITE_SMALL"
