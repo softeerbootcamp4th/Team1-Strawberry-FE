@@ -1,8 +1,11 @@
 import styled from "styled-components";
-import expectationBG from "/src/assets/images/background/expectationBG.svg";
 
-function ExpectationBanner() {
-  return <StyledImg src={expectationBG} />;
+interface ExpectationBannerProps {
+  bannerImg: string;
+}
+
+function ExpectationBanner({ bannerImg }: ExpectationBannerProps) {
+  return <StyledImg src={bannerImg} />;
 }
 
 export default ExpectationBanner;

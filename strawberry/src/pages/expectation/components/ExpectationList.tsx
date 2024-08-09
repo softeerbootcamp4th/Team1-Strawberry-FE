@@ -1,9 +1,10 @@
 import styled from "styled-components";
 import { Label, theme } from "../../../core/design_system";
 
-import { ExpectationListProps } from "../contexts/useExpectationListQuery";
+import { ExpectationListProps } from "../hooks/apis/useExpectationListQuery";
 
-function ExpectationList({ writerName, content }: ExpectationListProps) {
+function ExpectationList(props: ExpectationListProps) {
+  const { name, comment } = props;
   return (
     <>
       <ExpectationListWrapper>
@@ -12,14 +13,14 @@ function ExpectationList({ writerName, content }: ExpectationListProps) {
           $token="Body1LongRegular"
           color={theme.Color.Primary.normal}
         >
-          {writerName}
+          {name}
         </Label>
         <Label
           width="100%"
           $token="Heading2Regular"
           color={theme.Color.TextIcon.default}
         >
-          {content}
+          {comment}
         </Label>
       </ExpectationListWrapper>
     </>

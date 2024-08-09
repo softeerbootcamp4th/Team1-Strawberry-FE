@@ -1,38 +1,41 @@
+import SubmitButton from "./SubmitButton";
+
 import styled from "styled-components";
 import { Wrapper } from "../../../core/design_system";
 
-import SubmitButton from "./SubmitButton";
-
-import useLengthValidation from "../hooks/useLengthValidation";
+import useExpectationInput from "../hooks/logics/useExpectationInput";
 
 function ExpectationInput() {
-  const { content, handleChange } = useLengthValidation({
-    initialContent: "",
-    maxLength: 300,
-  });
-
-  function handleClick() {
-    // content fetch + 비속어 체크
-  }
+  const {
+    content,
+    handleChange,
+    handleKeyDown,
+    handleSubmit,
+    isFocused,
+    setIsFocused,
+  } = useExpectationInput();
 
   return (
     <Wrapper width="960px" display="flex" $justifycontent="space-between">
-      <InputWrapper>
+      <InputWrapper $isFocused={isFocused}>
         <StyledInput
           placeholder="디 올 뉴 싼타페에 대한 기대평을 작성해주세요"
           value={content}
           onChange={handleChange}
+          onKeyDown={(e) => handleKeyDown(e)}
+          onFocus={() => setIsFocused(true)}
+          onBlur={() => setIsFocused(false)}
         />
         <WrittenLength>{content.length}/300</WrittenLength>
       </InputWrapper>
-      <SubmitButton onClick={handleClick} />
+      <SubmitButton onClick={handleSubmit} />
     </Wrapper>
   );
 }
 
 export default ExpectationInput;
 
-const InputWrapper = styled.div`
+const InputWrapper = styled.div<{ $isFocused: boolean }>`
   border-radius: ${({ theme }) => theme.Border.Radius6};
   border: 1px solid ${({ theme }) => theme.Color.Border.default};
   padding: 12px;
@@ -43,6 +46,9 @@ const InputWrapper = styled.div`
   display: flex;
   flex-direction: row;
   background-color: ${({ theme }) => theme.Color.Common.white};
+
+  outline: ${({ theme, $isFocused }) =>
+    $isFocused ? `1px solid ${theme.Color.Primary.normal}` : "none"};
 `;
 
 const StyledInput = styled.textarea`
