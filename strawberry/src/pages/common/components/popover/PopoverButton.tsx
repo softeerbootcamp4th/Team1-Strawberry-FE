@@ -6,12 +6,12 @@ import popoverButton from "/src/assets/images/icons/popoverButton.svg";
 
 import PopoverBox from "./PopoverBox";
 
-interface PopoverProps {
+interface PopoverButtonProps {
   type: string;
   content: string;
 }
 
-function Popover(props: PopoverProps) {
+function PopoverButton(props: PopoverButtonProps) {
   const { type, content } = props;
   const [isContentShown, setIsContentShown] = useState<boolean>(false);
 
@@ -33,7 +33,7 @@ function Popover(props: PopoverProps) {
   );
 }
 
-export default Popover;
+export default PopoverButton;
 
 const HoverImg = styled.img`
   position: absolute;
