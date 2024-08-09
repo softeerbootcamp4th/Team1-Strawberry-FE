@@ -52,12 +52,6 @@ const Image = styled.img`
   left: 0;
 `;
 
-// const Content = styled.p`
-//   line-height: 100%;
-//   /* ${({ theme }) => theme.Typography.Body1Regular}
-//   color: ${({ theme }} */
-// `
-
 const Button = styled.button`
   width: fit-content;
   height: fit-content;

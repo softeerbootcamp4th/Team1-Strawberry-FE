@@ -21,7 +21,6 @@ function Popover(props: PopoverProps) {
         <HoverImg src={popoverButton} />
       </button>
       <Wrapper $position="absolute">
-        {/* <Wrapper $position="absolute" width="100%" right="0"> */}
         {isContentShown && (
           <PopoverBox
             type={type}
