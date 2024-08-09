@@ -1,22 +1,6 @@
 import { useState, useEffect } from "react";
 import styled, { css } from "styled-components";
 
-const SubmitProgressContainer = styled.div`
-  width: 100%;
-  height: 20px;
-  background-color: #d3d3d3;
-  border-radius: 10px;
-  overflow: hidden;
-`;
-
-const SubmitProgressFill = styled.div`
-  height: 100%;
-  background-color: #002c5f;
-  ${({ progress }) => css`
-    transition: width 1s linear;
-  `}
-`;
-
 const SubmitProgress = ({ limitTime }) => {
   const [progress, setProgress] = useState(0);
   const [isMounted, setIsMounted] = useState(true);
@@ -52,3 +36,19 @@ const SubmitProgress = ({ limitTime }) => {
 };
 
 export default SubmitProgress;
+
+const SubmitProgressContainer = styled.div`
+  width: 100%;
+  height: 20px;
+  background-color: #d3d3d3;
+  border-radius: 10px;
+  overflow: hidden;
+`;
+
+const SubmitProgressFill = styled.div`
+  height: 100%;
+  background-color: #002c5f;
+  ${({ progress }) => css`
+    transition: width 1s linear;
+  `}
+`;
