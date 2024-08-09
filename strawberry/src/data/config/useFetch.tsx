@@ -33,14 +33,17 @@ interface BaseResponse<T> {
   data: T;
 }
 
+interface BodyType {
+  body?: object;
+}
+
 export function useFetch<T>({
   url,
   method,
   params,
   queryParams,
-  body,
-}: RequestConfig<T>): () => Promise<T> {
-  return async () => {
+}: RequestConfig<T>): ({ body }: BodyType) => Promise<T> {
+  return async ({ body }: BodyType) => {
     const Server_IP = `${import.meta.env.VITE_APP_Server_IP}/api/v1/`;
     const finalURL = Server_IP + buildURL(url, params, queryParams);
 
