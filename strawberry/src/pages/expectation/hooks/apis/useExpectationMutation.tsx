@@ -2,10 +2,8 @@ import { useMutation } from "react-query";
 
 import { useFetch } from "../../../../data/config/useFetch";
 
-export interface useExpectationMutationBodyType {
-  body: {
-    content: string;
-  };
+interface UseExpectationMutationBodyType {
+  comment: string;
 }
 
 export function useExpectationMutation() {
@@ -15,7 +13,8 @@ export function useExpectationMutation() {
   });
 
   const mutation = useMutation({
-    mutationFn: fetchFn,
+    mutationFn: ({ body }: { body: UseExpectationMutationBodyType }) =>
+      fetchFn({ body: body }),
     onSuccess: () => location.reload(),
   });
 
