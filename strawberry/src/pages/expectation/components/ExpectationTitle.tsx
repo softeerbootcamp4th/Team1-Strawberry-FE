@@ -1,4 +1,5 @@
 import styled from "styled-components";
+
 import { theme, Label } from "../../../core/design_system";
 
 function ExpectationTitle() {

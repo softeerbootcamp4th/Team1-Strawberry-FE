@@ -1,11 +1,11 @@
 import { useState } from "react";
 
-interface PaginationParams {
+interface PageProps {
   totalPages: number;
   pagesToShow: number;
 }
 
-const usePagination = ({ totalPages, pagesToShow }: PaginationParams) => {
+const usePage = ({ totalPages, pagesToShow }: PageProps) => {
   const [visiblePages, setVisiblePages] = useState(
     Array.from({ length: Math.min(totalPages, pagesToShow) }, (_, i) => i + 1),
   );
@@ -23,4 +23,4 @@ const usePagination = ({ totalPages, pagesToShow }: PaginationParams) => {
   return { visiblePages, updateVisiblePages };
 };
 
-export default usePagination;
+export default usePage;

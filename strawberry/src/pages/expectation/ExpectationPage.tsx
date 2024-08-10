@@ -1,7 +1,10 @@
-import { useState } from "react";
-
 import styled from "styled-components";
+
 import { Label, theme, Wrapper } from "../../core/design_system";
+
+import { EventNotice } from "../common/components";
+
+import useExpectationPage from "./hooks/logics/useExpectationPage";
 
 import {
   ExpectationTitle,
@@ -10,13 +13,10 @@ import {
   ExpectationList,
   Pagination,
 } from "./components";
-import { EventNotice } from "../common/components";
-
-import { ExpectationListProps } from "./contexts/useExpectationListQuery";
 
 function ExpectationPage() {
-  const totalpage = expectations.length;
-  const [nowPage, setNowPage] = useState(1);
+  const { expectationList, nowPage, totalPage, changePage, bannerImg } =
+    useExpectationPage();
 
   return (
     <>
@@ -24,7 +24,7 @@ function ExpectationPage() {
         <ExpectationTitle />
         {/* content Wrapper */}
         <ExpectationContentWrapper>
-          <ExpectationBanner />
+          <ExpectationBanner bannerImg={bannerImg} />
           <Label
             $margin="48px 0 0 0"
             width="100%"
@@ -45,25 +45,19 @@ function ExpectationPage() {
             display="flex"
             $flexdirection="column"
             $margin="40px 0 0 0"
-            $justifycontent="center"
             $alignitems="center"
+            $minheight="1276px"
           >
-            {expectations[nowPage - 1].map(
-              ({ writerName, content }: ExpectationListProps, idx: number) => (
-                <ExpectationList
-                  key={idx}
-                  writerName={writerName}
-                  content={content}
-                />
-              ),
-            )}
-          </Wrapper>
-          <Wrapper $margin="0 0 80px 0">
-            <Pagination
-              totalPages={totalpage}
-              currentPage={nowPage}
-              onPageChange={(page) => setNowPage(page)}
-            />
+            {expectationList?.map(({ name, comment }, idx) => (
+              <ExpectationList key={idx} name={name} comment={comment} />
+            ))}
+            <Wrapper $margin="0 0 80px 0">
+              <Pagination
+                totalPages={totalPage}
+                currentPage={nowPage}
+                onPageChange={(page) => changePage(page)}
+              />
+            </Wrapper>
           </Wrapper>
         </ExpectationContentWrapper>
         <EventNotice title="기대평 유의사항" notices={notices} />
@@ -90,87 +84,6 @@ const ExpectationContentWrapper = styled.div`
   flex-direction: column;
   margin: 193px 0 0 0;
 `;
-
-const expectations = [
-  [
-    {
-      writerName: "최*빈",
-      content:
-        "디 올 뉴 싼타페의 새로운 디자인이 정말 기대돼요. 현대차의 혁신적인 디자인 언어가 어떻게 반영됐을지 궁금하네요! 하이브리드 모델도 나온다고 하니, 친환경적인 측면에서도 얼마나 발전했을지 기대됩니다. 실내 인테리어가 고급스러워졌다는 이야기를 들었어요. 고급 소재와 세련된 디자인이 어떻게 적용됐을지 궁금합니다.",
-    },
-    {
-      writerName: "최*우",
-      content:
-        "첨단 기술이 탑재된다고 들었는데, 디지털 센터 미러와 스마트한 인포테인먼트 시스템이 얼마나 향상됐을지 기대됩니다. 연비가 개선됐다고 들었어요. 장거리 운전 시 경제성을 얼마나 느낄 수 있을지 기대됩니다.",
-    },
-    {
-      writerName: "윤*린",
-      content:
-        "실내 공간이 더욱 넓어지고 편안해졌다고 하는데, 가족 여행에 딱 맞는 SUV가 될 것 같아요.",
-    },
-    {
-      writerName: "최*빈",
-      content:
-        "디 올 뉴 싼타페의 새로운 디자인이 정말 기대돼요. 현대차의 혁신적인 디자인 언어가 어떻게 반영됐을지 궁금하네요! 하이브리드 모델도 나온다고 하니, 친환경적인 측면에서도 얼마나 발전했을지 기대됩니다. 실내 인테리어가 고급스러워졌다는 이야기를 들었어요. 고급 소재와 세련된 디자인이 어떻게 적용됐을지 궁금합니다.",
-    },
-  ],
-  [
-    {
-      writerName: "최*우",
-      content:
-        "첨단 기술이 탑재된다고 들었는데, 디지털 센터 미러와 스마트한 인포테인먼트 시스템이 얼마나 향상됐을지 기대됩니다. 연비가 개선됐다고 들었어요. 장거리 운전 시 경제성을 얼마나 느낄 수 있을지 기대됩니다.",
-    },
-    {
-      writerName: "윤*린",
-      content:
-        "실내 공간이 더욱 넓어지고 편안해졌다고 하는데, 가족 여행에 딱 맞는 SUV가 될 것 같아요.",
-    },
-    {
-      writerName: "최*빈",
-      content:
-        "디 올 뉴 싼타페의 새로운 디자인이 정말 기대돼요. 현대차의 혁신적인 디자인 언어가 어떻게 반영됐을지 궁금하네요! 하이브리드 모델도 나온다고 하니, 친환경적인 측면에서도 얼마나 발전했을지 기대됩니다. 실내 인테리어가 고급스러워졌다는 이야기를 들었어요. 고급 소재와 세련된 디자인이 어떻게 적용됐을지 궁금합니다.",
-    },
-    {
-      writerName: "최*우",
-      content:
-        "첨단 기술이 탑재된다고 들었는데, 디지털 센터 미러와 스마트한 인포테인먼트 시스템이 얼마나 향상됐을지 기대됩니다. 연비가 개선됐다고 들었어요. 장거리 운전 시 경제성을 얼마나 느낄 수 있을지 기대됩니다.",
-    },
-  ],
-  [
-    {
-      writerName: "윤*린",
-      content:
-        "실내 공간이 더욱 넓어지고 편안해졌다고 하는데, 가족 여행에 딱 맞는 SUV가 될 것 같아요.",
-    },
-    {
-      writerName: "최*우",
-      content:
-        "첨단 기술이 탑재된다고 들었는데, 디지털 센터 미러와 스마트한 인포테인먼트 시스템이 얼마나 향상됐을지 기대됩니다. 연비가 개선됐다고 들었어요. 장거리 운전 시 경제성을 얼마나 느낄 수 있을지 기대됩니다.",
-    },
-    {
-      writerName: "윤*린",
-      content:
-        "실내 공간이 더욱 넓어지고 편안해졌다고 하는데, 가족 여행에 딱 맞는 SUV가 될 것 같아요.",
-    },
-    {
-      writerName: "최*빈",
-      content:
-        "디 올 뉴 싼타페의 새로운 디자인이 정말 기대돼요. 현대차의 혁신적인 디자인 언어가 어떻게 반영됐을지 궁금하네요! 하이브리드 모델도 나온다고 하니, 친환경적인 측면에서도 얼마나 발전했을지 기대됩니다. 실내 인테리어가 고급스러워졌다는 이야기를 들었어요. 고급 소재와 세련된 디자인이 어떻게 적용됐을지 궁금합니다.",
-    },
-  ],
-  [
-    {
-      writerName: "최*우",
-      content:
-        "첨단 기술이 탑재된다고 들었는데, 디지털 센터 미러와 스마트한 인포테인먼트 시스템이 얼마나 향상됐을지 기대됩니다. 연비가 개선됐다고 들었어요. 장거리 운전 시 경제성을 얼마나 느낄 수 있을지 기대됩니다.",
-    },
-    {
-      writerName: "윤*린",
-      content:
-        "실내 공간이 더욱 넓어지고 편안해졌다고 하는데, 가족 여행에 딱 맞는 SUV가 될 것 같아요.",
-    },
-  ],
-];
 
 const notices = [
   "이벤트 기간은 2024년 9월 1일 오후 12시부터 2024년 9월 21일 오후 10시까지입니다. 기간 내에 작성된 기대평만 유효합니다.",

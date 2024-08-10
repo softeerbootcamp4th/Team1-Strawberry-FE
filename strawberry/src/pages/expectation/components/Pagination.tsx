@@ -1,11 +1,10 @@
 import styled from "styled-components";
 
+import usePagination from "../hooks/logics/usePagination";
+
 import Arrow_Left_L_Gray from "/src/assets/images/icons/Arrow_Left_L_Gray.svg";
 import Arrow_Right_L_Gray from "/src/assets/images/icons/Arrow_Right_L_Gray.svg";
-
-import usePagination from "../hooks/usePagination";
-
-interface PaginationProps {
+export interface PaginationProps {
   totalPages: number;
   currentPage: number;
   onPageChange: (arg: number) => void;
@@ -18,30 +17,8 @@ interface PageNumberProps {
 const Pagination = (props: PaginationProps) => {
   const { totalPages, currentPage, onPageChange } = props;
 
-  // 한 번에 보여줄 페이지 정의
-  const pagesToShow = 5;
-
-  const { visiblePages, updateVisiblePages } = usePagination({
-    totalPages,
-    pagesToShow,
-  });
-
-  const handlePage = (page: number) => {
-    onPageChange(page);
-    updateVisiblePages(page);
-  };
-
-  const handlePrevious = () => {
-    if (currentPage > 1) {
-      onPageChange(currentPage - 1);
-    }
-  };
-
-  const handleNext = () => {
-    if (currentPage < totalPages) {
-      onPageChange(currentPage + 1);
-    }
-  };
+  const { visiblePages, handlePage, handlePrevious, handleNext } =
+    usePagination({ totalPages, currentPage, onPageChange });
 
   return (
     <PaginationWrapper>
@@ -128,6 +105,6 @@ const PageNumber = styled.button<PageNumberProps>`
 
   &:hover {
     background-color: ${({ theme, $active }) =>
-      $active ? theme.Color.Primary.normal : theme.Color.TextIcon.reverse};
+    $active ? theme.Color.Primary.normal : theme.Color.TextIcon.reverse};
   }
 `;
