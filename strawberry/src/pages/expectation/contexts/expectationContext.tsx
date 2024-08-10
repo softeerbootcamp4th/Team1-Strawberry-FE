@@ -2,7 +2,7 @@ import React, { createContext, useReducer, ReactNode } from "react";
 import { Dispatch } from "react";
 
 // 타입 정의
-interface ExpectationType {
+export interface ExpectationType {
   name: string;
   comment: string;
 }

@@ -1,14 +1,10 @@
-import { useEffect } from "react";
 import styled from "styled-components";
 
 import { Label, theme, Wrapper } from "../../core/design_system";
-import { throttle } from "../../core/utils";
 
 import { EventNotice } from "../common/components";
 
-import useExpectationData from "./hooks/useExpectationData";
-import { useExpectationState } from "./hooks/useExpectationState";
-import { useExpectationDispatch } from "./hooks/useExpectationDispatch";
+import useExpectationPage from "./hooks/logics/useExpectationPage";
 
 import {
   ExpectationTitle,
@@ -71,29 +67,6 @@ function ExpectationPage() {
 }
 
 export default ExpectationPage;
-
-function useExpectationPage() {
-  const { refetchList } = useExpectationData();
-  const { expectationList, nowPage, totalPage, bannerImg } =
-    useExpectationState();
-  const dispatch = useExpectationDispatch();
-
-  useEffect(() => {
-    refetchList();
-  }, [nowPage, refetchList]);
-
-  const changePage = throttle()((page: number) => {
-    dispatch({ type: "SET_NOW_PAGE", payload: page });
-  });
-
-  return {
-    expectationList,
-    nowPage,
-    totalPage,
-    changePage,
-    bannerImg,
-  };
-}
 
 const ExpectationWrapper = styled.div`
   position: relative;
