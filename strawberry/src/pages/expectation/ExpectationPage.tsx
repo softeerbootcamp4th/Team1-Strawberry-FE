@@ -1,7 +1,14 @@
 import { useEffect } from "react";
-
 import styled from "styled-components";
+
 import { Label, theme, Wrapper } from "../../core/design_system";
+import { throttle } from "../../core/utils";
+
+import { EventNotice } from "../common/components";
+
+import useExpectationData from "./hooks/useExpectationData";
+import { useExpectationState } from "./hooks/useExpectationState";
+import { useExpectationDispatch } from "./hooks/useExpectationDispatch";
 
 import {
   ExpectationTitle,
@@ -10,14 +17,6 @@ import {
   ExpectationList,
   Pagination,
 } from "./components";
-import { EventNotice } from "../common/components";
-
-import useExpectationData from "./hooks/useExpectationData";
-
-import { useExpectationState } from "./hooks/useExpectationState";
-import { useExpectationDispatch } from "./hooks/useExpectationDispatch";
-
-import { throttle } from "../../core/utils";
 
 function ExpectationPage() {
   const { expectationList, nowPage, totalPage, changePage, bannerImg } =

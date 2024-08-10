@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import useLengthValidation from "../useLengthValidation";
-import useExpectationMutation from "../apis/useExpectationMutation";
 import { useGlobalState } from "../../../../core/hooks/useGlobalState";
 import { useGlobalDispatch } from "../../../../core/hooks/useGlobalDispatch";
-
 import { throttle } from "../../../../core/utils";
+
+import useLengthValidation from "../useLengthValidation";
+import useExpectationMutation from "../apis/useExpectationMutation";
 
 function useExpectationInput() {
   const { mutate: postExpectation } = useExpectationMutation();

@@ -1,10 +1,9 @@
 import styled from "styled-components";
 
-import Arrow_Left_L_Gray from "/src/assets/images/icons/Arrow_Left_L_Gray.svg";
-import Arrow_Right_L_Gray from "/src/assets/images/icons/Arrow_Right_L_Gray.svg";
-
 import usePagination from "../hooks/logics/usePagination";
 
+import Arrow_Left_L_Gray from "/src/assets/images/icons/Arrow_Left_L_Gray.svg";
+import Arrow_Right_L_Gray from "/src/assets/images/icons/Arrow_Right_L_Gray.svg";
 export interface PaginationProps {
   totalPages: number;
   currentPage: number;
