@@ -1,10 +1,10 @@
 import styled from "styled-components";
 import { useState } from "react";
-import { Wrapper } from "../../../../core/design_system";
+import { Wrapper } from "../../../../../core/design_system";
 
 import popoverButton from "/src/assets/images/icons/popoverButton.svg";
 
-import PopoverBox from "./PopoverBox";
+import Popover from "./Popover";
 
 interface PopoverButtonProps {
   type: string;
@@ -22,7 +22,7 @@ function PopoverButton(props: PopoverButtonProps) {
       </button>
       <Wrapper $position="absolute">
         {isContentShown && (
-          <PopoverBox
+          <Popover
             type={type}
             content={content}
             setClose={() => setIsContentShown(false)}

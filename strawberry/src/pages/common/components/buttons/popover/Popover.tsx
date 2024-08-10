@@ -1,22 +1,22 @@
 import styled from "styled-components";
-import { theme, Wrapper, Label } from "../../../../core/design_system";
+import { theme, Wrapper, Label } from "../../../../../core/design_system";
 
-import popoverBox from "/src/assets/images/icons/popoverBox.svg";
+import popover from "/src/assets/images/icons/popover.svg";
 import close from "/src/assets/images/icons/close_gray.svg";
 
-interface PopoverBoxProps {
+interface PopoverProps {
   setClose: () => void;
   type: string;
   content: string;
 }
 
-function PopoverBox(props: PopoverBoxProps) {
+function Popover(props: PopoverProps) {
   const { setClose, type, content } = props;
 
   return (
     <Wrapper $position="relative" height="100%">
       <BoxWrapper>
-        <Image src={popoverBox} />
+        <Image src={popover} />
         <ContentWrapper>
           <Wrapper width="100%" display="flex" $flexdirection="column">
             <Wrapper
@@ -44,7 +44,7 @@ function PopoverBox(props: PopoverBoxProps) {
   );
 }
 
-export default PopoverBox;
+export default Popover;
 
 const Image = styled.img`
   position: absolute;
