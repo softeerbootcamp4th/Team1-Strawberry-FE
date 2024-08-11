@@ -10,6 +10,7 @@ import ExpectationPageWrapper from "../pages/expectation/ExpectationPageWrapper"
 import LoginRedirectedPage from "../pages/login/LoginRedirectPage";
 import QuizLandingWrapper from "../pages/quizLanding/QuizLandingWrapper";
 import DrawingLandingWrapper from "../pages/drawingLanding/DrawingLandingWrapper";
+import DrawingPlayWrapper from "../pages/drawingPlay/DrawingPlayWrapper";
 
 const router = createBrowserRouter([
   {
@@ -72,7 +73,7 @@ const router = createBrowserRouter([
         path: "drawing/play",
         element: (
           <>
-            <DrawingPlayPage />
+            <DrawingPlayWrapper />
           </>
         ),
       },
