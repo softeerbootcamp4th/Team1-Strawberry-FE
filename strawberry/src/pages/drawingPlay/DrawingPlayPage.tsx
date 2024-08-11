@@ -1,33 +1,20 @@
 import styled from "styled-components";
 import { Wrapper } from "../../core/design_system";
 
+import useDrawingPlayPage from "./hooks/useDrawingPlayPage";
+
 import DrawingOnboarding from "./components/DrawingOnboarding/DrawingOnboarding";
 import DrawingGame from "./components/DrawingGame/DrawingGame";
 import DrawingResult from "./components/DrawingResult/DrawingResult";
 import DrawingFinish from "./components/DrawingFinish/DrawingFinish";
 
-import { useDrawingPlayState } from "./hooks/useDrawingPlayState";
-
 import drawingBG from "/src/assets/images/background/drawingBG.svg";
 
-import useNavigationBlocker from "../common/hooks/useNavigationBlock";
-
-function Alert({ onDoneClcik, onClose }) {
-  return (
-    <>
-      <button onClick={onDoneClcik}>나가기</button>
-      <button onClick={onClose}>기다리기</button>
-    </>
-  );
-}
-
 function DrawingPlayPage() {
-  const { status } = useDrawingPlayState();
-  const { isBlocked, proceed, reset } = useNavigationBlocker();
+  const { status } = useDrawingPlayPage();
 
   return (
     <PageWrapper>
-      {isBlocked && <Alert onDoneClcik={proceed} onClose={reset} />}
       <Wrapper
         // 여기에 위와 간격 조절
         $margin="50px 0 0 0"
