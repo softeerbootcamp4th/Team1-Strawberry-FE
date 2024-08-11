@@ -29,7 +29,6 @@ const customLineStyle: LineStyle = {
 
 export function useDrawingCanvas(timeLimit = 10) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const [isDrawing, setIsDrawing] = useState<boolean>(false);
   const [userPoints, setUserPoints] = useState<Point[]>([]);
   const userPointsRef = useRef<Point[]>([]);
   const [timer, setTimer] = useState<number>(timeLimit);
@@ -37,7 +36,7 @@ export function useDrawingCanvas(timeLimit = 10) {
   const timeoutRef = useRef<number | null>(null);
   const intervalRef = useRef<number | null>(null);
 
-  const { stage } = useDrawingPlayState();
+  const { stage, isDrawing } = useDrawingPlayState();
   const dispatch = useDrawingPlayDispatch();
 
   useEffect(() => {
@@ -50,7 +49,7 @@ export function useDrawingCanvas(timeLimit = 10) {
 
   useEffect(() => {
     if (timer === 0) {
-      setIsDrawing(false);
+      dispatch({ type: "SET_FINISH_DRAWING" });
       clearInterval(intervalRef.current as number);
     }
   }, [timer]);
@@ -71,7 +70,6 @@ export function useDrawingCanvas(timeLimit = 10) {
     setUserPoints([]);
     userPointsRef.current = []; // ref도 초기화
     setTimer(timeLimit);
-    setIsDrawing(true); // 버튼 클릭 시 드로잉 상태를 활성화
 
     intervalRef.current = window.setInterval(() => {
       setTimer((prev) => {
@@ -88,7 +86,11 @@ export function useDrawingCanvas(timeLimit = 10) {
       clearInterval(intervalRef.current);
       intervalRef.current = null;
     }
-    setIsDrawing(false);
+
+    if (timeoutRef.current !== null) {
+      clearTimeout(timeoutRef.current);
+      timeoutRef.current = null;
+    }
     dispatch({ type: "SET_FINISH_DRAWING" });
     dispatch({ type: "SET_RESULT" });
 
