@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import rough from "roughjs/bundled/rough.esm";
 
 import { useDrawingPlayDispatch } from "./useDrawingPlayDispatch";
-import { useDrawingPlayState } from "../hooks/useDrawingPlayState";
+import { useDrawingPlayState } from "./useDrawingPlayState";
 
 import santafeLineBG from "/src/assets/images/background/santafeLineBG.svg";
 import interiorLineBG from "/src/assets/images/background/interiorLineBG.svg";
@@ -50,7 +50,6 @@ export function useDrawingCanvas(timeLimit = 10) {
 
   useEffect(() => {
     if (timer === 0) {
-      console.log(userPoints);
       setIsDrawing(false);
       clearInterval(intervalRef.current as number);
     }
@@ -85,13 +84,6 @@ export function useDrawingCanvas(timeLimit = 10) {
   };
 
   const stopDrawing = () => {
-    // 둘 다 잡힘
-    // console.log(userPoints);
-    // console.log(userPointsRef.current);
-    if (timeoutRef.current !== null) {
-      clearTimeout(timeoutRef.current);
-      timeoutRef.current = null;
-    }
     if (intervalRef.current !== null) {
       clearInterval(intervalRef.current);
       intervalRef.current = null;
@@ -99,6 +91,7 @@ export function useDrawingCanvas(timeLimit = 10) {
     setIsDrawing(false);
     dispatch({ type: "SET_FINISH_DRAWING" });
     dispatch({ type: "SET_RESULT" });
+
     const canvasImage = canvasRef.current?.toDataURL("image/png");
     dispatch({
       type: "SET_CANVAS_IMG",
@@ -133,36 +126,39 @@ export function useDrawingCanvas(timeLimit = 10) {
 
   const handleMouseMove = (e: React.MouseEvent) => {
     if (!isDrawing) return;
-    const rect = canvasRef.current?.getBoundingClientRect();
-    if (rect) {
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
 
-      setUserPoints((prevPoints) => [...prevPoints, { x, y }]);
+    const canvas = canvasRef.current;
+    if (!canvas) return;
 
-      const canvas = canvasRef.current;
-      const ctx = canvas?.getContext("2d");
-      const rc = rough.canvas(canvas!);
+    const rect = canvas.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
 
-      ctx?.clearRect(0, 0, canvas.width, canvas.height);
+    setUserPoints((prevPoints) => [...prevPoints, { x, y }]);
 
-      if (userPoints.length > 1) {
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    const rc = rough.canvas(canvas);
+
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    if (userPoints.length > 1) {
+      rc.line(
+        userPoints[0].x,
+        userPoints[0].y,
+        userPoints[1].x,
+        userPoints[1].y,
+        customLineStyle,
+      );
+      for (let i = 1; i < userPoints.length - 1; i++) {
         rc.line(
-          userPoints[0].x,
-          userPoints[0].y,
-          userPoints[1].x,
-          userPoints[1].y,
+          userPoints[i].x,
+          userPoints[i].y,
+          userPoints[i + 1].x,
+          userPoints[i + 1].y,
           customLineStyle,
         );
-        for (let i = 1; i < userPoints.length - 1; i++) {
-          rc.line(
-            userPoints[i].x,
-            userPoints[i].y,
-            userPoints[i + 1].x,
-            userPoints[i + 1].y,
-            customLineStyle,
-          );
-        }
       }
     }
   };

@@ -5,7 +5,7 @@ import { Dispatch } from "react";
 type StageType = 1 | 2 | 3 | number;
 type StatusType = "onBoarding" | "game" | "result" | "finish";
 
-interface DrawingPlayContextType {
+export interface DrawingPlayContextType {
   stage: StageType;
   totalStage: number;
   status: StatusType;
@@ -14,7 +14,7 @@ interface DrawingPlayContextType {
   isDrawing: boolean;
 }
 
-type ActionType =
+export type DrawingPlayActionType =
   | { type: "SET_NEXT_STAGE" }
   | { type: "SET_TOTAL_STAGE"; payload: number }
   | { type: "SET_ON_BOARDING" }
@@ -29,7 +29,6 @@ type ActionType =
 const initialState: DrawingPlayContextType = {
   stage: 1,
   totalStage: 3,
-  // status: "finish",
   status: "onBoarding",
   canvasImg: "",
   timeLimit: 7,
@@ -39,7 +38,7 @@ const initialState: DrawingPlayContextType = {
 // 리듀서 함수
 const drawingPlayReducer = (
   state: DrawingPlayContextType,
-  action: ActionType,
+  action: DrawingPlayActionType,
 ): DrawingPlayContextType => {
   switch (action.type) {
     case "SET_NEXT_STAGE":
@@ -70,7 +69,7 @@ export const DrawingPlayStateContext = createContext<
 >(undefined);
 
 export const DrawingPlayDispatchContext = createContext<
-  Dispatch<ActionType> | undefined
+  Dispatch<DrawingPlayActionType> | undefined
 >(undefined);
 
 // Context Provider 컴포넌트

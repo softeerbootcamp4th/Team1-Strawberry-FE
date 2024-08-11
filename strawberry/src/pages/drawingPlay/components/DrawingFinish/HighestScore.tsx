@@ -1,7 +1,12 @@
 import styled from "styled-components";
+
 import { theme, Label } from "../../../../core/design_system";
 
-function HighestScore({ score }: { score: number }) {
+interface HighestScoreProps {
+  score: number;
+}
+
+function HighestScore({ score }: HighestScoreProps) {
   return (
     <>
       <HighestScoreWrapper>

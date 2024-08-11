@@ -1,5 +1,6 @@
 import { useEffect } from "react";
-import { useDrawingPlayDispatch } from "../hooks/useDrawingPlayDispatch";
+
+import { useDrawingPlayDispatch } from "./useDrawingPlayDispatch";
 import { useDrawingPlayState } from "./useDrawingPlayState";
 
 import santafeBG from "/src/assets/images/background/santafeBG.svg";

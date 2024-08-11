@@ -1,47 +1,19 @@
-import { useState, useEffect } from "react";
-
 import styled from "styled-components";
+
 import { theme, Wrapper } from "../../../core/design_system";
+
+import useProgressBar from "../hooks/useProgressBar";
+
+interface ProgressBarProps {
+  timeLimit?: number;
+  isProgress?: boolean;
+}
 
 const ProgressBar = ({
   timeLimit = 7,
   isProgress = false,
-}: {
-  timeLimit?: number;
-  isProgress?: boolean;
-}) => {
-  const [progress, setProgress] = useState(0);
-  const [timer, setTimer] = useState(timeLimit);
-
-  const updateProgress = () => {
-    setProgress((prev) => {
-      const newProgress = Math.min(prev + 100 / timeLimit, 100);
-      return newProgress;
-    });
-  };
-
-  useEffect(() => {
-    if (isProgress) {
-      setProgress(0);
-      setTimer(timeLimit);
-
-      updateProgress();
-
-      const interval = setInterval(() => {
-        updateProgress();
-        setTimer((prev) => {
-          if (prev > 1) {
-            return prev - 1;
-          } else {
-            clearInterval(interval);
-            return 0;
-          }
-        });
-      }, 1000);
-
-      return () => clearInterval(interval);
-    }
-  }, [isProgress]);
+}: ProgressBarProps) => {
+  const { progress, timer } = useProgressBar(timeLimit, isProgress);
 
   return (
     <Wrapper

@@ -1,8 +1,14 @@
 import styled from "styled-components";
-import { Label, theme, Wrapper } from "../../../../core/design_system";
-import { useDrawingCanvas } from "../../hooks/useDrawingCanvas"; // 커스텀 훅 import
 
-const DrawingCanvas = ({ timeLimit = 7 }) => {
+import { Label, theme, Wrapper } from "../../../../core/design_system";
+
+import { useDrawingCanvas } from "../../hooks/useDrawingCanvas";
+
+interface DrawingCanvasProps {
+  timeLimit?: number;
+}
+
+function DrawingCanvas({ timeLimit }: DrawingCanvasProps) {
   const {
     canvasRef,
     isDrawing,
@@ -27,7 +33,7 @@ const DrawingCanvas = ({ timeLimit = 7 }) => {
         ref={canvasRef}
         width={938}
         height={513}
-        onMouseUp={(e) => handleMouseUp(e)}
+        onMouseUp={(e) => handleMouseUp(e as unknown as MouseEvent)}
         onMouseMove={handleMouseMove}
       />
       <Wrapper
@@ -41,8 +47,8 @@ const DrawingCanvas = ({ timeLimit = 7 }) => {
       >
         <StartButton
           onMouseDown={startDrawing}
-          onMouseUp={(e) => handleMouseUp(e)}
-          disabled={isDrawing}
+          onMouseUp={(e) => handleMouseUp(e as unknown as MouseEvent)}
+          $disabled={isDrawing}
         />
         <Label
           $token="Body2Medium"
@@ -54,11 +60,11 @@ const DrawingCanvas = ({ timeLimit = 7 }) => {
       </Wrapper>
     </Wrapper>
   );
-};
+}
 
 export default DrawingCanvas;
 
-const StartButton = styled.div`
+const StartButton = styled.div<{ $disabled: boolean }>`
   width: 12px;
   height: 12px;
   border-radius: 12px;

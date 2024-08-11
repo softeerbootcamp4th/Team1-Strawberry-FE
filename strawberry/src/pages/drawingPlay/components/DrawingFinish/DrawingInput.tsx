@@ -1,8 +1,8 @@
-import { theme, Wrapper } from "../../../../core/design_system";
+import styled from "styled-components";
+
+import { Wrapper } from "../../../../core/design_system";
 
 import useLengthValidation from "../../../expectation/hooks/useLengthValidation";
-
-import styled from "styled-components";
 
 function DrawingInput() {
   const { content, handleChange } = useLengthValidation({
@@ -26,7 +26,7 @@ function DrawingInput() {
         value={content}
         onChange={handleChange}
       />
-      <DrawingSubmitButton onClick={handleClick} />
+      <StyledButton onClick={handleClick}>등록</StyledButton>
     </Wrapper>
   );
 }
@@ -51,14 +51,6 @@ const StyledInput = styled.textarea`
     outline: ${({ theme }) => `1px solid ${theme.Color.Primary.active}`};
   }
 `;
-
-interface DrawingSubmitButtonProps {
-  onClick: () => void;
-}
-
-function DrawingSubmitButton({ onClick }: DrawingSubmitButtonProps) {
-  return <StyledButton onClick={onClick}>등록</StyledButton>;
-}
 
 const StyledButton = styled.button`
   height: 100%;
