@@ -22,7 +22,7 @@ function DrawingPlayPage() {
         width="fit-content"
         height="fit-content"
       >
-        <BGImage src={drawingBG} />
+        {status !== "finish" && <BGImage src={drawingBG} />}
         {(() => {
           switch (status) {
             case "onBoarding":

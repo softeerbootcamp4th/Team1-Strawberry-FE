@@ -14,7 +14,7 @@ const StyledCanvasImage = styled.img`
   position: absolute;
   top: 0;
   left: 0;
-  width: 938px;
-  height: 513px;
+  width: 940px;
+  height: 500px;
   z-index: 10;
 `;

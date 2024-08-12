@@ -1,14 +1,33 @@
 import { useState, useRef, useEffect } from "react";
 import rough from "roughjs/bundled/rough.esm";
 
-import santafeLineBG from "/src/assets/images/background/santafeLineBG.svg";
-import interiorLineBG from "/src/assets/images/background/interiorLineBG.svg";
-import exteriorLineBG from "/src/assets/images/background/exteriorLineBG.svg";
+import santafeLineBG from "/src/assets/images/background/santafeLineBG.png";
+import interiorLineBG from "/src/assets/images/background/interiorLineBG.png";
+import exteriorLineBG from "/src/assets/images/background/exteriorLineBG.png";
 
 import { LineStyle, Point } from "../models";
 
 import { useDrawingPlayDispatch } from "./useDrawingPlayDispatch";
 import { useDrawingPlayState } from "./useDrawingPlayState";
+
+const startPoints = [
+  {
+    x: 0,
+    y: 0,
+  },
+  {
+    x: 54,
+    y: 275,
+  },
+  {
+    x: 318,
+    y: 238,
+  },
+  {
+    x: 240,
+    y: 216,
+  },
+];
 
 const customLineStyle: LineStyle = {
   stroke: "#46474C",
@@ -30,12 +49,13 @@ export function useDrawingCanvas(timeLimit = 10) {
 
   const { stage, isDrawing } = useDrawingPlayState();
   const dispatch = useDrawingPlayDispatch();
-
+  const pointX = startPoints[stage].x;
+  const pointY = startPoints[stage].y;
   useEffect(() => {
     const canvas = canvasRef.current;
     if (canvas) {
-      canvas.width = 938;
-      canvas.height = 513;
+      canvas.width = 940;
+      canvas.height = 500;
     }
   }, []);
 
@@ -166,5 +186,7 @@ export function useDrawingCanvas(timeLimit = 10) {
     handleMouseDown,
     handleMouseUp,
     handleMouseMove,
+    pointX,
+    pointY,
   };
 }

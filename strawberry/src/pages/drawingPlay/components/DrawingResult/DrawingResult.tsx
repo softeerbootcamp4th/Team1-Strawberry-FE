@@ -53,7 +53,7 @@ function DrawingResult() {
             {description}
           </Label>
         </DescriptionWrapper>
-        <Wrapper display="flex" $justifycontent="center">
+        <Wrapper display="flex" $justifycontent="center" $margin="30px 0 0 0">
           {isLastStage ? (
             <EventButton
               type="DRAWING"
@@ -92,6 +92,7 @@ const DescriptionWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 10px;
 `;
 
 const GameWrapper = styled.div`
@@ -104,8 +105,8 @@ const GameWrapper = styled.div`
 
 const CanvasContainer = styled.div`
   position: relative;
-  width: 938px;
-  height: 513px;
+  width: 940px;
+  height: 500px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -113,6 +114,6 @@ const CanvasContainer = styled.div`
 `;
 
 const StyledImage = styled.img`
-  width: 938px;
-  height: 513px;
+  width: 940px;
+  height: 500px;
 `;

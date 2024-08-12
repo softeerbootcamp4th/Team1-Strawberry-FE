@@ -45,16 +45,15 @@ const GameWrapper = styled.div`
 
 const CanvasContainer = styled.div`
   position: relative;
-  width: 938px;
-  height: 513px;
+  width: 940px;
+  height: 500px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 `;
 
-// 수정 필요
 const StyledImage = styled.img`
-  width: 90%;
-  height: 90%;
+  width: 940px;
+  height: 500px;
 `;

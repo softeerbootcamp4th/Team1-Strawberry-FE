@@ -16,13 +16,15 @@ function DrawingCanvas({ timeLimit }: DrawingCanvasProps) {
     startDrawing,
     handleMouseUp,
     handleMouseMove,
+    pointX,
+    pointY,
   } = useDrawingCanvas(timeLimit);
 
   return (
     <Wrapper
       $position="relative"
-      width="938px"
-      height="513px"
+      width="940px"
+      height="500px"
       display="flex"
       $flexdirection="column"
       $justifycontent="center"
@@ -31,8 +33,8 @@ function DrawingCanvas({ timeLimit }: DrawingCanvasProps) {
       <StyledImage src={imgPath} alt="Car" />
       <StyledCanvas
         ref={canvasRef}
-        width={938}
-        height={513}
+        width={940}
+        height={500}
         onMouseUp={(e) => handleMouseUp(e as unknown as MouseEvent)}
         onMouseMove={handleMouseMove}
       />
@@ -41,8 +43,8 @@ function DrawingCanvas({ timeLimit }: DrawingCanvasProps) {
         $flexdirection="row"
         $alignitems="center"
         $position="absolute"
-        $top="280px"
-        left="58.5px"
+        $top={`${pointY}px`}
+        left={`${pointX}px`}
         height="fit-content"
       >
         <StartButton
@@ -82,6 +84,6 @@ const StyledCanvas = styled.canvas`
 `;
 
 const StyledImage = styled.img`
-  width: 818px;
-  height: 313px;
+  width: 940px;
+  height: 500px;
 `;
