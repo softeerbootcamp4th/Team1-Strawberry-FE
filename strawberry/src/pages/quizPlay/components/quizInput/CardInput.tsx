@@ -1,5 +1,8 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useRef, useEffect } from "react";
 import styled from "styled-components";
+
+import { useQuizPlayState } from "../../hooks/useQuizPlayState";
+import { useQuizPlayDispatch } from "../../hooks/useQuizPlayDispatch";
 
 const CardInput = ({
   length,
@@ -8,8 +11,10 @@ const CardInput = ({
   length: number;
   placeholder: string;
 }) => {
-  const [content, setContent] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
+
+  const { answer: content } = useQuizPlayState();
+  const dispatch = useQuizPlayDispatch();
 
   useEffect(() => {
     if (inputRef.current) {
@@ -20,7 +25,7 @@ const CardInput = ({
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
     if (value.length <= length) {
-      setContent(value);
+      dispatch({ type: "SET_ANSWER", payload: value });
     }
   };
 
