@@ -7,6 +7,9 @@ export interface QuizPlayContextType {
   subDescription: string;
   hint: string;
   placeholder: string;
+  subEventId: number | null;
+  answer: string;
+  isSubmitted: boolean;
 }
 
 type QuizPlayActionType =
@@ -14,7 +17,10 @@ type QuizPlayActionType =
   | { type: "SET_QUESTION"; payload: string }
   | { type: "SET_SUB_DESCRIPTION"; payload: string }
   | { type: "SET_HINT"; payload: string }
-  | { type: "SET_PLACEHOLDER"; payload: string };
+  | { type: "SET_PLACEHOLDER"; payload: string }
+  | { type: "SET_SUB_EVENT_ID"; payload: number }
+  | { type: "SET_ANSWER"; payload: string }
+  | { type: "SET_SUBMITTED" };
 
 // 초기 상태
 const initialState: QuizPlayContextType = {
@@ -23,6 +29,9 @@ const initialState: QuizPlayContextType = {
   subDescription: "",
   hint: "",
   placeholder: "",
+  subEventId: null,
+  answer: "",
+  isSubmitted: false,
 };
 
 // 리듀서 함수
@@ -41,6 +50,12 @@ const reducer = (
       return { ...state, hint: action.payload };
     case "SET_PLACEHOLDER":
       return { ...state, placeholder: action.payload };
+    case "SET_SUB_EVENT_ID":
+      return { ...state, subEventId: action.payload };
+    case "SET_ANSWER":
+      return { ...state, answer: action.payload };
+    case "SET_SUBMITTED":
+      return { ...state, isSubmitted: true };
     default:
       return state;
   }
