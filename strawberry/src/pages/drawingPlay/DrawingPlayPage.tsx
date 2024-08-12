@@ -1,14 +1,14 @@
 import styled from "styled-components";
 import { Wrapper } from "../../core/design_system";
 
+import drawingBG from "/src/assets/images/background/drawingBG.svg";
+
 import useDrawingPlayPage from "./hooks/useDrawingPlayPage";
 
-import DrawingOnboarding from "./components/DrawingOnboarding/DrawingOnboarding";
-import DrawingGame from "./components/DrawingGame/DrawingGame";
-import DrawingResult from "./components/DrawingResult/DrawingResult";
-import DrawingFinish from "./components/DrawingFinish/DrawingFinish";
-
-import drawingBG from "/src/assets/images/background/drawingBG.svg";
+import DrawingOnboarding from "./components/drawingOnboarding/DrawingOnboarding";
+import DrawingGame from "./components/drawingGame/DrawingGame";
+import DrawingResult from "./components/drawingResult/DrawingResult";
+import DrawingFinish from "./components/drawingFinish/DrawingFinish";
 
 function DrawingPlayPage() {
   const { status } = useDrawingPlayPage();
