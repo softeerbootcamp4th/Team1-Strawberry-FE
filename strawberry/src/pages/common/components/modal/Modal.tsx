@@ -1,10 +1,25 @@
-import { MouseEvent, useRef } from "react";
 import styled from "styled-components";
 import TwoButtonModal from "./TwoButtonModal";
+import OneButtonModal from "./OneButtonModal";
 import { useGlobalState } from "../../../../core/hooks/useGlobalState";
-import { useGlobalDispatch } from "../../../../core/hooks/useGlobalDispatch";
 
-type CustomMouseEvent = MouseEvent<HTMLElement>;
+export const Modal = () => {
+  const { isModalOpen, modalCategory } = useGlobalState();
+
+  return (
+    <>
+      {isModalOpen && (
+        <ModalBackground>
+          <ModalWrapper>
+            {/* 모달 구현 후 밑에 배치 */}
+            {modalCategory === "TWO_BUTTON" && <TwoButtonModal />}
+            {modalCategory === "ONE_BUTTON" && <OneButtonModal />}
+          </ModalWrapper>
+        </ModalBackground>
+      )}
+    </>
+  );
+};
 
 const ModalBackground = styled.div`
   width: 100%;
@@ -27,29 +42,3 @@ const ModalWrapper = styled.div`
   padding: 40px 36px 24px 36px;
   height: fit-content;
 `;
-
-export const Modal = () => {
-  const { isModalOpen, modalCategory } = useGlobalState();
-  const globalDispatch = useGlobalDispatch();
-
-  const backgroundRef = useRef<HTMLDivElement>(null);
-
-  const clickBackground = (e: CustomMouseEvent) => {
-    if (e.target === backgroundRef.current) {
-      globalDispatch?.({ type: "CLOSE_MODAL" });
-    }
-  };
-
-  return (
-    <>
-      {isModalOpen && (
-        <ModalBackground ref={backgroundRef} onClick={clickBackground}>
-          <ModalWrapper>
-            {/* 모달 구현 후 밑에 배치 */}
-            {modalCategory === "TWO_BUTTON" && <TwoButtonModal />}
-          </ModalWrapper>
-        </ModalBackground>
-      )}
-    </>
-  );
-};
