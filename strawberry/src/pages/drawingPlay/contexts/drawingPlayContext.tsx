@@ -1,36 +1,9 @@
-import React, { createContext, useReducer, ReactNode } from "react";
-import { Dispatch } from "react";
+import React, { createContext, useReducer, ReactNode, Dispatch } from "react";
 
-// 타입 정의
-type StageType = 1 | 2 | 3 | number;
-type StatusType = "onBoarding" | "game" | "result" | "finish";
-
-export interface DrawingPlayContextType {
-  isGuideOpen: boolean;
-  guideIndex: number;
-  stage: StageType;
-  totalStage: number;
-  status: StatusType;
-  canvasImg: string;
-  timeLimit: number;
-  isDrawing: boolean;
-}
-
-export type DrawingPlayActionType =
-  | { type: "SET_GUIDE_OPEN"; payload: boolean }
-  | { type: "SET_GUIDE_INDEX"; payload: number }
-  | { type: "SET_NEXT_STAGE" }
-  | { type: "SET_TOTAL_STAGE"; payload: number }
-  | { type: "SET_ON_BOARDING" }
-  | { type: "SET_GAME" }
-  | { type: "SET_RESULT" }
-  | { type: "SET_FINISH" }
-  | { type: "SET_CANVAS_IMG"; payload: string }
-  | { type: "SET_START_DRAWING" }
-  | { type: "SET_FINISH_DRAWING" };
+import { DrawingPlayState, DrawingPlayAction } from "../models";
 
 // 초기 상태
-const initialState: DrawingPlayContextType = {
+const initialState: DrawingPlayState = {
   isGuideOpen: false,
   guideIndex: 0,
   stage: 1,
@@ -43,9 +16,9 @@ const initialState: DrawingPlayContextType = {
 
 // 리듀서 함수
 const drawingPlayReducer = (
-  state: DrawingPlayContextType,
-  action: DrawingPlayActionType,
-): DrawingPlayContextType => {
+  state: DrawingPlayState,
+  action: DrawingPlayAction,
+): DrawingPlayState => {
   switch (action.type) {
     case "SET_GUIDE_OPEN":
       return { ...state, isGuideOpen: action.payload };
@@ -75,11 +48,11 @@ const drawingPlayReducer = (
 };
 
 export const DrawingPlayStateContext = createContext<
-  DrawingPlayContextType | undefined
+  DrawingPlayState | undefined
 >(undefined);
 
 export const DrawingPlayDispatchContext = createContext<
-  Dispatch<DrawingPlayActionType> | undefined
+  Dispatch<DrawingPlayAction> | undefined
 >(undefined);
 
 // Context Provider 컴포넌트

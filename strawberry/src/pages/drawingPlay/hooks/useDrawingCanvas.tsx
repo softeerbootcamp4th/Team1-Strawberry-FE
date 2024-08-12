@@ -1,22 +1,14 @@
 import { useState, useRef, useEffect } from "react";
 import rough from "roughjs/bundled/rough.esm";
 
-import { useDrawingPlayDispatch } from "./useDrawingPlayDispatch";
-import { useDrawingPlayState } from "./useDrawingPlayState";
-
 import santafeLineBG from "/src/assets/images/background/santafeLineBG.svg";
 import interiorLineBG from "/src/assets/images/background/interiorLineBG.svg";
 import exteriorLineBG from "/src/assets/images/background/exteriorLineBG.svg";
 
-type Point = { x: number; y: number };
-type LineStyle = {
-  stroke: string;
-  lineWidth: number;
-  lineStyle: string;
-  roughness: number;
-  bowing: number;
-  strokeWidth: number;
-};
+import { LineStyle, Point } from "../models";
+
+import { useDrawingPlayDispatch } from "./useDrawingPlayDispatch";
+import { useDrawingPlayState } from "./useDrawingPlayState";
 
 const customLineStyle: LineStyle = {
   stroke: "#46474C",
