@@ -3,8 +3,11 @@ import Footer from "./components/footer";
 import { Outlet } from "react-router-dom";
 import { Wrapper } from "../core/design_system";
 import { Modal } from "../pages/common/components/modal/Modal";
+import useScrollToTop from "../core/hooks/useScrollToTop";
 
 function DefaultLayout() {
+  useScrollToTop();
+
   return (
     <>
       {/* LayoutWrapper */}
