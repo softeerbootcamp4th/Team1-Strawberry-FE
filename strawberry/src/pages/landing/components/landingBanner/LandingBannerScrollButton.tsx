@@ -1,9 +1,17 @@
 import styled from "styled-components";
+
 import { Label, theme, Wrapper } from "../../../../core/design_system";
+import { scrollTop } from "../../../../core/utils";
 
 import arrow from "/src/assets/images/icons/Arrow_Down_L_White.svg";
 
-function LandingBannerScrollButton() {
+interface LandingBannerScrollButtonProps {
+  scrollHeight: number;
+}
+
+function LandingBannerScrollButton({
+  scrollHeight,
+}: LandingBannerScrollButtonProps) {
   return (
     <>
       <Wrapper
@@ -20,7 +28,7 @@ function LandingBannerScrollButton() {
         >
           자세한 내용은 스크롤을 내려주세요
         </Label>
-        <StyledButton>
+        <StyledButton onClick={() => scrollTop(scrollHeight)}>
           <img src={arrow} alt="arrow" />
         </StyledButton>
       </Wrapper>
