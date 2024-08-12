@@ -69,7 +69,7 @@ const router = createBrowserRouter([
     ),
     children: [
       {
-        path: "quiz/play:subEventId",
+        path: "quiz/play/:subEventId",
         element: (
           <>
             <QuizPlayWrapper />
