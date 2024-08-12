@@ -1,7 +1,7 @@
 import React, { createContext, useReducer, ReactNode, Dispatch } from "react";
 
 // 인터페이스 정의
-interface QuizPlayContextType {
+export interface QuizPlayContextType {
   description: string;
   question: string;
   subDescription: string;
