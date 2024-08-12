@@ -8,6 +8,7 @@ function LogoutButton() {
   function handleLogout() {
     localStorage.removeItem("accessToken");
     dispatch({ type: "SET_LOGIN", status: false });
+    location.reload();
   }
 
   return <StyledButton onClick={handleLogout}>로그아웃</StyledButton>;
