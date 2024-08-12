@@ -11,6 +11,8 @@ import LoginRedirectedPage from "../pages/login/LoginRedirectPage";
 import QuizLandingWrapper from "../pages/quizLanding/QuizLandingWrapper";
 import DrawingLandingWrapper from "../pages/drawingLanding/DrawingLandingWrapper";
 
+import LandingPage from "../pages/landing/LandingPage";
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -26,7 +28,11 @@ const router = createBrowserRouter([
       },
       {
         path: "",
-        element: <>{/* <LandingPage /> */}</>,
+        element: (
+          <>
+            <LandingPage />
+          </>
+        ),
       },
       {
         path: "introduce",
