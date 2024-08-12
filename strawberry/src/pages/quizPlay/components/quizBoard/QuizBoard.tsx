@@ -6,15 +6,18 @@ import QuizQuestion from "./QuizQuestion";
 import QuizSubDescription from "./QuizSubDescription";
 
 export interface quizBoardType {
-  quiz: {
-    description: string;
-    question: string;
-    subDescription: string;
-  };
+  description: string;
+  question: string;
+  subDescription: string;
   hint: string;
 }
 
-function QuizBoard({ quiz, hint }: quizBoardType) {
+function QuizBoard({
+  description,
+  question,
+  subDescription,
+  hint,
+}: quizBoardType) {
   return (
     <Wrapper
       width="100%"
@@ -34,10 +37,10 @@ function QuizBoard({ quiz, hint }: quizBoardType) {
         $justifycontent="center"
         $alignitems="center"
       >
-        <QuizDescription description={quiz.description} />
-        <QuizQuestion question={quiz.question} hint={hint} />
-        {quiz.subDescription && (
-          <QuizSubDescription subDescription={quiz.subDescription} />
+        <QuizDescription description={description} />
+        <QuizQuestion question={question} hint={hint} />
+        {subDescription && (
+          <QuizSubDescription subDescription={subDescription} />
         )}
       </Wrapper>
     </Wrapper>
