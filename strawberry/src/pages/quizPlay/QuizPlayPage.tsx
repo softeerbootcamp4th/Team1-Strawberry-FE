@@ -1,45 +1,29 @@
 import { EventButton, Label, Wrapper, theme } from "../../core/design_system";
 import CardInput from "./components/quizInput/CardInput";
 import QuizBoard from "./components/quizBoard/QuizBoard";
-
-const quizzes = [
-  {
-    description:
-      "디 올 뉴 싼타페는 \n 'ㅇㅅ'과 아웃도어를 넘나드는 새로운 라이프 제공을 목표로 합니다.",
-    question: "'ㅇㅅ'은 무엇을 의미할까요?",
-    subDescription: "",
-  },
-  {
-    description:
-      "디 올 뉴 싼타페는 'ㅇㅂㅎ' 멀티 콘솔이 탑재되어 \n 2열 탑승자도 수납공간을 쉽게 사용할 수 있습니다.",
-    question: "'ㅇㅂㅎ'은 무엇을 의미할까요?",
-    subDescription: "",
-  },
-  {
-    description: "디 올 뉴 싼타페 하이브리드의",
-    question: "복합연비는 몇 km/l 일까요?",
-    subDescription: "18인치 타이어/자동6단/2WD, 빌트인 캠 미적용 기준",
-  },
-];
-
-const answerInfos = [
-  {
-    placeholder: "ㅇㅅ",
-  },
-  {
-    placeholder: "ㅇㅅㅇ",
-  },
-  {
-    placeholder: "00.0",
-  },
-];
-
-const hint =
-  "디 올 뉴 싼타페는 완전히 새로운 상품성과 차별화된\n감성으로 일상과 아웃도어를 넘나드는 새로운 라이프\n를 제시합니다.";
+import useQuizPlayData from "./hooks/useQuizPlayData";
+import useQuizPlayPage from "./hooks/logics/useQuizPlayPage";
+import { useEffect } from "react";
 
 function QuizPlayPage() {
-  const quiz = quizzes[2];
-  const answerInfo = answerInfos[2];
+  useQuizPlayData();
+  const {
+    description,
+    question,
+    subDescription,
+    placeholder,
+    hint,
+    answer,
+    subEventId,
+    postQuiz,
+    // postQuizData,
+  } = useQuizPlayPage();
+
+  function handleSubmit() {
+    if (subEventId) {
+      postQuiz({ body: { answer: answer, subEventId: subEventId } });
+    }
+  }
 
   return (
     <Wrapper
@@ -50,7 +34,12 @@ function QuizPlayPage() {
       $padding="0 0 110px 0"
       height="calc(100vh - 180px)"
     >
-      <QuizBoard quiz={quiz} hint={hint} />
+      <QuizBoard
+        description={description}
+        question={question}
+        subDescription={subDescription}
+        hint={hint}
+      />
       <Wrapper
         display="flex"
         $flexdirection="row"
@@ -61,10 +50,7 @@ function QuizPlayPage() {
         <Label $token="Title1Medium" $margin="0 40px 0 0">
           정답 :
         </Label>
-        <CardInput
-          placeholder={answerInfo.placeholder}
-          length={answerInfo.placeholder.length}
-        />
+        <CardInput placeholder={placeholder} length={placeholder?.length} />
       </Wrapper>
       <Wrapper
         $margin="70px 0 0 0"
@@ -72,7 +58,14 @@ function QuizPlayPage() {
         display="flex"
         $justifycontent="center"
       >
-        <EventButton type="QUIZ" status="DEFAULT" content="답변 제출하기" />
+        <EventButton
+          type="QUIZ"
+          status={
+            answer?.length === placeholder?.length ? "DEFAULT" : "DISABLED"
+          }
+          content="답변 제출하기"
+          onClick={handleSubmit}
+        />
       </Wrapper>
     </Wrapper>
   );
