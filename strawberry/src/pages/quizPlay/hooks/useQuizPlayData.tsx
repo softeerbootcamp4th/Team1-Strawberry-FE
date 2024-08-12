@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useQuizPlayQuery } from "./apis/useQuizPlayQuery";
+import { useQuizPlayQuery } from "./queries/useQuizPlayQuery";
 import { useParams } from "react-router-dom";
 import { useQuizPlayDispatch } from "./useQuizPlayDispatch";
 

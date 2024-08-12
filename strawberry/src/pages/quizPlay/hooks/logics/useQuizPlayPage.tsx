@@ -1,6 +1,6 @@
 import { useQuizPlayState } from "../useQuizPlayState";
 
-import { useQuizPlayMutation } from "../apis/useQuizPlayMutation";
+import { useQuizPlayMutation } from "../queries/useQuizPlayMutation";
 
 function useQuizPlayPage() {
   const { mutate: postQuiz, data: postQuizData } = useQuizPlayMutation();

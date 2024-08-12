@@ -3,7 +3,7 @@ import { useMutation } from "react-query";
 import { useFetch } from "../../../../data/config/useFetch";
 import usePrizeModal from "../usePrizeModal";
 
-interface UseQuizPlayMutationBodyType {
+export interface UseQuizPlayMutationBodyType {
   answer: string;
   subEventId: number;
 }
