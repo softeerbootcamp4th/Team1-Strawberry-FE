@@ -4,13 +4,14 @@ import styled from "styled-components";
 import { useQuizPlayState } from "../../hooks/useQuizPlayState";
 import { useQuizPlayDispatch } from "../../hooks/useQuizPlayDispatch";
 
-const CardInput = ({
-  length,
-  placeholder,
-}: {
+interface CardInputProps {
   length: number;
   placeholder: string;
-}) => {
+}
+
+const CardInput = (props: CardInputProps) => {
+  const { length, placeholder } = props;
+
   const inputRef = useRef<HTMLInputElement>(null);
 
   const { answer: content } = useQuizPlayState();

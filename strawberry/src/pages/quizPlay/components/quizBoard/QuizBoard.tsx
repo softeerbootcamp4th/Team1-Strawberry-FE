@@ -12,12 +12,9 @@ export interface quizBoardType {
   hint: string;
 }
 
-function QuizBoard({
-  description,
-  question,
-  subDescription,
-  hint,
-}: quizBoardType) {
+function QuizBoard(props: quizBoardType) {
+  const { description, question, subDescription, hint } = props;
+
   return (
     <Wrapper
       width="100%"

@@ -1,6 +1,10 @@
 import { Label } from "../../../../core/design_system";
 
-function QuizDescription({ description }: { description: string }) {
+interface QuizDescriptionProps {
+  description: string;
+}
+
+function QuizDescription({ description }: QuizDescriptionProps) {
   return (
     <div>
       <Label $textalign="center" $token="Title2Regular">

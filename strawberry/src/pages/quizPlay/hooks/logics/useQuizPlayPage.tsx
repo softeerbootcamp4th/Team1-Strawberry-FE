@@ -3,7 +3,7 @@ import { useQuizPlayState } from "../useQuizPlayState";
 import { useQuizPlayMutation } from "../queries/useQuizPlayMutation";
 
 function useQuizPlayPage() {
-  const { mutate: postQuiz, data: postQuizData } = useQuizPlayMutation();
+  const { mutate: postQuiz } = useQuizPlayMutation();
   const {
     description,
     question,
@@ -23,7 +23,6 @@ function useQuizPlayPage() {
     answer,
     subEventId,
     postQuiz,
-    postQuizData,
   };
 }
 
