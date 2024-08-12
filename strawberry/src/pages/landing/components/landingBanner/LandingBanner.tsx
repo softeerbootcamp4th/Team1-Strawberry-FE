@@ -1,22 +1,32 @@
 import styled from "styled-components";
-import { Wrapper } from "../../../../core/design_system";
-import LandingBannerBG from "/src/assets/images/temp/LandingBannerBG.svg";
+
 import LandingBannerScrollButton from "./LandingBannerScrollButton";
 
+import useLandingBanner from "../../hooks/useLandingBanner";
+
+import LandingBannerBG from "/src/assets/images/temp/LandingBannerBG.svg";
+
 function LandingBanner() {
+  const { heightRef, scrollHeight } = useLandingBanner();
+
   return (
     <>
-      <Wrapper $position="relative" width="100%">
+      <RefWrapper ref={heightRef}>
         <StyledImg src={LandingBannerBG} alt="LandingBannerBG" />
         <ScrollButtonWrapper>
-          <LandingBannerScrollButton />
+          <LandingBannerScrollButton scrollHeight={scrollHeight} />
         </ScrollButtonWrapper>
-      </Wrapper>
+      </RefWrapper>
     </>
   );
 }
 
 export default LandingBanner;
+
+const RefWrapper = styled.div`
+  position: relative;
+  width: 100%;
+`;
 
 const StyledImg = styled.img`
   width: 100%;
