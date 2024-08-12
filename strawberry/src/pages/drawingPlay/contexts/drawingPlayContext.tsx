@@ -6,6 +6,8 @@ type StageType = 1 | 2 | 3 | number;
 type StatusType = "onBoarding" | "game" | "result" | "finish";
 
 export interface DrawingPlayContextType {
+  isGuideOpen: boolean;
+  guideIndex: number;
   stage: StageType;
   totalStage: number;
   status: StatusType;
@@ -15,6 +17,8 @@ export interface DrawingPlayContextType {
 }
 
 export type DrawingPlayActionType =
+  | { type: "SET_GUIDE_OPEN"; payload: boolean }
+  | { type: "SET_GUIDE_INDEX"; payload: number }
   | { type: "SET_NEXT_STAGE" }
   | { type: "SET_TOTAL_STAGE"; payload: number }
   | { type: "SET_ON_BOARDING" }
@@ -27,6 +31,8 @@ export type DrawingPlayActionType =
 
 // 초기 상태
 const initialState: DrawingPlayContextType = {
+  isGuideOpen: false,
+  guideIndex: 0,
   stage: 1,
   totalStage: 3,
   status: "onBoarding",
@@ -41,6 +47,10 @@ const drawingPlayReducer = (
   action: DrawingPlayActionType,
 ): DrawingPlayContextType => {
   switch (action.type) {
+    case "SET_GUIDE_OPEN":
+      return { ...state, isGuideOpen: action.payload };
+    case "SET_GUIDE_INDEX":
+      return { ...state, guideIndex: action.payload };
     case "SET_NEXT_STAGE":
       return { ...state, stage: state.stage + 1 };
     case "SET_TOTAL_STAGE":
