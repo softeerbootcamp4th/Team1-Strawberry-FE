@@ -3,7 +3,8 @@ import DefaultLayout from "../layout/DefaultLayout";
 import HeaderLayout from "../layout/HeaderLayout";
 import PublicRoute from "./PublicRoute";
 import ProtectedRoute from "./ProtectedRoute";
-import QuizPlayPage from "../pages/quiz/QuizPlayPage";
+import QuizPlayPage from "../pages/quizPlay/QuizPlayPage";
+import QuizPlayWrapper from "../pages/quizPlay/QuizPlayWrapper";
 import DrawingPlayPage from "../pages/drawing/DrawingPlayPage";
 import LoginPage from "../pages/login/LoginPage";
 import ExpectationPageWrapper from "../pages/expectation/ExpectationPageWrapper";
@@ -68,10 +69,10 @@ const router = createBrowserRouter([
     ),
     children: [
       {
-        path: "quiz/play",
+        path: "quiz/play:subEventId",
         element: (
           <>
-            <QuizPlayPage />
+            <QuizPlayWrapper />
           </>
         ),
       },
