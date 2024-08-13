@@ -1,8 +1,11 @@
 import { useEffect } from "react";
 import { useDrawingLandingDispatch } from "./useDrawingLandingDispatch";
-import { useDrawingLandingQuery } from "./useDrawingLandingQuery";
-import { useDrawingRankQuery } from "./useDrawingRankQuery";
-import { useEventUserInfoQuery } from "./useEventUserInfoQuery";
+
+import {
+  useDrawingRankQuery,
+  useEventUserInfoQuery,
+  useDrawingLandingQuery,
+} from "../../../data/queries";
 
 export function useDrawingLandingData() {
   const { data: landData } = useDrawingLandingQuery();
