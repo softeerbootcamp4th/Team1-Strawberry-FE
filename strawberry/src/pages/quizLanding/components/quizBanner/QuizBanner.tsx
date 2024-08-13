@@ -15,7 +15,7 @@ function QuizBanner() {
 
   const handleEventClick = () => {
     checkLogin(() => {
-      navigate("/quiz/play");
+      navigate(`/quiz/play/${data?.subEventId}`);
     });
   };
 

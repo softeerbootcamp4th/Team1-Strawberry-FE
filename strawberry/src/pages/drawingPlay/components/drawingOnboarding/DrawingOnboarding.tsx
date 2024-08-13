@@ -5,12 +5,15 @@ import ProgressBar from "../ProgressBar";
 import DrawingStep from "../DrawingStep";
 
 import { useDrawingOnboarding } from "../../hooks/useDrawingOnboarding";
+import DrawingGuideModal from "../guide/DrawingGuideModal";
 
 function DrawingOnboarding() {
-  const { stage, totalStage, imgPath, title } = useDrawingOnboarding();
+  const { stage, totalStage, imgPath, title, isGuideOpen } =
+    useDrawingOnboarding();
 
   return (
     <>
+      {isGuideOpen && <DrawingGuideModal />}
       <DrawingStep now={stage} total={totalStage} />
       <GameWrapper>
         <Label
@@ -27,7 +30,7 @@ function DrawingOnboarding() {
           </CanvasContainer>
         </Wrapper>
         <Wrapper $margin="30px 0 0 0">
-          <ProgressBar timeLimit={3} isProgress={true} />
+          <ProgressBar timeLimit={3} isProgress={!isGuideOpen} />
         </Wrapper>
       </GameWrapper>
     </>
