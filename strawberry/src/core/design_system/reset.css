@@ -3,6 +3,11 @@
    License: none (public domain)
 */
 
+@font-face {
+	font-family: "Hyundai Sans Head KR";
+	src: url("../../assets/fonts/Hyundai_Sans_Head_KR_Regular.ttf") format("truetype");
+}
+
 :root {
 	font-family: 'Hyundai Sans Head KR';
 }
@@ -136,21 +141,6 @@ q:after {
 table {
 	border-collapse: collapse;
 	border-spacing: 0;
-}
-
-@font-face {
-	font-family: "Hyundai Sans Head KR Regular";
-	src: url(../../../fonts/Hyundai\ Sans\ Head\ KR\ Regular.ttf);
-}
-
-@font-face {
-	font-family: "Hyundai Sans Head KR Medium";
-	src: url(../../../fonts/Hyundai\ Sans\ Head\ KR\ Medium.ttf);
-}
-
-@font-face {
-	font-family: "Hyundai Sans Head KR Light";
-	src: url(../../../fonts/Hyundai\ Sans\ Head\ KR\ Light.ttf);
 }
 
 button {

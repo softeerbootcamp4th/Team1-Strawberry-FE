@@ -1,10 +1,12 @@
 import styled from "styled-components";
 
+import footer from "/src/assets/images/footer/tmp_footer.svg";
+
 function Footer() {
   return (
     <>
       <StyledFooter>
-        <img src="/src/assets/images/footer/tmp_footer.svg" alt="footer" />
+        <img src={footer} alt="footer" />
       </StyledFooter>
     </>
   );
