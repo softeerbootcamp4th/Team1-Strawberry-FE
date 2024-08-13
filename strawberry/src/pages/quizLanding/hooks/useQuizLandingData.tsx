@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 
 import { useQuizLandingDispatch } from "./useQuizLandingDispatch";
-import { useQuizLandingQuery } from "./useQuizLandingQuery";
+import { useQuizLandingQuery } from "../../../data/queries/quiz/useQuizLandingQuery";
 
 export function useQuizLandingData() {
   const { data } = useQuizLandingQuery();

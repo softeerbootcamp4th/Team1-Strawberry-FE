@@ -1,6 +1,8 @@
 import { useEffect } from "react";
-import { useQuizPlayQuery } from "./queries/useQuizPlayQuery";
 import { useParams } from "react-router-dom";
+
+import { useQuizPlayQuery } from "../../../data/queries/quiz/useQuizPlayQuery";
+
 import { useQuizPlayDispatch } from "./useQuizPlayDispatch";
 
 interface QuizDataType {
@@ -28,8 +30,8 @@ const keyMap: Record<keyof QuizPlayContextType, keyof QuizDataType> = {
 };
 
 function useQuizPlayData() {
-  const { data } = useQuizPlayQuery();
   const { subEventId } = useParams();
+  const { data } = useQuizPlayQuery(subEventId);
   const dispatch = useQuizPlayDispatch();
 
   useEffect(() => {
