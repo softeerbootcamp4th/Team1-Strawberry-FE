@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import LandingBannerScrollButton from "./LandingBannerScrollButton";
+import ScrollButton from "../../../common/components/buttons/scrollButton/ScrollButton";
 
 import useLandingBanner from "../../hooks/useLandingBanner";
 
@@ -14,7 +14,7 @@ function LandingBanner() {
       <RefWrapper ref={heightRef}>
         <StyledImg src={LandingBannerBG} alt="LandingBannerBG" />
         <ScrollButtonWrapper>
-          <LandingBannerScrollButton scrollHeight={scrollHeight} />
+          <ScrollButton scrollHeight={scrollHeight} />
         </ScrollButtonWrapper>
       </RefWrapper>
     </>
