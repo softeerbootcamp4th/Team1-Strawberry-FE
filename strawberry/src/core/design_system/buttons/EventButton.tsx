@@ -1,5 +1,8 @@
 import styled, { css } from "styled-components";
 
+import Arrow_Right_L_Black from "/src/assets/images/icons/Arrow_Right_L_Black.svg";
+import Arrow_Right_L_White from "/src/assets/images/icons/Arrow_Right_L_White.svg";
+
 type ButtonType = "QUIZ" | "DRAWING";
 type ButtonStatus = "DEFAULT" | "DISABLED" | "EVENT_END";
 
@@ -14,7 +17,7 @@ function Arrow({ type, status }: { type: ButtonType; status: ButtonStatus }) {
   if (type === "DRAWING" && status === "DEFAULT") {
     return (
       <img
-        src="/src/assets/images/icons/Arrow_Right_L_Black.svg"
+        src={Arrow_Right_L_Black}
         alt="화살표"
         height={"28px"}
         width={"28px"}
@@ -24,7 +27,7 @@ function Arrow({ type, status }: { type: ButtonType; status: ButtonStatus }) {
   if (status !== "EVENT_END") {
     return (
       <img
-        src="/src/assets/images/icons/Arrow_Right_L_White.svg"
+        src={Arrow_Right_L_White}
         alt="화살표"
         height={"28px"}
         width={"28px"}
