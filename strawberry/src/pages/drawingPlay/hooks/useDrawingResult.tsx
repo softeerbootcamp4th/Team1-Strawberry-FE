@@ -1,9 +1,9 @@
 import { useDrawingPlayDispatch } from "./useDrawingPlayDispatch";
 import { useDrawingPlayState } from "./useDrawingPlayState";
 
-import santafeBlurBG from "/src/assets/images/background/santafeBlurBG.svg";
-import interiorBlurBG from "/src/assets/images/background/interiorBlurBG.svg";
-import exteriorBlurBG from "/src/assets/images/background/exteriorBlurBG.svg";
+import santafeBlurBG from "/src/assets/images/background/santafeBlurBG.png";
+import interiorBlurBG from "/src/assets/images/background/interiorBlurBG.png";
+import exteriorBlurBG from "/src/assets/images/background/exteriorBlurBG.png";
 
 export function useDrawingResult() {
   const dispatch = useDrawingPlayDispatch();

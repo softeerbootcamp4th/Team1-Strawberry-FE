@@ -23,23 +23,13 @@ export default DrawingStep;
 const NowStage = styled.p`
   color: var(--text-icon-reverse, #fff);
   text-align: center;
-  font-family: "Ownglyph noocar";
-  font-size: 40px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 38px;
-  letter-spacing: -1.25px;
+  ${({ theme }) => theme.Typography.Title1Regular}
   align-self: center;
 `;
 
 const TotalStage = styled.p`
   color: var(--text-icon-assistive, #c2c4c8);
   text-align: center;
-  font-family: "Ownglyph noocar";
-  font-size: 29px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 38px;
-  letter-spacing: -0.725px;
+  ${({ theme }) => theme.Typography.Title2Regular}
   align-self: center;
 `;

@@ -3,9 +3,9 @@ import { useEffect } from "react";
 import { useDrawingPlayDispatch } from "./useDrawingPlayDispatch";
 import { useDrawingPlayState } from "./useDrawingPlayState";
 
-import santafeBG from "/src/assets/images/background/santafeBG.svg";
-import interiorBG from "/src/assets/images/background/interiorBG.svg";
-import exteriorBG from "/src/assets/images/background/exteriorBG.svg";
+import santafeBG from "/src/assets/images/background/santafeBG.png";
+import interiorBG from "/src/assets/images/background/interiorBG.png";
+import exteriorBG from "/src/assets/images/background/exteriorBG.png";
 
 export function useDrawingOnboarding() {
   const { stage, totalStage } = useDrawingPlayState();
