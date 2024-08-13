@@ -18,4 +18,5 @@ export interface QuizLanding {
   startAt: string;
   endAt: string;
   winners: number;
+  subEventId: number;
 }
