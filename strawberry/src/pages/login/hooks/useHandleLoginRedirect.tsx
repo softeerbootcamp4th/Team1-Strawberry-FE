@@ -1,7 +1,9 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import useLoginCallbackQuery from "./useLoginCallbackQuery";
+
 import { useGlobalDispatch } from "../../../core/hooks/useGlobalDispatch";
+
+import { useLoginCallbackQuery } from "../../../data/queries/user/useLoginCallbackQuery";
 
 export function useHandleLoginRedirect() {
   const navigate = useNavigate();
@@ -15,7 +17,7 @@ export function useHandleLoginRedirect() {
 
   useEffect(() => {
     if (data) {
-      const { user, token } = data;
+      const { token } = data;
 
       localStorage.setItem("accessToken", token.accessToken);
       dispatch?.({ type: "SET_LOGIN", status: true });

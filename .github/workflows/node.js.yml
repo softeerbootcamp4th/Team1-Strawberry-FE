@@ -20,15 +20,19 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
 
-    - name: Clear npm cache
+    - name: check current directory
       working-directory: ./strawberry
       run: |
-        npm cache clean --force
-        rm -rf node_modules package-lock.json
-        
+        rm -rf node_modules/.cache
+
     - name: Install dependencies
       working-directory: ./strawberry
-      run: npm install
+      run: npm ci
+
+    - name: insert .env file in project
+      working-directory: ./strawberry
+      run: |
+        echo "${{ secrets.DOT_ENV }}" > ./.env
       
     - name: Build
       working-directory: ./strawberry
@@ -38,11 +42,12 @@ jobs:
       uses: aws-actions/configure-aws-credentials@v1
       with:
         role-to-assume: ${{ secrets.AWS_ROLE }}
+        audience: sts.amazonaws.com
         aws-region: ${{ secrets.DEFAULT_AWS_REGION }}
     - name: Deploy to S3
-      run: aws s3 sync build/ s3://${{ secrets.AWS_S3_BUCKET }} --delete
+      run: aws s3 sync ./strawberry/dist/ s3://${{ secrets.AWS_S3_BUCKET }} --delete
     - name: Invalidate CloudFront
       run: |
         aws cloudfront create-invalidation \
           --distribution-id ${{ secrets.AWS_CLOUDFRONT_DISTRIBUTION_ID }} \
-          --paths “/*”
+          --paths /

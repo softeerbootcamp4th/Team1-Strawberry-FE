@@ -5,8 +5,9 @@ import { useGlobalState } from "../../../../core/hooks/useGlobalState";
 import { useGlobalDispatch } from "../../../../core/hooks/useGlobalDispatch";
 import { throttle } from "../../../../core/utils";
 
+import { useExpectationMutation } from "../../../../data/queries/expectation/useExpectationMutation";
+
 import useLengthValidation from "../useLengthValidation";
-import useExpectationMutation from "../apis/useExpectationMutation";
 
 function useExpectationInput() {
   const { mutate: postExpectation } = useExpectationMutation();
@@ -45,7 +46,7 @@ function useExpectationInput() {
       return;
     }
 
-    postExpectation({ body: { comment: content } });
+    postExpectation({ comment: content });
   });
 
   function handleKeyDown(event: React.KeyboardEvent<HTMLTextAreaElement>) {
