@@ -1,6 +1,10 @@
 import { theme, Label } from "../../../../core/design_system";
 
-function QuizSubDescription({ subDescription }: { subDescription: string }) {
+interface QuizSubDescriptionProps {
+  subDescription: string;
+}
+
+function QuizSubDescription({ subDescription }: QuizSubDescriptionProps) {
   return (
     <>
       <Label $token="Title3Regular" color={theme.Color.TextIcon.info}>

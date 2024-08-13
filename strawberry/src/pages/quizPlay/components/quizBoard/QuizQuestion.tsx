@@ -7,7 +7,9 @@ interface QuizQuestionType {
   hint: string;
 }
 
-function QuizQuestion({ question, hint }: QuizQuestionType) {
+function QuizQuestion(props: QuizQuestionType) {
+  const { question, hint } = props;
+
   return (
     <div>
       <Wrapper

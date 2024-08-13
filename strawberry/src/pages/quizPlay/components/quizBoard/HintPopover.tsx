@@ -9,7 +9,9 @@ interface HintPopoverProps {
   hint: string;
 }
 
-function HintPopover({ setClose, hint }: HintPopoverProps) {
+function HintPopover(props: HintPopoverProps) {
+  const { setClose, hint } = props;
+
   return (
     <Wrapper $position="relative" height="100%">
       <Wrapper

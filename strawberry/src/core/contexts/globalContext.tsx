@@ -12,7 +12,7 @@ export type UserData = {
   name: string;
 };
 
-type ModalCategoryType = "TWO_BUTTON" | null;
+type ModalCategoryType = "TWO_BUTTON" | "ONE_BUTTON" | null;
 
 type ModalPropsType = {
   title?: string;
@@ -107,7 +107,7 @@ export function GlobalContextProvider({ children }: { children: ReactNode }) {
 // 사용법
 // globalDispatch?.({
 //   type: "OPEN_MODAL",
-//   modalType: "twoButton",
+//   modalCategory: "twoButton",
 //   modalProps: {
 //     title: "모달 제목",
 //     imgPath: "/path/to/image.png",

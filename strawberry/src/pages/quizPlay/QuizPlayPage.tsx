@@ -15,7 +15,6 @@ function QuizPlayPage() {
     answer,
     subEventId,
     postQuiz,
-    // postQuizData,
   } = useQuizPlayPage();
 
   function handleSubmit() {
