@@ -1,12 +1,17 @@
 import { useEffect } from "react";
 
-import { useExpectationPageQuery } from "./apis/useExpectationPageQuery";
-import { useExpectationListQuery } from "./apis/useExpectationListQuery";
+import { useExpectationPageQuery } from "../../../data/queries/expectation/useExpectationPageQuery";
+import { useExpectationListQuery } from "../../../data/queries/expectation/useExpectationListQuery";
+
 import { useExpectationDispatch } from "./useExpectationDispatch";
+import { useExpectationState } from "./useExpectationState";
 
 function useExpectationData() {
+  const state = useExpectationState();
   const { data: pageData } = useExpectationPageQuery();
-  const { data: listData, refetch: refetchList } = useExpectationListQuery();
+  const { data: listData, refetch: refetchList } = useExpectationListQuery(
+    state.nowPage,
+  );
   const dispatch = useExpectationDispatch();
 
   useEffect(() => {
