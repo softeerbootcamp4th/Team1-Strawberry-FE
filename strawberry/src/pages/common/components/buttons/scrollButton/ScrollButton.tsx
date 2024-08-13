@@ -1,17 +1,15 @@
 import styled from "styled-components";
 
-import { Label, theme, Wrapper } from "../../../../core/design_system";
-import { scrollTop } from "../../../../core/utils";
+import { theme, Label, Wrapper } from "../../../../../core/design_system";
+import { scrollTop } from "../../../../../core/utils";
 
 import arrow from "/src/assets/images/icons/Arrow_Down_L_White.svg";
 
-interface LandingBannerScrollButtonProps {
+interface ScrollButtonProps {
   scrollHeight: number;
 }
 
-function LandingBannerScrollButton({
-  scrollHeight,
-}: LandingBannerScrollButtonProps) {
+function ScrollButton({ scrollHeight }: ScrollButtonProps) {
   return (
     <>
       <Wrapper
@@ -36,7 +34,7 @@ function LandingBannerScrollButton({
   );
 }
 
-export default LandingBannerScrollButton;
+export default ScrollButton;
 
 const StyledButton = styled.button`
   width: 34px;
