@@ -2,7 +2,7 @@ type StageType = 1 | 2 | 3 | number;
 type StatusType = "onBoarding" | "game" | "result" | "finish";
 
 export interface DrawingPlayState {
-  isGuideOpen: boolean;
+  isGuideOpen: boolean | undefined;
   guideIndex: number;
   stage: StageType;
   totalStage: number;

@@ -6,7 +6,7 @@ import useProgressBar from "../hooks/useProgressBar";
 
 interface ProgressBarProps {
   timeLimit?: number;
-  isProgress?: boolean;
+  isProgress?: undefined | boolean;
 }
 
 const ProgressBar = ({

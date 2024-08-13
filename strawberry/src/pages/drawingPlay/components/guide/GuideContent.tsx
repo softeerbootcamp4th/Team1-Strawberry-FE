@@ -41,7 +41,7 @@ function GuideContent() {
       </Label>
       <GuideCarouselWrapper />
       <CheckBoxButton onClick={() => toggleCheck(!isCheck)}>
-        <img src={isCheck ? CheckBoxFilled : CheckBoxUnFilled} />
+        <img src={!isCheck ? CheckBoxFilled : CheckBoxUnFilled} />
         <Label $token="Body2Regular" color={theme.Color.TextIcon.info}>
           3일간 보지 않기
         </Label>

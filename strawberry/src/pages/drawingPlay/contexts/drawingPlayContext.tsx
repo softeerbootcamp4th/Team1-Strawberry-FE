@@ -4,7 +4,7 @@ import { DrawingPlayState, DrawingPlayAction } from "../models";
 
 // 초기 상태
 const initialState: DrawingPlayState = {
-  isGuideOpen: false,
+  isGuideOpen: undefined,
   guideIndex: 0,
   stage: 1,
   totalStage: 3,
