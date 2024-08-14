@@ -1,4 +1,3 @@
-import { useState, useEffect } from "react";
 import styled from "styled-components";
 
 import { Label, theme, Wrapper } from "../../../../core/design_system";
@@ -12,16 +11,10 @@ import UrlButton from "/src/assets/images/icons/UrlButton.svg";
 import RetryButton from "/src/assets/images/icons/RetryButton.svg";
 
 import drawingFinishBG from "/src/assets/images/background/drawingFinishBG.svg";
+import useDrawingFinish from "../../hooks/useDrawingFinish.tsx";
 
 function DrawingFinish() {
-  const [finalScore, setFinalScore] = useState<number>(0);
-  const [highestScore, setHighestScore] = useState<number>(0);
-
-  useEffect(() => {
-    // 서버 요청
-    setFinalScore(72);
-    setHighestScore(100);
-  }, []);
+  const { finalScore, highestScore, handleSharedClick } = useDrawingFinish();
 
   return (
     <>
@@ -80,7 +73,7 @@ function DrawingFinish() {
           $margin="20px 0 0 0"
           $gap="55px"
         >
-          <StyledButton>
+          <StyledButton onClick={handleSharedClick}>
             <img src={UrlButton} alt="url" />
             <Label $token="Heading1Regular">URL 복사하기</Label>
           </StyledButton>
