@@ -35,14 +35,12 @@ export function GuideCarousel({
           <Slide key={index}>{child}</Slide>
         ))}
       </SlidesWrapper>
-      <Controls>
-        <ControlButton onClick={prev} disabled={curr === 0}>
-          <img src={ChevronLeft} width={40} />
-        </ControlButton>
-        <ControlButton onClick={next} disabled={curr === totalSlides - 1}>
-          <img src={ChevronRight} width={40} />
-        </ControlButton>
-      </Controls>
+      <LeftControlButton onClick={prev} disabled={curr === 0}>
+        <img src={ChevronLeft} width={40} />
+      </LeftControlButton>
+      <RightControlButton onClick={next} disabled={curr === totalSlides - 1}>
+        <img src={ChevronRight} width={40} />
+      </RightControlButton>
     </CarouselContainer>
   );
 }
@@ -53,6 +51,7 @@ const CarouselContainer = styled.div`
   overflow: hidden;
   position: relative;
   width: 100%;
+  height: fit-content;
 `;
 
 const SlidesWrapper = styled.div<SlidesWrapperProps>`
@@ -66,15 +65,6 @@ const Slide = styled.div`
   flex-shrink: 0;
 `;
 
-const Controls = styled.div`
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 16px;
-`;
-
 const ControlButton = styled.button<ControlButtonProps>`
   padding: 8px;
   color: #4a4a4a;
@@ -83,4 +73,16 @@ const ControlButton = styled.button<ControlButtonProps>`
   background: transparent;
   border: none;
   outline: none;
+  position: absolute;
+  top: 145px;
+`;
+
+const LeftControlButton = styled(ControlButton)`
+  left: 16px;
+  padding: 0;
+`;
+
+const RightControlButton = styled(ControlButton)`
+  right: 16px;
+  padding: 0;
 `;

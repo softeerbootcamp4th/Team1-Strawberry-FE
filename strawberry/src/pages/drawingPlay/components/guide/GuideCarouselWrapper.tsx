@@ -7,7 +7,7 @@ import { guides } from "../../models/Guide";
 import { useDrawingPlayState } from "../../hooks/useDrawingPlayState";
 import { useDrawingPlayDispatch } from "../../hooks/useDrawingPlayDispatch";
 
-import DrawingCanvas from "./DrawingCanvas";
+import DrawingPractice from "./DrawingPractice";
 import GuideCarousel from "./GuideCarousel";
 
 interface IndicatorProps {
@@ -31,7 +31,16 @@ function GuideCarouselWrapper() {
             <img width="100%" src={guide.image} />
           </Wrapper>
         ))}
-        <DrawingCanvas />
+        <Wrapper
+          $position="relative"
+          display="flex"
+          $justifycontent="center"
+          $alignitems="center"
+        >
+          <DrawingCanvasWrapper>
+            <DrawingPractice timeLimit={3} />
+          </DrawingCanvasWrapper>
+        </Wrapper>
       </GuideCarousel>
       <Indicators>
         {guides.slice(0, guides.length).map((_, i) => (
@@ -47,6 +56,13 @@ function GuideCarouselWrapper() {
 }
 
 export default GuideCarouselWrapper;
+
+const DrawingCanvasWrapper = styled.div`
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+`;
 
 const Indicators = styled.div`
   position: absolute;
