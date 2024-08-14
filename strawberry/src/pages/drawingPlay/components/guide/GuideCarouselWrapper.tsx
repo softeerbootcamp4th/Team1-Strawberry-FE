@@ -8,7 +8,7 @@ import { guides } from "../../models/Guide";
 import { useDrawingPlayState } from "../../hooks/useDrawingPlayState";
 import { useDrawingPlayDispatch } from "../../hooks/useDrawingPlayDispatch";
 
-import DrawingCanvas from "./DrawingCanvas";
+import DrawingPractice from "./DrawingPractice";
 
 function GuideCarouselWrapper() {
   const { guideIndex } = useDrawingPlayState();
@@ -28,13 +28,29 @@ function GuideCarouselWrapper() {
             <img width="100%" src={guide.image} alt={`Guide ${index + 1}`} />
           </GuideSlide>
         ))}
-        <DrawingCanvas />
+        <Wrapper
+          $position="relative"
+          display="flex"
+          $justifycontent="center"
+          $alignitems="center"
+        >
+          <DrawingCanvasWrapper>
+            <DrawingPractice timeLimit={3} />
+          </DrawingCanvasWrapper>
+        </Wrapper>
       </Carousel>
     </Wrapper>
   );
 }
 
 export default GuideCarouselWrapper;
+
+const DrawingCanvasWrapper = styled.div`
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+`;
 
 const GuideSlide = styled(Wrapper)`
   width: 100%;

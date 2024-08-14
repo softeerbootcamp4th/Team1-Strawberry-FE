@@ -39,14 +39,12 @@ export function Carousel({ children, curr, onSlideChange }: CarouselProps) {
             <Slide key={index}>{child}</Slide>
           ))}
         </SlidesWrapper>
-        <Controls>
-          <ControlButton onClick={prev} disabled={curr === 0}>
-            <img src={ChevronLeft} width={40} alt="Previous Slide" />
-          </ControlButton>
-          <ControlButton onClick={next} disabled={curr === totalSlides - 1}>
-            <img src={ChevronRight} width={40} alt="Next Slide" />
-          </ControlButton>
-        </Controls>
+        <LeftControlButton onClick={prev} disabled={curr === 0}>
+          <img src={ChevronLeft} width={40} />
+        </LeftControlButton>
+        <RightControlButton onClick={next} disabled={curr === totalSlides - 1}>
+          <img src={ChevronRight} width={40} />
+        </RightControlButton>
       </CarouselContainer>
       <Indicators>
         {Array.from({ length: totalSlides }).map((_, i) => (
@@ -67,6 +65,7 @@ const CarouselContainer = styled.div`
   overflow: hidden;
   position: relative;
   width: 100%;
+  height: fit-content;
 `;
 
 const SlidesWrapper = styled.div<SlidesWrapperProps>`
@@ -97,6 +96,18 @@ const ControlButton = styled.button<ControlButtonProps>`
   background: transparent;
   border: none;
   outline: none;
+  position: absolute;
+  top: 145px;
+`;
+
+const LeftControlButton = styled(ControlButton)`
+  left: 16px;
+  padding: 0;
+`;
+
+const RightControlButton = styled(ControlButton)`
+  right: 16px;
+  padding: 0;
 `;
 
 const Indicators = styled.div`
