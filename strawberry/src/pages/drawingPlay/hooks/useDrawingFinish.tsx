@@ -1,8 +1,11 @@
 import { useState, useEffect } from "react";
 
 import { useDrawingSharedQuery } from "../../../data/queries/drawing/useDrawingSharedQuery";
+import { useGlobalDispatch } from "../../../core/hooks/useGlobalDispatch";
 
 function useDrawingFinish() {
+  const globalDispatch = useGlobalDispatch();
+
   const [finalScore, setFinalScore] = useState<number>(0);
   const [highestScore, setHighestScore] = useState<number>(0);
 
@@ -20,6 +23,10 @@ function useDrawingFinish() {
   useEffect(() => {
     if (sharedData?.sharedUrl) {
       navigator.clipboard.writeText(sharedData.sharedUrl);
+      globalDispatch({
+        type: "OPEN_TOAST",
+        toastProps: { content: "내 점수와 url이 복사되었습니다" },
+      });
     }
   }, [sharedData?.sharedUrl]);
 
