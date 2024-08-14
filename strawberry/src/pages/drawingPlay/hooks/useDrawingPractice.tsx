@@ -19,6 +19,7 @@ export function useDrawingPractice(timeLimit: number) {
   const [userPoints, setUserPoints] = useState<Point[]>([]);
   const [timer, setTimer] = useState(timeLimit);
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
+  const [score, setScore] = useState<number | null>(null);
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
@@ -59,8 +60,29 @@ export function useDrawingPractice(timeLimit: number) {
   useEffect(() => {
     if (timer <= 0) {
       stopDrawing();
+      calculateScore(); // Calculate score when the timer ends
     }
   }, [timer]);
+
+  const calculateDistance = (point: Point) => {
+    const circleCenter = { x: canvasWidth / 2, y: canvasHeight / 2 };
+    const distanceFromCenter = Math.sqrt(
+      Math.pow(point.x - circleCenter.x, 2) +
+      Math.pow(point.y - circleCenter.y, 2),
+    );
+    return Math.abs(distanceFromCenter - arcRadius); // Distance from the circumference
+  };
+
+  const calculateScore = () => {
+    if (userPoints.length === 0) return;
+    const totalDistance = userPoints.reduce((sum, point) => {
+      return sum + calculateDistance(point);
+    }, 0);
+    const maxScore = 100;
+    const penalty = totalDistance / userPoints.length; // Average distance as penalty
+    const finalScore = Math.max(0, maxScore - penalty);
+    setScore(finalScore);
+  };
 
   const startDrawing = () => {
     clearCanvas();
@@ -68,6 +90,7 @@ export function useDrawingPractice(timeLimit: number) {
     setTimer(timeLimit);
     setIsDrawing(true);
     setIsButtonDisabled(true);
+    setScore(null); // Reset score
 
     timeoutRef.current = setTimeout(() => {
       setTimer(0); // 타이머를 0으로 설정
@@ -155,5 +178,6 @@ export function useDrawingPractice(timeLimit: number) {
     arcRadius,
     timer,
     isButtonDisabled,
+    score, // Return score
   };
 }

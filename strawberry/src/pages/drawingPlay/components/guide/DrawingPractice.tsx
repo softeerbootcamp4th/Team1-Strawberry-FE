@@ -18,6 +18,7 @@ const DrawingPractice = ({ timeLimit }: DrawingPracticeProps) => {
     arcRadius,
     timer,
     isButtonDisabled,
+    score,
   } = useDrawingPractice(timeLimit);
 
   return (
@@ -34,7 +35,6 @@ const DrawingPractice = ({ timeLimit }: DrawingPracticeProps) => {
         ref={canvasRef}
         width={canvasWidth}
         height={canvasHeight}
-        onMouseDown={handleMouseDown}
         onMouseMove={handleMouseMove}
         onMouseUp={(e) => handleMouseUp(e as unknown as MouseEvent)}
       />
@@ -56,11 +56,30 @@ const DrawingPractice = ({ timeLimit }: DrawingPracticeProps) => {
       <TimerLabel $token="Body2Medium" color={theme.Color.TextIcon.info}>
         남은 시간: {timer} 초
       </TimerLabel>
+      {score && (
+        <ScoreLabel $token="Body2Medium" color={theme.Color.TextIcon.info}>
+          점수: {score?.toFixed(2)} 점
+        </ScoreLabel>
+      )}
     </Wrapper>
   );
 };
 
 export default DrawingPractice;
+
+const TimerLabel = styled(Label)`
+  position: absolute;
+  top: 340px;
+  font-size: 16px;
+  font-weight: bold;
+`;
+
+const ScoreLabel = styled(Label)`
+  position: absolute;
+  top: 40px;
+  font-size: 16px;
+  font-weight: bold;
+`;
 
 const StartLabel = styled.p`
   ${({ theme }) => theme.Typography.Body2Medium}
@@ -80,11 +99,4 @@ const StartButton = styled.div<{ $disabled: boolean }>`
 
 const StyledCanvas = styled.canvas`
   z-index: 10;
-`;
-
-const TimerLabel = styled(Label)`
-  position: absolute;
-  top: 340px;
-  font-size: 16px;
-  font-weight: bold;
 `;
