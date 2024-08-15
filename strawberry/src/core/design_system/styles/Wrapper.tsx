@@ -9,6 +9,7 @@ interface WrapperStyleProps {
   $maxwidth?: string;
   height?: string;
   $minheight?: string;
+  $maxheight?: string;
 
   $backgroundcolor?: string;
   borderRadius?: string;
@@ -45,6 +46,7 @@ const StyledWrapper = styled.div<WrapperStyleProps>`
   ${({ $maxwidth }) => $maxwidth && `max-width: ${$maxwidth}`};
   height: ${({ height }) => height || "100%"};
   ${({ $minheight }) => $minheight && `min-height: ${$minheight}`};
+  ${({ $maxheight }) => $maxheight && `max-height: ${$maxheight}`}
 
   ${({ $position }) => $position && `position: ${$position}`};
 
