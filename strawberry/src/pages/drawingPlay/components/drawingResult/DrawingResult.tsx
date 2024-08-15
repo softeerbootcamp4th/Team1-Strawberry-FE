@@ -6,11 +6,11 @@ import {
   Wrapper,
 } from "../../../../core/design_system";
 
+import { useDrawingResult } from "../../hooks/useDrawingResult";
+
 import DrawingStep from "../DrawingStep";
 import DrawingScore from "../DrawingScore";
-
 import ImageResult from "./ImageResult";
-import { useDrawingResult } from "../../hooks/useDrawingResult";
 
 function DrawingResult() {
   const {
@@ -21,6 +21,8 @@ function DrawingResult() {
     isLastStage,
     handleNextStage,
     handleFinish,
+    score,
+    title,
   } = useDrawingResult();
 
   return (
@@ -33,14 +35,14 @@ function DrawingResult() {
           $textalign="center"
           color={theme.Color.TextIcon.default}
         >
-          조금만 더 하면 고득점!
+          {title}
         </Label>
         <Wrapper $margin="16px 0 0 0" display="flex" $justifycontent="center">
           <CanvasContainer>
             <StyledImage src={imgPath} alt="Car" />
             <ImageResult />
             <ScoreWrapper>
-              <DrawingScore score={72.2} />
+              <DrawingScore score={Number(score.toFixed(1))} />
             </ScoreWrapper>
           </CanvasContainer>
         </Wrapper>

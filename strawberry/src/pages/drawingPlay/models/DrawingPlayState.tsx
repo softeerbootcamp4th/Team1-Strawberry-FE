@@ -1,3 +1,6 @@
+import { DrawingPlay } from "../../../data/entities/DrawingPlay";
+import { DrawingResult } from "../../../data/entities/DrawingResult";
+
 type StageType = 1 | 2 | 3 | number;
 type StatusType = "onBoarding" | "game" | "result" | "finish";
 
@@ -10,6 +13,8 @@ export interface DrawingPlayState {
   canvasImg: string;
   timeLimit: number;
   isDrawing: boolean;
+  drawingInfo: DrawingPlay | undefined;
+  drawingResult: DrawingResult | undefined;
 }
 
 export default DrawingPlayState;

@@ -1,33 +1,11 @@
 import { useState, useRef, useEffect } from "react";
 import rough from "roughjs/bundled/rough.esm";
 
-import santafeLineBG from "/src/assets/images/background/santafeLineBG.png";
-import interiorLineBG from "/src/assets/images/background/interiorLineBG.png";
-import exteriorLineBG from "/src/assets/images/background/exteriorLineBG.png";
-
 import { LineStyle, Point } from "../models";
 
 import { useDrawingPlayDispatch } from "./useDrawingPlayDispatch";
 import { useDrawingPlayState } from "./useDrawingPlayState";
-
-const startPoints = [
-  {
-    x: 0,
-    y: 0,
-  },
-  {
-    x: 54,
-    y: 275,
-  },
-  {
-    x: 318,
-    y: 238,
-  },
-  {
-    x: 240,
-    y: 216,
-  },
-];
+import { useDrawingPlayMutation } from "../../../data/queries/drawing/useDrawingPlayMutation";
 
 const customLineStyle: LineStyle = {
   stroke: "#46474C",
@@ -43,14 +21,16 @@ export function useDrawingCanvas(timeLimit = 10) {
   const [userPoints, setUserPoints] = useState<Point[]>([]);
   const userPointsRef = useRef<Point[]>([]);
   const [timer, setTimer] = useState<number>(timeLimit);
-  const imgPaths = ["", santafeLineBG, interiorLineBG, exteriorLineBG];
   const timeoutRef = useRef<number | null>(null);
   const intervalRef = useRef<number | null>(null);
+  const {
+    mutate: postPoints,
+    isSuccess,
+    data: drawingResult,
+  } = useDrawingPlayMutation();
 
-  const { stage, isDrawing } = useDrawingPlayState();
+  const { stage, isDrawing, drawingInfo } = useDrawingPlayState();
   const dispatch = useDrawingPlayDispatch();
-  const pointX = startPoints[stage].x;
-  const pointY = startPoints[stage].y;
   useEffect(() => {
     const canvas = canvasRef.current;
     if (canvas) {
@@ -60,27 +40,30 @@ export function useDrawingCanvas(timeLimit = 10) {
   }, []);
 
   useEffect(() => {
-    if (timer === 0) {
-      dispatch({ type: "SET_FINISH_DRAWING" });
+    if (timer === 0 && isDrawing) {
+      stopDrawing();
       clearInterval(intervalRef.current as number);
     }
-  }, [timer]);
+  }, [timer, isDrawing]);
 
   useEffect(() => {
-    userPointsRef.current = userPoints; // 최신의 userPoints를 ref에 저장
-  }, [userPoints]);
+    if (isSuccess) {
+      dispatch({ type: "SET_FINISH_DRAWING" });
+      dispatch({ type: "SET_RESULT" });
+      dispatch({ type: "SET_DRAWING_RESULT", payload: drawingResult });
 
-  const setPlayTimeout = () => {
-    dispatch({ type: "SET_START_DRAWING" });
-    timeoutRef.current = window.setTimeout(() => {
-      stopDrawing();
-    }, 7000);
-  };
+      const canvasImage = canvasRef.current?.toDataURL("image/png");
+      dispatch({
+        type: "SET_CANVAS_IMG",
+        payload: canvasImage || "",
+      });
+    }
+  }, [isSuccess]);
 
   const startDrawing = () => {
-    setPlayTimeout();
+    dispatch({ type: "SET_START_DRAWING" });
     setUserPoints([]);
-    userPointsRef.current = []; // ref도 초기화
+    userPointsRef.current = [];
     setTimer(timeLimit);
 
     intervalRef.current = window.setInterval(() => {
@@ -94,6 +77,8 @@ export function useDrawingCanvas(timeLimit = 10) {
   };
 
   const stopDrawing = () => {
+    postPoints({ positions: userPoints, subEventId: 4, sequence: stage });
+
     if (intervalRef.current !== null) {
       clearInterval(intervalRef.current);
       intervalRef.current = null;
@@ -103,14 +88,6 @@ export function useDrawingCanvas(timeLimit = 10) {
       clearTimeout(timeoutRef.current);
       timeoutRef.current = null;
     }
-    dispatch({ type: "SET_FINISH_DRAWING" });
-    dispatch({ type: "SET_RESULT" });
-
-    const canvasImage = canvasRef.current?.toDataURL("image/png");
-    dispatch({
-      type: "SET_CANVAS_IMG",
-      payload: canvasImage || "",
-    });
   };
 
   const handleMouseDown = (e: React.MouseEvent) => {
@@ -180,13 +157,13 @@ export function useDrawingCanvas(timeLimit = 10) {
   return {
     canvasRef,
     isDrawing,
-    imgPath: imgPaths[stage],
+    imgPath: drawingInfo?.gameInfos[stage - 1].contourImgUrl,
+    pointX: drawingInfo?.gameInfos[stage - 1].startPosition.x ?? 0,
+    pointY: drawingInfo?.gameInfos[stage - 1].startPosition.y ?? 0,
     startDrawing,
     handleClick,
     handleMouseDown,
     handleMouseUp,
     handleMouseMove,
-    pointX,
-    pointY,
   };
 }

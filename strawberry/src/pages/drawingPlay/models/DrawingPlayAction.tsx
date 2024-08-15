@@ -1,3 +1,6 @@
+import { DrawingPlay } from "../../../data/entities/DrawingPlay";
+import { DrawingResult } from "../../../data/entities/DrawingResult";
+
 export type DrawingPlayAction =
   | { type: "SET_GUIDE_OPEN"; payload: boolean }
   | { type: "SET_GUIDE_INDEX"; payload: number }
@@ -9,4 +12,6 @@ export type DrawingPlayAction =
   | { type: "SET_FINISH" }
   | { type: "SET_CANVAS_IMG"; payload: string }
   | { type: "SET_START_DRAWING" }
-  | { type: "SET_FINISH_DRAWING" };
+  | { type: "SET_FINISH_DRAWING" }
+  | { type: "SET_DRAWING_INFO"; payload: DrawingPlay }
+  | { type: "SET_DRAWING_RESULT"; payload: DrawingResult };

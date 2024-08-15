@@ -14,7 +14,11 @@ import drawingFinishBG from "/src/assets/images/background/drawingFinishBG.svg";
 import useDrawingFinish from "../../hooks/useDrawingFinish.tsx";
 
 function DrawingFinish() {
-  const { finalScore, highestScore, handleSharedClick } = useDrawingFinish();
+  const gifUrl =
+    "https://s3-alpha-sig.figma.com/img/de82/685d/2752e884c15d3abd92a2193c6288551d?Expires=1724025600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=cZtbhRnyUIPmAzDki-K2F3BZTG1g2UjFubm237vFA8opEAr1ZobTFuXY14OGWp53ox3h7h1Y8HZm1qWxOeDfwvPKKFpfihaYGqUxHCB7FWvPbzyQM5SFNBJ6R3OvVkbLAKQOgiE~BcrT8yMLzGGrRiIccvJjTzuAoZWSLvMPmGKLAPptzJYypk5S2C8mDFxv04yWgjNScTR-A6CooH8-rg0MLhi6sdIpMatk-CFjzK38o3LVqxez63MBOOiK6v8r-O3XTYMsuOLs76Vzk4tLpOfmV9mWZ6jTGQZkfE43v5BqcCRo9DxsK-DdqXo7ItjQnd5Hej7622M1w0CExawoeQ__";
+
+  const { finalScore, highestScore, handleSharedClick, chance } =
+    useDrawingFinish();
 
   return (
     <>
@@ -29,7 +33,7 @@ function DrawingFinish() {
         $zindex="3"
         $position="relative"
       >
-        <HighestScore score={highestScore} />
+        <HighestScore score={Number(highestScore.toFixed(1))} />
         <Label
           $margin="40px 0 0 0"
           $token="Title2Medium"
@@ -38,9 +42,9 @@ function DrawingFinish() {
           최종 점수
         </Label>
         <Wrapper width="fit-content" height="fit-content" $position="relative">
-          <img src="https://s3-alpha-sig.figma.com/img/de82/685d/2752e884c15d3abd92a2193c6288551d?Expires=1724025600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=cZtbhRnyUIPmAzDki-K2F3BZTG1g2UjFubm237vFA8opEAr1ZobTFuXY14OGWp53ox3h7h1Y8HZm1qWxOeDfwvPKKFpfihaYGqUxHCB7FWvPbzyQM5SFNBJ6R3OvVkbLAKQOgiE~BcrT8yMLzGGrRiIccvJjTzuAoZWSLvMPmGKLAPptzJYypk5S2C8mDFxv04yWgjNScTR-A6CooH8-rg0MLhi6sdIpMatk-CFjzK38o3LVqxez63MBOOiK6v8r-O3XTYMsuOLs76Vzk4tLpOfmV9mWZ6jTGQZkfE43v5BqcCRo9DxsK-DdqXo7ItjQnd5Hej7622M1w0CExawoeQ__" />
+          <img src={gifUrl} />
           <ScoreWrapper>
-            <DrawingScore score={finalScore} />
+            <DrawingScore score={Number(finalScore.toFixed(1))} />
           </ScoreWrapper>
         </Wrapper>
         <Wrapper display="flex" $position="relative">
@@ -57,9 +61,7 @@ function DrawingFinish() {
             color={theme.Color.TextIcon.info}
             $textalign="center"
           >
-            {
-              "기회가 n번 남았어요!\n링크 공유 / 기대평 작성으로 추가 재도전 기회를 얻으세요!"
-            }
+            {`기회가 ${chance}번 남았어요!\n링크 공유 / 기대평 작성으로 추가 재도전 기회를 얻으세요!`}
           </Label>
         </Wrapper>
         <Wrapper $margin="16px 0 0 0">
