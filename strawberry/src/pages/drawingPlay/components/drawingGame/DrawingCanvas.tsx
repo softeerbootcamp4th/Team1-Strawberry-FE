@@ -72,7 +72,7 @@ const StartButton = styled.div<{ $disabled: boolean }>`
   border-radius: 12px;
   background-color: ${({ theme }) => theme.Color.TextIcon.info};
   border: none;
-  cursor: pointer;
+  cursor: ${({ $disabled }) => ($disabled ? "none" : "pointer")};
   z-index: 10;
 `;
 
