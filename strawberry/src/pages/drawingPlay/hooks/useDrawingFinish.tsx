@@ -1,21 +1,15 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 
 import { useDrawingSharedQuery } from "../../../data/queries/drawing/useDrawingSharedQuery";
+import { useDrawingFinishQuery } from "../../../data/queries/drawing/useDrawingFinishQuery";
 
 function useDrawingFinish() {
-  const [finalScore, setFinalScore] = useState<number>(0);
-  const [highestScore, setHighestScore] = useState<number>(0);
+  const { data: drawingFinish } = useDrawingFinishQuery({ subEventId: 4 });
 
   const { data: sharedData, refetch: getSharedData } = useDrawingSharedQuery({
     // 컨텍스트 값으로 대체
     subEventId: 4,
   });
-
-  useEffect(() => {
-    // 서버 요청
-    setFinalScore(72);
-    setHighestScore(100);
-  }, []);
 
   useEffect(() => {
     if (sharedData?.sharedUrl) {
@@ -28,8 +22,9 @@ function useDrawingFinish() {
   };
 
   return {
-    finalScore,
-    highestScore,
+    finalScore: drawingFinish?.totalScore ?? 0,
+    highestScore: drawingFinish?.maxScore ?? 0,
+    chance: drawingFinish?.chance ?? 0,
     handleSharedClick,
   };
 }
