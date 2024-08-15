@@ -68,19 +68,19 @@ function DrawingFinish() {
           <DrawingInput />
         </Wrapper>
         <Wrapper
-          height="100px"
           display="flex"
-          width="fit-content"
           $justifycontent="center"
-          $margin="20px 0 0 0"
-          $gap="55px"
+          $margin="50px 0 0 0"
+          $gap="80px"
         >
           <StyledButton onClick={handleSharedClick}>
-            <img src={UrlButton} alt="url" />
-            <Label $token="Heading1Regular">URL 복사하기</Label>
+            <img src={UrlButton} alt="url" width="100px" />
+            <Label $token="Heading1Regular" $textalign="center">
+              URL 복사하기
+            </Label>
           </StyledButton>
           <StyledButton>
-            <img src={RetryButton} alt="url" />
+            <img src={RetryButton} alt="url" width="100px" />
             <Label $token="Heading1Regular">게임 다시하기</Label>
           </StyledButton>
         </Wrapper>
@@ -106,12 +106,8 @@ const ScoreWrapper = styled.div`
 `;
 
 const StyledButton = styled.button`
-  /* width: 80px;
-  height: 100px; */
-  width: 120px;
-  height: 138px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-content: center;
+  align-items: center;
 `;

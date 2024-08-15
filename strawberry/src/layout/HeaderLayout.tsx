@@ -2,6 +2,7 @@ import Header from "./components/header";
 import React from "react";
 import { Wrapper } from "../core/design_system";
 import { Modal } from "../pages/common/components/modal/Modal";
+import Toast from "../pages/common/components/toast/Toast";
 
 interface HeaderLayoutProps {
   children?: React.ReactNode;
@@ -18,6 +19,7 @@ function HeaderLayout({ children }: HeaderLayoutProps) {
         $flexdirection="column"
       >
         <Modal />
+        <Toast />
         {/* HeaderWrapper */}
         <Wrapper width="100%" height="70px" $position="fixed" $top="0">
           <Header />

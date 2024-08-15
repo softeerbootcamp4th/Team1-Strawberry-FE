@@ -31,6 +31,8 @@ export type GlobalState = {
   isModalOpen: boolean;
   modalCategory: ModalCategoryType;
   modalProps: ModalPropsType;
+  isToastOpen: boolean;
+  toastContent: string;
 };
 
 // Global State Context and Dispatch
@@ -46,13 +48,20 @@ type Action =
   | { type: "SET_LOGIN"; status: boolean }
   | { type: "UPDATE_USER"; data: UserData }
   | {
-      type: "OPEN_MODAL";
-      modalCategory: ModalCategoryType;
-      modalProps: ModalPropsType;
-    }
+    type: "OPEN_MODAL";
+    modalCategory: ModalCategoryType;
+    modalProps: ModalPropsType;
+  }
   | {
-      type: "CLOSE_MODAL";
-    };
+    type: "CLOSE_MODAL";
+  }
+  | {
+    type: "OPEN_TOAST";
+    toastContent: string;
+  }
+  | {
+    type: "CLOSE_TOAST";
+  };
 
 // Reducer
 function globalReducer(state: GlobalState, action: Action): GlobalState {
@@ -75,6 +84,17 @@ function globalReducer(state: GlobalState, action: Action): GlobalState {
         modalCategory: null,
         modalProps: null,
       };
+    case "OPEN_TOAST":
+      return {
+        ...state,
+        isToastOpen: true,
+        toastContent: action.toastContent,
+      };
+    case "CLOSE_TOAST":
+      return {
+        ...state,
+        isToastOpen: false,
+      };
     default:
       throw new Error("ACTION NOT FOUND");
   }
@@ -88,6 +108,8 @@ export function GlobalContextProvider({ children }: { children: ReactNode }) {
     isModalOpen: false,
     modalCategory: null,
     modalProps: null,
+    isToastOpen: false,
+    toastProps: null,
   });
 
   useEffect(() => {
