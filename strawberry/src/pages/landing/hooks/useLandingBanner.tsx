@@ -5,8 +5,19 @@ function useLandingBanner() {
   const [scrollHeight, setScrollHeight] = useState<number>(0);
 
   useEffect(() => {
-    if (heightRef.current) {
-      setScrollHeight(heightRef.current.offsetHeight);
+    const handleImageLoad = () => {
+      if (heightRef.current) {
+        setScrollHeight(heightRef.current.offsetHeight);
+      }
+    };
+
+    const imgElement = heightRef.current?.querySelector("img");
+    if (imgElement) {
+      imgElement.addEventListener("load", handleImageLoad);
+
+      return () => {
+        imgElement.removeEventListener("load", handleImageLoad);
+      };
     }
   }, [heightRef]);
 
