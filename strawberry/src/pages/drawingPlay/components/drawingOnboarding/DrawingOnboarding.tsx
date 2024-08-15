@@ -30,7 +30,7 @@ function DrawingOnboarding() {
           </CanvasContainer>
         </Wrapper>
         <Wrapper $margin="30px 0 0 0">
-          <ProgressBar timeLimit={3} isProgress={!isGuideOpen} />
+          <ProgressBar timeLimit={3} isProgress={isGuideOpen === false} />
         </Wrapper>
       </GameWrapper>
     </>
