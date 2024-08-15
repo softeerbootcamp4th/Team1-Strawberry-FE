@@ -5,11 +5,29 @@ import { useGlobalDispatch } from "../../../core/hooks/useGlobalDispatch";
 import useNavigationBlocker from "../../common/hooks/useNavigationBlock";
 
 import { useDrawingPlayState } from "./useDrawingPlayState";
+import { useDrawingPlayDispatch } from "./useDrawingPlayDispatch";
+import { useDrawingPlayQuery } from "../../../data/queries/drawing/useDrawingPlayQuery";
 
 function useDrawingPlayPage() {
   const { status } = useDrawingPlayState();
   const { isBlocked, proceed, reset } = useNavigationBlocker();
+
+  const drawingPlayDispatch = useDrawingPlayDispatch();
   const dispatch = useGlobalDispatch();
+
+  const { data: drawingInfo } = useDrawingPlayQuery({
+    subEventId: 4,
+    eventPlayType: "NORMAL",
+  });
+
+  useEffect(() => {
+    if (drawingInfo) {
+      drawingPlayDispatch({
+        type: "SET_DRAWING_INFO",
+        payload: drawingInfo,
+      });
+    }
+  }, [drawingInfo]);
 
   useEffect(() => {
     if (isBlocked && status !== "finish") {
