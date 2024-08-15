@@ -1,14 +1,16 @@
 import { Label, theme, Wrapper } from "../../../../core/design_system";
-import FoundationButton from "../FoundationButton";
 
-type Exterior = "FRONT" | "REAR";
+import FoundationButton from "../FoundationButton";
+import NewCarDesignDetail from "./NewCarDesignDetail";
 
 function NewCarExterior() {
   return (
     <Wrapper
       display="flex"
+      width="1440px"
+      $margin="0 auto"
+      $padding="80px 0"
       $flexdirection="column"
-      $padding="80px 240px"
       $boxsizing="border-box"
       $gap="32px"
     >
@@ -36,6 +38,7 @@ function NewCarExterior() {
         <FoundationButton variant="SOLID" title="Front" />
         <FoundationButton variant="OUTLINE" title="Rear" />
       </Wrapper>
+      <NewCarDesignDetail />
     </Wrapper>
   );
 }

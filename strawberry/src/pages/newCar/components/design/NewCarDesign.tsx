@@ -12,7 +12,7 @@ function NewCarDesign() {
   return (
     <Wrapper>
       <Wrapper $position="relative" height="700px">
-        <img src={DesginBackground} height="100%" />
+        <img src={DesginBackground} width="100%" />
         <Wrapper
           $position="absolute"
           $top="0"
