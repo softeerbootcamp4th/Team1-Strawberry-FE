@@ -12,6 +12,8 @@ const initialState: DrawingPlayState = {
   canvasImg: "",
   timeLimit: 7,
   isDrawing: false,
+  drawingInfo: undefined,
+  drawingResult: undefined,
 };
 
 // 리듀서 함수
@@ -42,6 +44,10 @@ const drawingPlayReducer = (
       return { ...state, isDrawing: true };
     case "SET_FINISH_DRAWING":
       return { ...state, isDrawing: false };
+    case "SET_DRAWING_INFO":
+      return { ...state, drawingInfo: action.payload };
+    case "SET_DRAWING_RESULT":
+      return { ...state, drawingResult: action.payload };
     default:
       return state;
   }
