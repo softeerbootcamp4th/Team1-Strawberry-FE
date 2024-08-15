@@ -24,10 +24,6 @@ type ModalPropsType = {
   onPrimaryBtnClick?: () => void;
 } | null;
 
-export type ToastPropsType = {
-  content: string;
-};
-
 // Global State Types
 export type GlobalState = {
   isLogin: boolean;
@@ -36,7 +32,7 @@ export type GlobalState = {
   modalCategory: ModalCategoryType;
   modalProps: ModalPropsType;
   isToastOpen: boolean;
-  toastProps: ToastPropsType;
+  toastContent: string;
 };
 
 // Global State Context and Dispatch
@@ -61,7 +57,7 @@ type Action =
   }
   | {
     type: "OPEN_TOAST";
-    toastProps: ToastPropsType;
+    toastContent: string;
   }
   | {
     type: "CLOSE_TOAST";
@@ -92,7 +88,7 @@ function globalReducer(state: GlobalState, action: Action): GlobalState {
       return {
         ...state,
         isToastOpen: true,
-        toastProps: action.toastProps,
+        toastContent: action.toastContent,
       };
     case "CLOSE_TOAST":
       return {

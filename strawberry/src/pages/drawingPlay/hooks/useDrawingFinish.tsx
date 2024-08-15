@@ -25,7 +25,7 @@ function useDrawingFinish() {
       navigator.clipboard.writeText(sharedData.sharedUrl);
       globalDispatch({
         type: "OPEN_TOAST",
-        toastProps: { content: "내 점수와 url이 복사되었습니다" },
+        toastContent: "내 점수와 url이 복사되었습니다",
       });
     }
   }, [sharedData?.sharedUrl]);
