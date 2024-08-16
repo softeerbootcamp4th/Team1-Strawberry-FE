@@ -1,21 +1,18 @@
 import { useState } from "react";
 
-import { Wrapper } from "../../../../core/design_system";
+import { Wrapper, ImageEnum } from "../../../../core/design_system";
 
 type seatsType = 5 | 6 | 7;
 
-import space_5 from "/src/assets/images/newCar/space_5.svg";
-import space_6 from "/src/assets/images/newCar/space_6.svg";
-import space_7 from "/src/assets/images/newCar/space_7.svg";
 import styled from "styled-components";
 
 function SpaceSeats() {
   const [seats, setSeats] = useState<seatsType>(5);
 
   const imgs = {
-    5: space_5,
-    6: space_6,
-    7: space_7,
+    5: ImageEnum.IMAGES.NEWCAR.SPACE_5,
+    6: ImageEnum.IMAGES.NEWCAR.SPACE_6,
+    7: ImageEnum.IMAGES.NEWCAR.SPACE_7,
   };
 
   return (

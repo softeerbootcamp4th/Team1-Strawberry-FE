@@ -1,21 +1,18 @@
 import { useMemo } from "react";
 
-import GoldRankBadge from "../../../assets/images/icons/GoldRankBadge.svg";
-import SilverRankBadge from "../../../assets/images/icons/SilverRankBadge.svg";
-import BronzeRankBadge from "../../../assets/images/icons/BronzeRankBadge.svg";
-import NormalRankBadge from "../../../assets/images/icons/NormalRankBadge.svg";
+import { ImageEnum } from "../../../core/design_system";
 
 export function useRankBadgeImage(rank: number): string {
   return useMemo(() => {
     switch (rank) {
       case 1:
-        return GoldRankBadge;
+        return ImageEnum.ICONS.GOLDRANKBADGE;
       case 2:
-        return SilverRankBadge;
+        return ImageEnum.ICONS.SILVERRANKBADGE;
       case 3:
-        return BronzeRankBadge;
+        return ImageEnum.ICONS.BRONZERANKBADGE;
       default:
-        return NormalRankBadge;
+        return ImageEnum.ICONS.NORMALRANKBADGE;
     }
   }, [rank]);
 }

@@ -1,8 +1,10 @@
 import styled from "styled-components";
-import { theme, Wrapper, Label } from "../../../../../core/design_system";
-
-import popover from "/src/assets/images/icons/popover.svg";
-import close from "/src/assets/images/icons/close_gray.svg";
+import {
+  theme,
+  Wrapper,
+  Label,
+  ImageEnum,
+} from "../../../../../core/design_system";
 
 interface PopoverProps {
   setClose: () => void;
@@ -16,7 +18,7 @@ function Popover(props: PopoverProps) {
   return (
     <Wrapper $position="relative" height="100%">
       <BoxWrapper>
-        <Image src={popover} />
+        <Image src={ImageEnum.ICONS.POPOVER} />
         <ContentWrapper>
           <Wrapper width="100%" display="flex" $flexdirection="column">
             <Wrapper
@@ -29,7 +31,11 @@ function Popover(props: PopoverProps) {
                 {type}
               </Label>
               <Button onClick={setClose}>
-                <img src={close} width={"12px"} height={"12px"} />
+                <img
+                  src={ImageEnum.ICONS.CLOSE_GRAY}
+                  width={"12px"}
+                  height={"12px"}
+                />
               </Button>
             </Wrapper>
             <Wrapper>

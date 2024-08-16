@@ -1,9 +1,13 @@
-import spaceBanner from "/src/assets/images/newCar/space_banner.svg";
+import { ImageEnum } from "../../../../core/design_system";
 
 function SpaceBanner() {
   return (
     <>
-      <img src={spaceBanner} alt="spaceBanner" width="100%" />
+      <img
+        src={ImageEnum.IMAGES.NEWCAR.SPACE_BANNER}
+        alt="spaceBanner"
+        width="100%"
+      />
     </>
   );
 }

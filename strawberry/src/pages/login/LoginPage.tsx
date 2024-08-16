@@ -1,8 +1,5 @@
 import styled from "styled-components";
-import { Label, Wrapper, theme } from "../../core/design_system";
-
-import naverLoginButton from "/src/assets/images/login/naverLoginButton.svg";
-import hyundaiLoginButton from "/src/assets/images/login/hyundaiLoginButton.svg";
+import { Label, Wrapper, theme, ImageEnum } from "../../core/design_system";
 
 import { useLogin } from "./hooks/useLogin";
 import { throttle } from "../../core/utils";
@@ -38,10 +35,10 @@ function LoginPage() {
           $padding="85px 0 0 0"
         >
           <button onClick={() => throttledLogin("hyundai")}>
-            <img src={hyundaiLoginButton} />
+            <img src={ImageEnum.LOGOS.HYUNDAILOGINBUTTON} />
           </button>
           <StyledButton onClick={() => throttledLogin("naver")}>
-            <img src={naverLoginButton} />
+            <img src={ImageEnum.LOGOS.NAVERLOGINBUTTON} />
           </StyledButton>
         </Wrapper>
       </Wrapper>

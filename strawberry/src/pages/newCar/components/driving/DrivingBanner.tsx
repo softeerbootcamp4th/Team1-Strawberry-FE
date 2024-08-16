@@ -1,11 +1,13 @@
-import { Wrapper } from "../../../../core/design_system";
-
-import drivingBanner from "/src/assets/images/newCar/driving_banner.svg";
+import { ImageEnum } from "../../../../core/design_system";
 
 function DrivingBanner() {
   return (
     <>
-      <img src={drivingBanner} alt="drivingBanner" width="100%" />
+      <img
+        src={ImageEnum.IMAGES.NEWCAR.DRIVING_BANNER}
+        alt="drivingBanner"
+        width="100%"
+      />
     </>
   );
 }

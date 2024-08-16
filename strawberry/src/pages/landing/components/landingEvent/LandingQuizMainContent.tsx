@@ -1,11 +1,14 @@
 import styled from "styled-components";
 
-import { Label, theme, Wrapper } from "../../../../core/design_system";
+import {
+  Label,
+  theme,
+  Wrapper,
+  ImageEnum,
+} from "../../../../core/design_system";
 
 import CountdownTimer from "./CountdownTimer";
 import useLandingQuizMainContent from "../../hooks/useLandingQuizMainContent";
-
-import clock_white from "/src/assets/images/icons/clock_white.svg";
 
 const LandingQuizMainContent = () => {
   const { initialTime, schedules } = useLandingQuizMainContent();
@@ -17,7 +20,7 @@ const LandingQuizMainContent = () => {
           선착순 오픈까지 남은 시간
         </Label>
         <Wrapper display="flex" width="fit-content" $gap="20px">
-          <img src={clock_white} alt="clock_white" />
+          <img src={ImageEnum.ICONS.CLOCK_WHITE} alt="clock_white" />
           <CountdownTimer initialTime={initialTime} />
         </Wrapper>
       </UpperWrapper>

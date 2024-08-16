@@ -1,8 +1,10 @@
 import styled from "styled-components";
-import { Label, theme, Wrapper } from "../../../../core/design_system";
-
-import popover from "/src/assets/images/icons/popover.svg";
-import close from "/src/assets/images/icons/close_gray.svg";
+import {
+  ImageEnum,
+  Label,
+  theme,
+  Wrapper,
+} from "../../../../core/design_system";
 
 interface HintPopoverProps {
   setClose: () => void;
@@ -20,7 +22,7 @@ function HintPopover(props: HintPopoverProps) {
         width="fit-content"
         right="322.5px"
       >
-        <Image src={popover} />
+        <Image src={ImageEnum.ICONS.POPOVER} />
         <Wrapper
           width="312px"
           height="112px"
@@ -40,7 +42,11 @@ function HintPopover(props: HintPopoverProps) {
                 힌트
               </Label>
               <Button onClick={setClose}>
-                <img src={close} width={"12px"} height={"12px"} />
+                <img
+                  src={ImageEnum.ICONS.CLOSE_GRAY}
+                  width={"12px"}
+                  height={"12px"}
+                />
               </Button>
             </Wrapper>
             <Wrapper>

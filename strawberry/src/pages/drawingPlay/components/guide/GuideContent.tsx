@@ -1,11 +1,13 @@
 import { useState } from "react";
 import styled from "styled-components";
 
-import { theme, Label, Wrapper } from "../../../../core/design_system";
+import {
+  theme,
+  Label,
+  Wrapper,
+  ImageEnum,
+} from "../../../../core/design_system";
 import ModalButton from "../../../common/components/buttons/ModalButton";
-
-import CheckBoxFilled from "/src/assets/images/icons/checkbox-fill.svg";
-import CheckBoxUnFilled from "/src/assets/images/icons/checkbox-unfill.svg";
 
 import { guides } from "../../models/Guide";
 
@@ -41,7 +43,13 @@ function GuideContent() {
       </Label>
       <GuideCarouselWrapper />
       <CheckBoxButton onClick={() => toggleCheck(!isCheck)}>
-        <img src={!isCheck ? CheckBoxFilled : CheckBoxUnFilled} />
+        <img
+          src={
+            !isCheck
+              ? ImageEnum.ICONS.CHECKBOX_FILL
+              : ImageEnum.ICONS.CHECKBOX_UNFILL
+          }
+        />
         <Label $token="Body2Regular" color={theme.Color.TextIcon.info}>
           3일간 보지 않기
         </Label>
