@@ -11,6 +11,11 @@ function DrawingOnboarding() {
   const { stage, totalStage, imgPath, title, isGuideOpen } =
     useDrawingOnboarding();
 
+  // 모달이 닫히거나, 모달 보지않기 옵션이 켜져있을 때(없는 키를 getItem 하면 null)
+  const isStarted =
+    isGuideOpen === false ||
+    localStorage.getItem("hideGuideModalUntil") !== null;
+
   return (
     <>
       {isGuideOpen && <DrawingGuideModal />}
@@ -30,7 +35,7 @@ function DrawingOnboarding() {
           </CanvasContainer>
         </Wrapper>
         <Wrapper $margin="30px 0 0 0">
-          <ProgressBar timeLimit={3} isProgress={!isGuideOpen} />
+          <ProgressBar timeLimit={3} isProgress={isStarted} />
         </Wrapper>
       </GameWrapper>
     </>
