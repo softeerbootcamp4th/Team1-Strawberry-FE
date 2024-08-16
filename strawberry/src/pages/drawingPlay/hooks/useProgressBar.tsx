@@ -1,11 +1,8 @@
 import { useState, useEffect } from "react";
-import { useDrawingPlayState } from "./useDrawingPlayState";
 
 function useProgressBar(timeLimit: number, isProgress: boolean) {
   const [progress, setProgress] = useState(0);
   const [timer, setTimer] = useState(timeLimit);
-
-  const { status, isGuideOpen, isDrawing } = useDrawingPlayState();
 
   const updateProgress = () => {
     setProgress((prev) => {
@@ -15,11 +12,7 @@ function useProgressBar(timeLimit: number, isProgress: boolean) {
   };
 
   useEffect(() => {
-    if (
-      (status === "onBoarding" &&
-        localStorage.getItem("hideGuideModalUntil")) ||
-      isProgress
-    ) {
+    if (isProgress) {
       setProgress(0);
       setTimer(timeLimit);
 
@@ -39,7 +32,7 @@ function useProgressBar(timeLimit: number, isProgress: boolean) {
 
       return () => clearInterval(interval);
     }
-  }, [isProgress, timeLimit, isDrawing]);
+  }, [isProgress, timeLimit]);
 
   return { progress, timer };
 }
