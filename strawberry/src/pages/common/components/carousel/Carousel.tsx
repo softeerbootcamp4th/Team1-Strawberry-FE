@@ -32,7 +32,7 @@ export function Carousel({ children, curr, onSlideChange }: CarouselProps) {
   const next = () => onSlideChange(curr === totalSlides - 1 ? curr : curr + 1);
 
   return (
-    <Wrapper>
+    <Wrapper height="fit-content">
       <CarouselContainer>
         <SlidesWrapper curr={curr}>
           {React.Children.map(children, (child, index) => (
@@ -77,15 +77,6 @@ const SlidesWrapper = styled.div<SlidesWrapperProps>`
 const Slide = styled.div`
   width: 100%;
   flex-shrink: 0;
-`;
-
-const Controls = styled.div`
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 16px;
 `;
 
 const ControlButton = styled.button<ControlButtonProps>`

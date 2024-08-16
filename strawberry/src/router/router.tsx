@@ -14,6 +14,7 @@ import DrawingLandingWrapper from "../pages/drawingLanding/DrawingLandingWrapper
 import DrawingPlayWrapper from "../pages/drawingPlay/DrawingPlayWrapper";
 
 import LandingPage from "../pages/landing/LandingPage";
+import NewCarPage from "../pages/newCar/components/NewCarPage";
 
 const router = createBrowserRouter([
   {
@@ -38,7 +39,11 @@ const router = createBrowserRouter([
       },
       {
         path: "introduce",
-        element: <>{/* <NewCarPage /> */}</>,
+        element: (
+          <>
+            <NewCarPage />
+          </>
+        ),
       },
       {
         path: "expectation",
