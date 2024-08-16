@@ -1,8 +1,6 @@
 import styled from "styled-components";
 import { useState } from "react";
-import { Wrapper } from "../../../../../core/design_system";
-
-import popoverButton from "/src/assets/images/icons/popoverButton.svg";
+import { Wrapper, ImageEnum } from "../../../../../core/design_system";
 
 import Popover from "./Popover";
 
@@ -18,7 +16,7 @@ function PopoverButton(props: PopoverButtonProps) {
   return (
     <Wrapper $position="relative">
       <button onClick={() => setIsContentShown(true)}>
-        <HoverImg src={popoverButton} />
+        <HoverImg src={ImageEnum.ICONS.POPOVERBUTTON} />
       </button>
       <Wrapper $position="absolute">
         {isContentShown && (

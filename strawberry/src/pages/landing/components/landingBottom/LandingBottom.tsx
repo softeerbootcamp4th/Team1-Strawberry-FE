@@ -1,9 +1,7 @@
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 
-import { Label, theme } from "../../../../core/design_system";
-
-import arrowRightLWhite from "/src/assets/images/icons/Arrow_Right_L_White.svg";
+import { Label, theme, ImageEnum } from "../../../../core/design_system";
 
 function LandingBottom() {
   const navigate = useNavigate();
@@ -15,7 +13,11 @@ function LandingBottom() {
           <Label $token="Heading2Regular" color={theme.Color.TextIcon.reverse}>
             디 올 뉴 싼타페 기대평 남기러 가기
           </Label>
-          <img src={arrowRightLWhite} alt="arrowRightBoldWhite" width="20px" />
+          <img
+            src={ImageEnum.ICONS.ARROW_RIGHT_L_WHITE}
+            alt="arrowRightBoldWhite"
+            width="20px"
+          />
         </StyledButton>
       </LandingBottomWrapper>
     </>

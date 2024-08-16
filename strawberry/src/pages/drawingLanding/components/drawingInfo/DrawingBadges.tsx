@@ -1,6 +1,4 @@
-import { Wrapper } from "../../../../core/design_system";
-import GreenBadge from "../../../../assets/images/icons/GreenBadgeInfo.svg";
-import BlueBadge from "../../../../assets/images/icons/BlueBadgeInfo.svg";
+import { Wrapper, ImageEnum } from "../../../../core/design_system";
 
 import { useDrawingLandingState } from "../../hooks/useDrawingLandingState";
 import { useDrawingBadges } from "../../hooks/useDrawingBadges";
@@ -23,19 +21,19 @@ function DrawingBadges() {
       <DrawingBadgeInfo
         isSmallGap={false}
         isAcquired={false}
-        imgSource={GreenBadge}
+        imgSource={ImageEnum.ICONS.GREENBADGEINFO}
         description={greenBadgeDescription}
       />
       <DrawingBadgeInfo
         isSmallGap={true}
         isAcquired={isAcquiredExpectationBonus}
-        imgSource={BlueBadge}
+        imgSource={ImageEnum.ICONS.BLUEBADGEINFO}
         description={blueBadgeExpectationDescription}
       />
       <DrawingBadgeInfo
         isSmallGap={true}
         isAcquired={isAcquiredShareBonus}
-        imgSource={BlueBadge}
+        imgSource={ImageEnum.ICONS.BLUEBADGEINFO}
         description={blueBadgeShareDescription}
       />
     </Wrapper>

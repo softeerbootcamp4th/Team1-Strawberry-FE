@@ -1,13 +1,17 @@
 import { Link } from "react-router-dom";
 
-import headerLogo from "/src/assets/images/logos/Hyundai_Motor_Company_logo_1.svg";
+import { ImageEnum } from "../../../core/design_system";
 
-// link 추가
 function HeaderLogo() {
   return (
     <div>
       <Link to="/">
-        <img src={headerLogo} alt="Logo" width="145px" height="19px" />
+        <img
+          src={ImageEnum.LOGOS.HYUNDAI_MOTOR_COMPANY_LOGO_1}
+          alt="Logo"
+          width="145px"
+          height="19px"
+        />
       </Link>
     </div>
   );

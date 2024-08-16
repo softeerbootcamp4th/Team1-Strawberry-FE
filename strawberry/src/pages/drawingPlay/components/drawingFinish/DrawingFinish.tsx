@@ -1,14 +1,16 @@
 import styled from "styled-components";
 
-import { Label, theme, Wrapper } from "../../../../core/design_system";
+import {
+  Label,
+  theme,
+  Wrapper,
+  ImageEnum,
+} from "../../../../core/design_system";
 
 import PopoverButton from "../../../common/components/buttons/popover/PopoverButton.tsx";
 import DrawingScore from "../DrawingScore";
 import DrawingInput from "./DrawingInput";
 import HighestScore from "./HighestScore";
-
-import UrlButton from "/src/assets/images/icons/UrlButton.svg";
-import RetryButton from "/src/assets/images/icons/RetryButton.svg";
 
 import drawingFinishBG from "/src/assets/images/background/drawingFinishBG.svg";
 import useDrawingFinish from "../../hooks/useDrawingFinish.tsx";
@@ -74,13 +76,13 @@ function DrawingFinish() {
           $gap="80px"
         >
           <StyledButton onClick={handleSharedClick}>
-            <img src={UrlButton} alt="url" width="100px" />
+            <img src={ImageEnum.ICONS.URLBUTTON} alt="url" width="100px" />
             <Label $token="Heading1Regular" $textalign="center">
               URL 복사하기
             </Label>
           </StyledButton>
           <StyledButton>
-            <img src={RetryButton} alt="url" width="100px" />
+            <img src={ImageEnum.ICONS.RETRYBUTTON} alt="url" width="100px" />
             <Label $token="Heading1Regular">게임 다시하기</Label>
           </StyledButton>
         </Wrapper>

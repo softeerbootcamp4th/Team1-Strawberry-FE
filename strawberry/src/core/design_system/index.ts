@@ -7,4 +7,6 @@ import DotLine from "./styles/DotLine";
 
 import EventButton from "./buttons/EventButton";
 
-export { theme, Label, Line, Wrapper, EventButton, DotLine };
+import { ImageEnum } from "./ImageEnum";
+
+export { theme, Label, Line, Wrapper, EventButton, DotLine, ImageEnum };

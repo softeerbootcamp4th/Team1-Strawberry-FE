@@ -1,10 +1,5 @@
 import styled from "styled-components";
-import { Label, theme, Wrapper } from "../../../core/design_system";
-
-import arrow_left_default from "/src/assets/images/newCar/arrow_left_default.svg";
-import arrow_left_disabled from "/src/assets/images/newCar/arrow_left_disabled.svg";
-import arrow_right_default from "/src/assets/images/newCar/arrow_right_default.svg";
-import arrow_right_disabled from "/src/assets/images/newCar/arrow_right_disabled.svg";
+import { Label, theme, Wrapper, ImageEnum } from "../../../core/design_system";
 
 import useNewCarCarousel from "../../login/hooks/useNewCarCarousel";
 import { NewCarCarouselData } from "../models/NewCarCarouselData";
@@ -49,7 +44,9 @@ function NewCarCarousel(props: NewCarCarouselProps) {
           <ArrowButton onClick={handlePrev}>
             <img
               src={
-                currentIndex === 0 ? arrow_left_disabled : arrow_left_default
+                currentIndex === 0
+                  ? ImageEnum.ICONS.ARROW_LEFT_DISABLED
+                  : ImageEnum.ICONS.ARROW_LEFT_DEFAULT
               }
               alt="Previous"
             />
@@ -58,8 +55,8 @@ function NewCarCarousel(props: NewCarCarouselProps) {
             <img
               src={
                 currentIndex === length - 1
-                  ? arrow_right_disabled
-                  : arrow_right_default
+                  ? ImageEnum.ICONS.ARROW_RIGHT_DISABLED
+                  : ImageEnum.ICONS.ARROW_RIGHT_DEFAULT
               }
               alt="Next"
             />

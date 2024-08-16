@@ -1,9 +1,9 @@
 import styled from "styled-components";
 
+import { ImageEnum } from "../../../core/design_system";
+
 import usePagination from "../hooks/logics/usePagination";
 
-import Arrow_Left_L_Gray from "/src/assets/images/icons/Arrow_Left_L_Gray.svg";
-import Arrow_Right_L_Gray from "/src/assets/images/icons/Arrow_Right_L_Gray.svg";
 export interface PaginationProps {
   totalPages: number;
   currentPage: number;
@@ -26,7 +26,7 @@ const Pagination = (props: PaginationProps) => {
         onClick={handlePrevious}
         disabled={currentPage === 1}
       >
-        <img src={Arrow_Left_L_Gray} alt="이전" />
+        <img src={ImageEnum.ICONS.ARROW_LEFT_L_GRAY} alt="이전" />
         이전
       </PaginationLeftButton>
       {visiblePages.map((page) => (
@@ -43,7 +43,7 @@ const Pagination = (props: PaginationProps) => {
         disabled={currentPage === totalPages}
       >
         다음
-        <img src={Arrow_Right_L_Gray} alt="다음" />
+        <img src={ImageEnum.ICONS.ARROW_RIGHT_L_GRAY} alt="다음" />
       </PaginationRightButton>
     </PaginationWrapper>
   );
@@ -105,6 +105,6 @@ const PageNumber = styled.button<PageNumberProps>`
 
   &:hover {
     background-color: ${({ theme, $active }) =>
-    $active ? theme.Color.Primary.normal : theme.Color.TextIcon.reverse};
+      $active ? theme.Color.Primary.normal : theme.Color.TextIcon.reverse};
   }
 `;

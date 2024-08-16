@@ -1,10 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-import { Wrapper } from "../../../../core/design_system";
-
-import ChevronLeft from "/src/assets/images/icons/chevron-prev.svg";
-import ChevronRight from "/src/assets/images/icons/chevron-next.svg";
+import { Wrapper, ImageEnum } from "../../../../core/design_system";
 
 interface CarouselProps {
   children: React.ReactNode;
@@ -40,10 +37,10 @@ export function Carousel({ children, curr, onSlideChange }: CarouselProps) {
           ))}
         </SlidesWrapper>
         <LeftControlButton onClick={prev} disabled={curr === 0}>
-          <img src={ChevronLeft} width={40} />
+          <img src={ImageEnum.ICONS.CHEVRON_PREV} width={40} />
         </LeftControlButton>
         <RightControlButton onClick={next} disabled={curr === totalSlides - 1}>
-          <img src={ChevronRight} width={40} />
+          <img src={ImageEnum.ICONS.CHEVRON_NEXT} width={40} />
         </RightControlButton>
       </CarouselContainer>
       <Indicators>

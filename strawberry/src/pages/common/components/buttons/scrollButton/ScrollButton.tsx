@@ -1,9 +1,12 @@
 import styled from "styled-components";
 
-import { theme, Label, Wrapper } from "../../../../../core/design_system";
+import {
+  theme,
+  Label,
+  Wrapper,
+  ImageEnum,
+} from "../../../../../core/design_system";
 import { scrollTop } from "../../../../../core/utils";
-
-import arrow from "/src/assets/images/icons/Arrow_Down_L_White.svg";
 
 interface ScrollButtonProps {
   scrollHeight: number;
@@ -27,7 +30,7 @@ function ScrollButton({ scrollHeight }: ScrollButtonProps) {
           자세한 내용은 스크롤을 내려주세요
         </Label>
         <StyledButton onClick={() => scrollTop(scrollHeight)}>
-          <img src={arrow} alt="arrow" />
+          <img src={ImageEnum.ICONS.ARROW_DOWN_L_WHITE} alt="arrow" />
         </StyledButton>
       </Wrapper>
     </>
