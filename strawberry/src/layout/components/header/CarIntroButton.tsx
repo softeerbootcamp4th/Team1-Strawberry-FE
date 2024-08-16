@@ -21,5 +21,4 @@ const StyledButton = styled(DefaultButton)`
   color: ${({ theme }) => theme.Color.TextIcon.sub};
   padding: 8px 20px;
   width: fit-content;
-  height: 40px;
 `;

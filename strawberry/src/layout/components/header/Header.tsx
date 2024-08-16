@@ -15,7 +15,7 @@ function Header() {
       <HeaderWrapper>
         <HeaderLogo></HeaderLogo>
         <nav>
-          <HeaderMenuButtons></HeaderMenuButtons>
+          <HeaderMenuButtons />
         </nav>
         <ButtonWrapper>
           {!isLogin && <LoginButton />}
@@ -46,7 +46,7 @@ const HeaderWrapper = styled.div`
 `;
 
 const ButtonWrapper = styled.div`
-  width: 277px;
+  gap: 8px;
   height: 100%;
   display: flex;
   margin-left: 70px;

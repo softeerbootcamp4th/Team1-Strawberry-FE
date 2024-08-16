@@ -19,6 +19,4 @@ const StyledButton = styled(DefaultButton)`
   font-size: ${({ theme }) => theme.Typography.Body1Regular};
   color: ${({ theme }) => theme.Color.TextIcon.reverse};
   padding: 8px 20px;
-  width: 81px;
-  height: 40px;
 `;
