@@ -1,19 +1,22 @@
 import React, { useRef, useEffect } from "react";
 import styled from "styled-components";
 
+import { useGlobalState } from "../../../../core/hooks/useGlobalState";
 import { useQuizPlayState } from "../../hooks/useQuizPlayState";
 import { useQuizPlayDispatch } from "../../hooks/useQuizPlayDispatch";
 
 interface CardInputProps {
   length: number;
   placeholder: string;
+  handleSubmit: () => void;
 }
 
 const CardInput = (props: CardInputProps) => {
-  const { length, placeholder } = props;
+  const { length, placeholder, handleSubmit } = props;
 
   const inputRef = useRef<HTMLInputElement>(null);
 
+  const { isModalOpen } = useGlobalState();
   const { answer: content } = useQuizPlayState();
   const dispatch = useQuizPlayDispatch();
 
@@ -22,6 +25,12 @@ const CardInput = (props: CardInputProps) => {
       inputRef.current.focus();
     }
   }, []);
+
+  useEffect(() => {
+    if (!isModalOpen) {
+      inputRef.current?.focus();
+    }
+  }, [isModalOpen]);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
@@ -33,6 +42,12 @@ const CardInput = (props: CardInputProps) => {
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "ArrowLeft" || event.key === "ArrowRight") {
       event.preventDefault();
+    }
+
+    if (event.key === "Enter") {
+      if (content.length === length) {
+        handleSubmit();
+      }
     }
   };
 

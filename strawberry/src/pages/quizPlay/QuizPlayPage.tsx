@@ -48,7 +48,11 @@ function QuizPlayPage() {
         <Label $token="Title1Medium" $margin="0 40px 0 0">
           정답 :
         </Label>
-        <CardInput placeholder={placeholder} length={placeholder?.length} />
+        <CardInput
+          placeholder={placeholder}
+          length={placeholder?.length}
+          handleSubmit={handleSubmit}
+        />
       </Wrapper>
       <Wrapper
         $margin="70px 0 0 0"
