@@ -2,12 +2,12 @@ import styled from "styled-components";
 
 import { Label, theme, Wrapper } from "../../../../core/design_system";
 
-import useGallery from "../../hooks/useGallery";
-
 import gallery_interior from "/src/assets/images/background/gallery_interior.svg";
 import gallery_exterior from "/src/assets/images/background/gallery_exterior.svg";
 
-function Gallery() {
+import useGallery from "../../hooks/useGallery";
+
+function NewCarGallery() {
   const { isFading, isInterior, handleInterior, handleExterior } = useGallery();
 
   return (
@@ -42,7 +42,7 @@ function Gallery() {
   );
 }
 
-export default Gallery;
+export default NewCarGallery;
 
 const GalleryWrapper = styled.div`
   width: 100%;

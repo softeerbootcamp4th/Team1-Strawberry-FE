@@ -9,7 +9,7 @@ import space_6 from "/src/assets/images/newCar/space_6.svg";
 import space_7 from "/src/assets/images/newCar/space_7.svg";
 import styled from "styled-components";
 
-function NewCarSeats() {
+function SpaceSeats() {
   const [seats, setSeats] = useState<seatsType>(5);
 
   const imgs = {
@@ -39,7 +39,7 @@ function NewCarSeats() {
   );
 }
 
-export default NewCarSeats;
+export default SpaceSeats;
 
 const NewCarSeatsWrapper = styled.div`
   width: 100%;
