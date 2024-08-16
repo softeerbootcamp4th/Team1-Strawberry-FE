@@ -1,21 +1,22 @@
 import styled from "styled-components";
-import { Label, theme, Wrapper } from "../../../../core/design_system";
+import { Label, theme, Wrapper } from "../../../core/design_system";
 
 import arrow_left_default from "/src/assets/images/newCar/arrow_left_default.svg";
 import arrow_left_disabled from "/src/assets/images/newCar/arrow_left_disabled.svg";
 import arrow_right_default from "/src/assets/images/newCar/arrow_right_default.svg";
 import arrow_right_disabled from "/src/assets/images/newCar/arrow_right_disabled.svg";
 
-import useNewCarCarousel from "../../../login/hooks/useNewCarCarousel";
+import useNewCarCarousel from "../../login/hooks/useNewCarCarousel";
+import { NewCarCarouselData } from "../models/NewCarCarouselData";
 
 interface NewCarCarouselProps {
-  title: string;
-  description: string;
-  imgs: string[];
+  data: NewCarCarouselData;
 }
 
-function NewCarCarousel({ title, description, imgs }: NewCarCarouselProps) {
-  const length = imgs.length;
+function NewCarCarousel(props: NewCarCarouselProps) {
+  const { data } = props;
+
+  const length = data.imgs.length;
   const { currentIndex, translationStep, handlePrev, handleNext } =
     useNewCarCarousel(length);
 
@@ -25,10 +26,10 @@ function NewCarCarousel({ title, description, imgs }: NewCarCarouselProps) {
         <ContentWrapper xPosition={-currentIndex * translationStep}>
           <Wrapper height="100%" width="470px" $margin="0 177px 0 0">
             <Label $token="Display2Medium" color={theme.Color.TextIcon.default}>
-              {title}
+              {data.title}
             </Label>
             <Label $token="Heading1Regular" color={theme.Color.TextIcon.sub}>
-              {description}
+              {data.description}
             </Label>
           </Wrapper>
           <Wrapper
@@ -37,7 +38,7 @@ function NewCarCarousel({ title, description, imgs }: NewCarCarouselProps) {
             $margin="0 24px 0 0"
             width="fit-content"
           >
-            {imgs.map((url, index) => (
+            {data.imgs.map((url, index) => (
               <Wrapper key={index} $margin="0 48px 0 0">
                 <img src={url} alt={`Slide ${index + 1}`} />
               </Wrapper>
