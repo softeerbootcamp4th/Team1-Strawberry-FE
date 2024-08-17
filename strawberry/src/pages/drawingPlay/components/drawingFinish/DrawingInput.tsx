@@ -4,14 +4,27 @@ import { Wrapper } from "../../../../core/design_system";
 
 import useLengthValidation from "../../../expectation/hooks/useLengthValidation";
 
+import { useExpectationMutation } from "../../../../data/queries";
+import { useGlobalDispatch } from "../../../../core/hooks/useGlobalDispatch";
+import { useState } from "react";
+
 function DrawingInput() {
+  const globalDispatch = useGlobalDispatch();
+  const { mutate: postExpectation } = useExpectationMutation();
+  const [isSubmitted, setIsSubmitted] = useState<boolean>(false);
+
   const { content, handleChange } = useLengthValidation({
     initialContent: "",
     maxLength: 300,
   });
 
   function handleClick() {
-    // 제출
+    postExpectation({ comment: content });
+    globalDispatch({
+      type: "OPEN_TOAST",
+      toastContent: "기대평이 등록되었습니다",
+    });
+    setIsSubmitted(true);
   }
 
   return (
@@ -26,7 +39,9 @@ function DrawingInput() {
         value={content}
         onChange={handleChange}
       />
-      <StyledButton onClick={handleClick}>등록</StyledButton>
+      <StyledButton disabled={isSubmitted} onClick={handleClick}>
+        등록
+      </StyledButton>
     </Wrapper>
   );
 }
@@ -55,9 +70,12 @@ const StyledInput = styled.textarea`
 const StyledButton = styled.button`
   height: 100%;
   padding: 12px 32.5px;
-  background-color: ${({ theme }) => theme.Color.Primary.normal};
-  color: ${({ theme }) => theme.Color.TextIcon.reverse};
+  background-color: ${({ theme, disabled }) =>
+    disabled ? theme.Color.TextIcon.disable : theme.Color.Primary.normal};
+  color: ${({ theme, disabled }) =>
+    disabled ? theme.Color.TextIcon.info : theme.Color.TextIcon.reverse};
   box-sizing: border-box;
-  ${({ theme }) => theme.Typography.Body1Regular}
+  ${({ theme }) => theme.Typography.Body1Regular};
   white-space: nowrap;
+  cursor: ${({ disabled }) => (disabled ? "default" : "cursor")};
 `;
