@@ -3,8 +3,16 @@ import styled from "styled-components";
 
 import { convertSeconds } from "../../../../core/utils";
 
-const CountdownTimer = ({ initialTime }) => {
-  const [time, setTime] = useState(initialTime);
+interface CountdownTimerProps {
+  initialTime: number;
+}
+
+const CountdownTimer = ({ initialTime }: CountdownTimerProps) => {
+  const [time, setTime] = useState<number>(initialTime);
+
+  useEffect(() => {
+    setTime(initialTime);
+  }, [initialTime]);
 
   useEffect(() => {
     const intervalId = setInterval(() => {
