@@ -1,7 +1,10 @@
-import ModalButton from "../buttons/ModalButton";
+import { useEffect } from "react";
+
 import { theme, Label, Wrapper } from "../../../../core/design_system";
 import { useGlobalState } from "../../../../core/hooks/useGlobalState";
 import { useGlobalDispatch } from "../../../../core/hooks/useGlobalDispatch";
+
+import ModalButton from "../buttons/ModalButton";
 
 function OneButtonModal() {
   const globalDispatch = useGlobalDispatch();
@@ -10,8 +13,23 @@ function OneButtonModal() {
     globalDispatch?.({ type: "CLOSE_MODAL" });
   }
 
-  const { title, imgPath, info, primaryBtnContent, onPrimaryBtnClick } =
+  const { title, imgPath, info, primaryBtnContent, onPrimaryBtnClick, enter } =
     useGlobalState().modalProps || {};
+
+  useEffect(() => {
+    if (enter) {
+      const handleKeyDown = (event: KeyboardEvent) => {
+        if (event.key === "Enter" && onPrimaryBtnClick) {
+          onPrimaryBtnClick();
+        }
+      };
+
+      window.addEventListener("keydown", handleKeyDown);
+      return () => {
+        window.removeEventListener("keydown", handleKeyDown);
+      };
+    }
+  }, [enter]);
 
   return (
     <>
