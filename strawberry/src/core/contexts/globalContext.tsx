@@ -22,6 +22,7 @@ type ModalPropsType = {
   primaryBtnContent?: string;
   onWhiteBtnClick?: () => void;
   onPrimaryBtnClick?: () => void;
+  enter?: boolean;
 } | null;
 
 // Global State Types
