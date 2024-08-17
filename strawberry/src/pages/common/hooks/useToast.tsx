@@ -9,15 +9,28 @@ function useToast() {
   const [isVisible, setIsVisible] = useState(true);
 
   useEffect(() => {
+    let hideTimeout: number;
+    let closeTimeout: number;
+
     if (isToastOpen) {
-      setTimeout(() => {
+      hideTimeout = window.setTimeout(() => {
         setIsVisible(false);
       }, 2000);
 
-      setTimeout(() => {
+      closeTimeout = window.setTimeout(() => {
         globalDispatch({ type: "CLOSE_TOAST" });
+        setIsVisible(true);
       }, 4000);
     }
+
+    return () => {
+      if (hideTimeout) {
+        clearTimeout(hideTimeout);
+      }
+      if (closeTimeout) {
+        clearTimeout(closeTimeout);
+      }
+    };
   }, [isToastOpen, globalDispatch]);
 
   return {
