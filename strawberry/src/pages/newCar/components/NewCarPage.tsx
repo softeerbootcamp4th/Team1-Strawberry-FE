@@ -5,6 +5,7 @@ import NewCarParts from "./part/NewCarParts";
 import NewCarSpace from "./space/NewCarSpace";
 import NewCarDriving from "./driving/NewCarDriving";
 import NewCarGallery from "./gallery/NewCarGallery";
+import NewCarBottom from "./bottom/NewCarBottom";
 
 function NewCarPage() {
   return (
@@ -15,6 +16,7 @@ function NewCarPage() {
       <NewCarSpace />
       <NewCarDriving />
       <NewCarGallery />
+      <NewCarBottom />
     </Wrapper>
   );
 }

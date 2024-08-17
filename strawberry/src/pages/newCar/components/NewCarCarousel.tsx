@@ -2,16 +2,16 @@ import styled from "styled-components";
 import { Label, theme, Wrapper, ImageEnum } from "../../../core/design_system";
 
 import useNewCarCarousel from "../../login/hooks/useNewCarCarousel";
-import { NewCarCarouselData } from "../models/NewCarCarouselData";
+import { NewCarCarouselItem } from "../models/NewCarCarouselItem";
 
 interface NewCarCarouselProps {
-  data: NewCarCarouselData;
+  item: NewCarCarouselItem;
 }
 
 function NewCarCarousel(props: NewCarCarouselProps) {
-  const { data } = props;
+  const { item } = props;
 
-  const length = data.imgs.length;
+  const length = item.imgs.length;
   const { currentIndex, translationStep, handlePrev, handleNext } =
     useNewCarCarousel(length);
 
@@ -21,10 +21,10 @@ function NewCarCarousel(props: NewCarCarouselProps) {
         <ContentWrapper xPosition={-currentIndex * translationStep}>
           <Wrapper height="100%" width="470px" $margin="0 177px 0 0">
             <Label $token="Display2Medium" color={theme.Color.TextIcon.default}>
-              {data.title}
+              {item.title}
             </Label>
             <Label $token="Heading1Regular" color={theme.Color.TextIcon.sub}>
-              {data.description}
+              {item.description}
             </Label>
           </Wrapper>
           <Wrapper
@@ -33,9 +33,9 @@ function NewCarCarousel(props: NewCarCarouselProps) {
             $margin="0 24px 0 0"
             width="fit-content"
           >
-            {data.imgs.map((url, index) => (
-              <Wrapper key={index} $margin="0 48px 0 0">
-                <img src={url} alt={`Slide ${index + 1}`} />
+            {item.imgs.map((url, index) => (
+              <Wrapper key={index} width="665px" $margin="0 48px 0 0">
+                <img width="100%" src={url} alt={`Slide ${index + 1}`} />
               </Wrapper>
             ))}
           </Wrapper>

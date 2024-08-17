@@ -1,11 +1,15 @@
 import styled from "styled-components";
 
-import { Label, theme, Wrapper } from "../../../../core/design_system";
-
-import gallery_interior from "/src/assets/images/background/gallery_interior.svg";
-import gallery_exterior from "/src/assets/images/background/gallery_exterior.svg";
+import {
+  ImageEnum,
+  Label,
+  theme,
+  Wrapper,
+} from "../../../../core/design_system";
 
 import useGallery from "../../hooks/useGallery";
+
+import FoundationButton from "../FoundationButton";
 
 function NewCarGallery() {
   const { isFading, isInterior, handleInterior, handleExterior } = useGallery();
@@ -13,27 +17,42 @@ function NewCarGallery() {
   return (
     <>
       <GalleryWrapper>
-        <Wrapper
-          display="flex"
-          height="fit-content"
-          $justifycontent="space-between"
-          $alignitems="center"
-          width="1440px"
-        >
-          <Label $token="Display1Medium" color={theme.Color.TextIcon.default}>
-            Gallery
-          </Label>
-          <Wrapper width="fit-content">
-            <button onClick={handleInterior}>버튼1</button>
-            <button onClick={handleExterior}>버튼2</button>
+        <Wrapper width="1440px">
+          <Wrapper
+            display="flex"
+            height="fit-content"
+            $justifycontent="space-between"
+            $alignitems="center"
+          >
+            <Label $token="Display1Medium" color={theme.Color.TextIcon.default}>
+              Gallery
+            </Label>
+            <Wrapper width="fit-content">
+              <FoundationButton
+                variant="SOLID"
+                // onClick={handleInterior}
+                title="버튼1"
+              />
+              <FoundationButton
+                variant="OUTLINE"
+                // onClick={handleExterior}
+                title="버튼2"
+              />
+            </Wrapper>
           </Wrapper>
-        </Wrapper>
-        <Wrapper display="flex" $justifycontent="center" $margin="24px 0 0 0">
           <FadeWrapper isFading={isFading}>
             {isInterior ? (
-              <img src={gallery_interior} alt="gallery_interior" />
+              <img
+                width="100%"
+                src={ImageEnum.IMAGES.NEWCAR.GALLERY_INTERIOR}
+                alt="gallery_interior"
+              />
             ) : (
-              <img src={gallery_exterior} alt="gallery_exterior" />
+              <img
+                width="100%"
+                src={ImageEnum.IMAGES.NEWCAR.GALLERY_EXTERIOR}
+                alt="gallery_exterior"
+              />
             )}
           </FadeWrapper>
         </Wrapper>
@@ -56,6 +75,9 @@ const GalleryWrapper = styled.div`
 `;
 
 const FadeWrapper = styled.div<{ isFading: boolean }>`
+  display: flex;
+  justify-content: center;
+  margin-top: 24px;
   transition: opacity 0.5s ease-in-out;
   opacity: ${(props) => (props.isFading ? 0 : 1)};
 `;

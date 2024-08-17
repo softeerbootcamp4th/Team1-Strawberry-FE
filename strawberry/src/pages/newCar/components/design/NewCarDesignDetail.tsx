@@ -1,8 +1,9 @@
-import React, { useRef, useEffect, useState } from "react";
 import styled from "styled-components";
+import React, { useRef, useEffect, useState } from "react";
+
 import { Wrapper } from "../../../../core/design_system";
 import { Point } from "../../../drawingPlay/models";
-import DesignDetailButton from "/src/pages/newCar/components/design/DesignDetailButton.svg";
+
 import DetailCarousel from "./DetailCarousel";
 
 export interface DesignDetail {
@@ -79,7 +80,7 @@ const NewCarDesignDetail: React.FC = () => {
 
         return (
           <StyledButton key={index} style={positionStyle}>
-            <img src={DesignDetailButton} alt={`Design detail ${index + 1}`} />
+            <img src="" alt={`Design detail ${index + 1}`} />
           </StyledButton>
         );
       })}

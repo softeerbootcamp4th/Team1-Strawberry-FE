@@ -4,9 +4,6 @@ import Carousel from "../../../common/components/carousel/Carousel";
 import { DesignDetail } from "./NewCarDesignDetail";
 import { Label, theme, Wrapper } from "../../../../core/design_system";
 
-import DesignDetailButton from "/src/pages/newCar/components/design/DesignDetailButton.svg";
-import XMark from "/src/pages/newCar/components/design/Close.svg";
-
 interface DetailCarouselProps {
   detail: DesignDetail;
 }
@@ -22,7 +19,7 @@ function DetailCarousel({ detail }: DetailCarouselProps) {
     <DetailCarouselWrapper>
       <Wrapper display="flex" $justifycontent="right" height="32px">
         <button>
-          <img src={XMark} />
+          <img src="" />
         </button>
       </Wrapper>
       <Wrapper
@@ -60,7 +57,7 @@ function DetailCarousel({ detail }: DetailCarouselProps) {
         $bottom="20px"
         $alignitems="center"
       >
-        <img height="100%" src={DesignDetailButton} />
+        <img height="100%" src="" />
         <Label $token="CaptionRegular" color={theme.Color.TextIcon.sub}>
           를 누르면 다른 사양을 확인하실 수 있습니다.
         </Label>
