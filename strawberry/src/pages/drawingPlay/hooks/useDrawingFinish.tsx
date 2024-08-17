@@ -27,11 +27,16 @@ function useDrawingFinish() {
     getSharedData();
   };
 
+  const handleRetryClick = () => {
+    location.reload();
+  };
+
   return {
     finalScore: drawingFinish?.totalScore ?? 0,
     highestScore: drawingFinish?.maxScore ?? 0,
     chance: drawingFinish?.chance ?? 0,
     handleSharedClick,
+    handleRetryClick,
   };
 }
 
