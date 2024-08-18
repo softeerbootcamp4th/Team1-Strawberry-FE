@@ -44,10 +44,9 @@ const CardInput = (props: CardInputProps) => {
       event.preventDefault();
     }
 
-    if (event.key === "Enter") {
-      if (content.length === length) {
-        handleSubmit();
-      }
+    if (event.key === "Enter" && content.length === length) {
+      inputRef.current?.blur();
+      handleSubmit();
     }
   };
 
@@ -93,7 +92,6 @@ const CardInput = (props: CardInputProps) => {
 
 export default CardInput;
 
-// Styled Components
 const Container = styled.div<{ length: number }>`
   width: ${({ length }) => 143 * length + 25 * (length - 1)}px;
   height: 143px;
