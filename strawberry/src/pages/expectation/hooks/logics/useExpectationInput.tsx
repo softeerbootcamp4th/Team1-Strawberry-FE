@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { useGlobalState } from "../../../../core/hooks/useGlobalState";
@@ -10,7 +10,7 @@ import { useExpectationMutation } from "../../../../data/queries/expectation/use
 import useLengthValidation from "../useLengthValidation";
 
 function useExpectationInput() {
-  const { mutate: postExpectation } = useExpectationMutation();
+  const { mutate: postExpectation, isSuccess } = useExpectationMutation();
   const [isFocused, setIsFocused] = useState(false);
   const { content, handleChange } = useLengthValidation({
     initialContent: "",
@@ -21,6 +21,12 @@ function useExpectationInput() {
   const navigate = useNavigate();
 
   const globalDispatch = useGlobalDispatch();
+
+  useEffect(() => {
+    if (isSuccess) {
+      location.reload();
+    }
+  }, [isSuccess]);
 
   const handleSubmit = throttle()(() => {
     if (content.length === 0) {

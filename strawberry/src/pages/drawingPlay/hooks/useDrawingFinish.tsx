@@ -7,24 +7,41 @@ import { useDrawingFinishQuery } from "../../../data/queries/drawing/useDrawingF
 
 function useDrawingFinish() {
   const globalDispatch = useGlobalDispatch();
-  const { data: drawingFinish } = useDrawingFinishQuery({ subEventId: 4 });
-  const { data: sharedData, refetch: getSharedData } = useDrawingSharedQuery({
+  const { data: drawingFinish } = useDrawingFinishQuery({
+    subEventId: 4,
+  });
+  const {
+    data: sharedData,
+    refetch: getSharedData,
+    isStale,
+  } = useDrawingSharedQuery({
     // 컨텍스트 값으로 대체
     subEventId: 4,
   });
 
   useEffect(() => {
-    if (sharedData?.sharedUrl) {
+    if (sharedData?.sharedUrl && !isStale) {
       navigator.clipboard.writeText(sharedData.sharedUrl);
       globalDispatch({
-        type: "OPEN_TOAST",
-        toastContent: "내 점수와 url이 복사되었습니다",
+        type: "CLOSE_TOAST",
       });
+      setTimeout(() => {
+        globalDispatch({
+          type: "OPEN_TOAST",
+          toastContent: "내 점수와 url이 복사되었습니다",
+        });
+      }, 1);
     }
-  }, [sharedData?.sharedUrl]);
+  }, [isStale, sharedData?.sharedUrl, globalDispatch]);
 
   const handleSharedClick = () => {
-    getSharedData();
+    if (isStale) {
+      getSharedData();
+    }
+  };
+
+  const handleRetryClick = () => {
+    location.reload();
   };
 
   return {
@@ -32,6 +49,7 @@ function useDrawingFinish() {
     highestScore: drawingFinish?.maxScore ?? 0,
     chance: drawingFinish?.chance ?? 0,
     handleSharedClick,
+    handleRetryClick,
   };
 }
 

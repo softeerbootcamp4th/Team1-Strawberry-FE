@@ -25,6 +25,12 @@ export function useDrawingPlayQuery({
   const query = useQuery<DrawingPlay, Error>({
     queryKey: ["drawingInfo"],
     queryFn: getDrawingInfo,
+    retry: 0,
+    refetchOnWindowFocus: false,
+    onError: () => {
+      alert("잘못된 접근입니다.");
+      location.href = `${window.location.origin}/drawing`;
+    },
   });
 
   return query;
