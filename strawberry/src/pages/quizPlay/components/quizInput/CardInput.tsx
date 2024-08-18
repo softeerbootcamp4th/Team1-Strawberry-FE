@@ -44,11 +44,9 @@ const CardInput = (props: CardInputProps) => {
       event.preventDefault();
     }
 
-    if (event.key === "Enter") {
-      if (content.length === length) {
-        inputRef.current?.blur();
-        handleSubmit();
-      }
+    if (event.key === "Enter" && content.length === length) {
+      inputRef.current?.blur();
+      handleSubmit();
     }
   };
 

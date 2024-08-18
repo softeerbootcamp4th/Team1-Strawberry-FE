@@ -30,7 +30,6 @@ function usePrizeModal() {
         globalDispatch?.({ type: "CLOSE_MODAL" });
         navigate("/quiz");
       },
-      enter: true,
     },
     winner: (prizeImgUrl: string) => ({
       title: "축하합니다!",
@@ -41,7 +40,6 @@ function usePrizeModal() {
         globalDispatch?.({ type: "CLOSE_MODAL" });
         navigate("/drawing");
       },
-      enter: true,
     }),
   };
 
