@@ -1,7 +1,20 @@
-import { ReactNode } from "react";
+import { ReactNode, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
-function PublicRoute({ children }: { children: ReactNode }) {
-  // 로그인한 경우 navigate하는 코드 추가
+interface RouteProps {
+  children: ReactNode;
+}
+
+function PublicRoute({ children }: RouteProps) {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const token = localStorage.getItem("accessToken");
+
+    if (token) {
+      navigate("/");
+    }
+  }, [navigate]);
 
   return <>{children}</>;
 }
