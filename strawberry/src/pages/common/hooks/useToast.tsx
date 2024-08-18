@@ -13,11 +13,11 @@ function useToast() {
     let closeTimeout: number;
 
     if (isToastOpen) {
-      hideTimeout = window.setTimeout(() => {
+      hideTimeout = setTimeout(() => {
         setIsVisible(false);
       }, 2000);
 
-      closeTimeout = window.setTimeout(() => {
+      closeTimeout = setTimeout(() => {
         globalDispatch({ type: "CLOSE_TOAST" });
         setIsVisible(true);
       }, 4000);

@@ -66,7 +66,7 @@ export function useDrawingCanvas(timeLimit = 10) {
     userPointsRef.current = [];
     setTimer(timeLimit);
 
-    intervalRef.current = window.setInterval(() => {
+    intervalRef.current = setInterval(() => {
       setTimer((prev) => {
         if (prev === 1) {
           clearInterval(intervalRef.current as number);
