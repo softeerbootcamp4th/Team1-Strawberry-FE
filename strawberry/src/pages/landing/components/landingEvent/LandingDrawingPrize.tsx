@@ -1,14 +1,13 @@
 import styled from "styled-components";
-import landingDrawingPrize from "/src/assets/images/temp/LandingDrawingPrize.svg";
 
-function LandingDrawingPrize() {
+interface LandingDrawingPrizeProps {
+  drawingPrizeImg: string;
+}
+
+function LandingDrawingPrize({ drawingPrizeImg }: LandingDrawingPrizeProps) {
   return (
     <>
-      <StyledImg
-        src={landingDrawingPrize}
-        alt="landingDrawingPrize"
-        width="100%"
-      />
+      <StyledImg src={drawingPrizeImg} alt="ldrawingInfoImg" width="100%" />
     </>
   );
 }

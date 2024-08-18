@@ -1,9 +1,11 @@
-import landingQuizReward from "/src/assets/images/temp/LandingQuizReward.svg";
+interface LandingQuizPrizeProps {
+  quizPrizeImg: string;
+}
 
-function LandingQuizPrize() {
+function LandingQuizPrize({ quizPrizeImg }: LandingQuizPrizeProps) {
   return (
     <>
-      <img src={landingQuizReward} width="100%" />
+      <img src={quizPrizeImg} width="100%" />
     </>
   );
 }

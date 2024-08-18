@@ -1,52 +1,57 @@
 import styled from "styled-components";
 
-import {
-  Label,
-  theme,
-  Wrapper,
-  ImageEnum,
-} from "../../../../core/design_system";
+import { Label, Wrapper, ImageEnum } from "../../../../core/design_system";
+
+import { QuizOpen } from "../../../../data/entities/Landing";
 
 import CountdownTimer from "./CountdownTimer";
-import useLandingQuizMainContent from "../../hooks/useLandingQuizMainContent";
+import OpenedContent from "./OpenedContent";
+import OpeningContent from "./OpeningContnet";
 
-const LandingQuizMainContent = () => {
-  const { initialTime, schedules } = useLandingQuizMainContent();
+interface LandingQuizMainContentProps {
+  quizInfos: QuizOpen[];
+  remainSecond: number;
+}
 
+const LandingQuizMainContent = ({
+  quizInfos,
+  remainSecond,
+}: LandingQuizMainContentProps) => {
   return (
-    <Container>
-      <UpperWrapper>
-        <Label color="white" $token="Heading2Regular">
-          선착순 오픈까지 남은 시간
-        </Label>
-        <Wrapper display="flex" width="fit-content" $gap="20px">
-          <img src={ImageEnum.ICONS.CLOCK_WHITE} alt="clock_white" />
-          <CountdownTimer initialTime={initialTime} />
+    <>
+      <Container>
+        <UpperWrapper>
+          <Label color="white" $token="Heading2Regular">
+            선착순 오픈까지 남은 시간
+          </Label>
+          <Wrapper display="flex" width="fit-content" $gap="20px">
+            <img src={ImageEnum.ICONS.CLOCK_WHITE} alt="clock_white" />
+            <CountdownTimer initialTime={remainSecond} />
+          </Wrapper>
+        </UpperWrapper>
+        <Wrapper
+          $margin="30px 0 60px 0"
+          display="flex"
+          $flexdirection="column"
+          $gap="16px"
+        >
+          {quizInfos.map(({ isStarted, startAt }, index) =>
+            isStarted ? (
+              <OpenedContent key={index} startAt={startAt} />
+            ) : (
+              <OpeningContent key={index} startAt={startAt} />
+            ),
+          )}
         </Wrapper>
-      </UpperWrapper>
-      <Wrapper
-        $margin="49px 0 0 0"
-        display="flex"
-        $flexdirection="column"
-        $gap="16px"
-      >
-        {schedules.map((schedule, index) => (
-          <ScheduleContainer key={index}>
-            <Label $token="Title2Regular" color={theme.Color.TextIcon.reverse}>
-              {`${schedule.date} ${schedule.time} 오픈 예정`}
-            </Label>
-          </ScheduleContainer>
-        ))}
-      </Wrapper>
-    </Container>
+      </Container>
+    </>
   );
 };
 
 export default LandingQuizMainContent;
 
-// Styled Components
 const Container = styled.div`
-  padding: 23px 47px 45px 47px;
+  padding: 23px 47px;
   box-sizing: border-box;
   height: 100%;
   display: flex;
@@ -58,12 +63,4 @@ const UpperWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: end;
-`;
-
-const ScheduleContainer = styled.div`
-  background-color: #af6f53;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
 `;

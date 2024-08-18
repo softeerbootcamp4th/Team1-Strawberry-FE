@@ -1,3 +1,6 @@
+import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
+
 import {
   Label,
   theme,
@@ -5,18 +8,17 @@ import {
   ImageEnum,
 } from "../../../../core/design_system";
 
-import landingDrawingEvent from "/src/assets/images/temp/LandingDrawingEvent.svg";
+interface LandingDrawingEventProps {
+  drawingMainImg: string;
+}
 
-import styled from "styled-components";
-import { useNavigate } from "react-router-dom";
-
-function LandingDrawingEvent() {
+function LandingDrawingEvent({ drawingMainImg }: LandingDrawingEventProps) {
   const navigate = useNavigate();
 
   return (
     <>
       <Wrapper $position="relative">
-        <img src={landingDrawingEvent} alt="landingDrawingEvent" width="100%" />
+        <img src={drawingMainImg} alt="drawingMainImg" width="100%" />
         <StyledButton onClick={() => navigate("/drawing")}>
           <Label $token="Title3Regular" color={theme.Color.Common.black}>
             이벤트 참여하기
