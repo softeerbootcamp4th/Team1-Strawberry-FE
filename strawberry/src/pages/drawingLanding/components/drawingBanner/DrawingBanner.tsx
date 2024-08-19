@@ -15,7 +15,7 @@ function DrawingBanner() {
 
   const handleEventClick = () => {
     checkLogin(() => {
-      navigate("/drawing/play");
+      navigate(`/drawing/play/${landData?.subEventId}`);
     });
   };
 

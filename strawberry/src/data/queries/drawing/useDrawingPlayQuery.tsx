@@ -6,7 +6,7 @@ import { DrawingPlay } from "../../entities/DrawingPlay";
 import { CustomError } from "../../config/customError";
 
 interface UseDrawingPlayQueryProps {
-  subEventId: number | undefined;
+  subEventId: string | undefined;
   eventPlayType: "NORMAL" | "EXPECTATION" | "SHARED" | undefined;
 }
 

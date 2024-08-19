@@ -4,7 +4,7 @@ import network from "../../config/network";
 import { DrawingShared } from "../../entities/DrawingShared";
 
 interface UseDrawingRankQueryProps {
-  subEventId: number;
+  subEventId: string | undefined;
 }
 
 export function useDrawingSharedQuery({

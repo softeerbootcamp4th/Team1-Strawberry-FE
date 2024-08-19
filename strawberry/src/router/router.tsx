@@ -84,7 +84,7 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "drawing/play",
+        path: "drawing/play/:subEventId",
         element: (
           <>
             <DrawingPlayWrapper />
