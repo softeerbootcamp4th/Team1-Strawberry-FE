@@ -1,5 +1,6 @@
-import { useGlobalDispatch } from "../../../core/hooks/useGlobalDispatch";
 import { useNavigate } from "react-router-dom";
+
+import { useGlobalDispatch } from "../../../core/hooks/useGlobalDispatch";
 
 interface OpenModalProps {
   isCorrect: boolean;
@@ -19,6 +20,7 @@ function usePrizeModal() {
       onPrimaryBtnClick: () => {
         globalDispatch?.({ type: "CLOSE_MODAL" });
       },
+      enter: true,
     },
     correctButNotWinner: {
       title: "아쉽게도 순위에 들지 못했어요 😔",

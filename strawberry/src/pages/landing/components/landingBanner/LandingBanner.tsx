@@ -4,15 +4,17 @@ import ScrollButton from "../../../common/components/buttons/scrollButton/Scroll
 
 import useLandingBanner from "../../hooks/useLandingBanner";
 
-import LandingBannerBG from "/src/assets/images/temp/LandingBannerBG.svg";
+interface LandingBannerProps {
+  landingBannerImg: string;
+}
 
-function LandingBanner() {
+function LandingBanner({ landingBannerImg }: LandingBannerProps) {
   const { heightRef, scrollHeight } = useLandingBanner();
 
   return (
     <>
       <RefWrapper ref={heightRef}>
-        <StyledImg src={LandingBannerBG} alt="LandingBannerBG" />
+        <StyledImg src={landingBannerImg} alt="landingBannerImg" />
         <ScrollButtonWrapper>
           <ScrollButton scrollHeight={scrollHeight} />
         </ScrollButtonWrapper>
@@ -26,12 +28,13 @@ export default LandingBanner;
 const RefWrapper = styled.div`
   position: relative;
   width: 100%;
+  height: calc(100vh - 70px);
 `;
 
 const StyledImg = styled.img`
   width: 100%;
-  padding: 0;
-  margin: 0;
+  height: 100%;
+  object-fit: cover;
 `;
 
 const ScrollButtonWrapper = styled.div`

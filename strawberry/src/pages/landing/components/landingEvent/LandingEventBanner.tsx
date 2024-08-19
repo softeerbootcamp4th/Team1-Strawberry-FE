@@ -1,16 +1,14 @@
 import { Wrapper } from "../../../../core/design_system";
 
-import landingEventBannerImg from "/src/assets/images/temp/LandingEventBanner.svg";
+interface LandingEventBannerProps {
+  eventInfoImg: string;
+}
 
-function LandingEventBanner() {
+function LandingEventBanner({ eventInfoImg }: LandingEventBannerProps) {
   return (
     <>
       <Wrapper>
-        <img
-          src={landingEventBannerImg}
-          alt="landingEventBanner"
-          width="100%"
-        />
+        <img src={eventInfoImg} alt="eventInfoImg" width="100%" />
       </Wrapper>
     </>
   );

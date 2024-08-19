@@ -11,11 +11,12 @@ import ExpectationPageWrapper from "../pages/expectation/ExpectationPageWrapper"
 import QuizLandingWrapper from "../pages/quizLanding/QuizLandingWrapper";
 import DrawingLandingWrapper from "../pages/drawingLanding/DrawingLandingWrapper";
 import DrawingPlayWrapper from "../pages/drawingPlay/DrawingPlayWrapper";
+import SharedRedirectedPage from "../pages/shared/SharedRedirectedPage";
 
 import LandingPage from "../pages/landing/LandingPage";
-import NewCarPage from "../pages/newCar/components/NewCarPage";
 import LoginPage from "../pages/login/LoginPage";
 import LoginRedirectedPage from "../pages/login/LoginRedirectPage";
+import NewCarPageWrapper from "../pages/newCar/components/NewCarPageWrapper";
 
 const router = createBrowserRouter([
   {
@@ -42,7 +43,7 @@ const router = createBrowserRouter([
         path: "introduce",
         element: (
           <>
-            <NewCarPage />
+            <NewCarPageWrapper />
           </>
         ),
       },
@@ -99,6 +100,10 @@ const router = createBrowserRouter([
         <LoginRedirectedPage />
       </PublicRoute>
     ),
+  },
+  {
+    path: "shared/:sharedCode",
+    element: <SharedRedirectedPage />,
   },
 ]);
 

@@ -13,7 +13,6 @@ export function useExpectationMutation() {
 
   const mutation = useMutation({
     mutationFn: postExpectation,
-    onSuccess: () => location.reload(),
   });
 
   return mutation;

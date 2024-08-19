@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import styled from "styled-components";
 
 import { useGlobalState } from "../../../../core/hooks/useGlobalState";
@@ -15,6 +15,7 @@ const CardInput = (props: CardInputProps) => {
   const { length, placeholder, handleSubmit } = props;
 
   const inputRef = useRef<HTMLInputElement>(null);
+  const [highlightedIndex, setHighlightedIndex] = useState<number | null>(null);
 
   const { isModalOpen } = useGlobalState();
   const { answer: content } = useQuizPlayState();
@@ -24,6 +25,8 @@ const CardInput = (props: CardInputProps) => {
     if (inputRef.current) {
       inputRef.current.focus();
     }
+
+    setHighlightedIndex(0);
   }, []);
 
   useEffect(() => {
@@ -34,8 +37,13 @@ const CardInput = (props: CardInputProps) => {
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
+
     if (value.length <= length) {
       dispatch({ type: "SET_ANSWER", payload: value });
+
+      if (value.length > content.length) {
+        setHighlightedIndex(value.length - 1);
+      }
     }
   };
 
@@ -44,10 +52,15 @@ const CardInput = (props: CardInputProps) => {
       event.preventDefault();
     }
 
-    if (event.key === "Enter") {
-      if (content.length === length) {
-        handleSubmit();
+    if (event.key === "Backspace") {
+      if (content.length > 0) {
+        setHighlightedIndex(content.length - 1);
       }
+    }
+
+    if (event.key === "Enter" && content.length === length) {
+      inputRef.current?.blur();
+      handleSubmit();
     }
   };
 
@@ -55,12 +68,13 @@ const CardInput = (props: CardInputProps) => {
     if (inputRef.current) {
       inputRef.current.focus();
       inputRef.current.setSelectionRange(content.length, content.length);
+      setHighlightedIndex(content.length - 1);
     }
   };
 
   return (
     <Container onClick={handleClick} length={length}>
-      <HiddenInput
+      <StyledInput
         ref={inputRef}
         type="text"
         value={content}
@@ -70,17 +84,7 @@ const CardInput = (props: CardInputProps) => {
       />
       <VisibleContent>
         {Array.from({ length }).map((_, index) => (
-          <CharacterBox
-            key={index}
-            onClick={(e) => {
-              e.stopPropagation();
-              inputRef.current?.focus();
-              inputRef.current?.setSelectionRange(
-                content.length,
-                content.length,
-              );
-            }}
-          >
+          <CharacterBox key={index} isHighlighted={index === highlightedIndex}>
             <Character isFilled={Boolean(content[index])}>
               {content[index] || placeholder[index]}
             </Character>
@@ -93,7 +97,6 @@ const CardInput = (props: CardInputProps) => {
 
 export default CardInput;
 
-// Styled Components
 const Container = styled.div<{ length: number }>`
   width: ${({ length }) => 143 * length + 25 * (length - 1)}px;
   height: 143px;
@@ -104,7 +107,7 @@ const Container = styled.div<{ length: number }>`
   cursor: text;
 `;
 
-const HiddenInput = styled.input`
+const StyledInput = styled.input`
   width: 100%;
   height: 100%;
   padding: 0;
@@ -130,7 +133,7 @@ const VisibleContent = styled.div`
   z-index: 1;
 `;
 
-const CharacterBox = styled.div`
+const CharacterBox = styled.div<{ isHighlighted: boolean }>`
   width: 130px;
   height: 130px;
   display: flex;
@@ -142,6 +145,8 @@ const CharacterBox = styled.div`
   box-sizing: border-box;
   position: relative;
   cursor: pointer;
+
+  ${({ isHighlighted }) => isHighlighted && `border: 3px solid #FF8126;`}
 
   &:last-child {
     margin-right: 0;

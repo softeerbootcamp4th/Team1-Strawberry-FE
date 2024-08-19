@@ -16,7 +16,11 @@ export function useQuizPlayQuery(subEventId: string | undefined) {
   const query = useQuery<QuizInfo, Error>({
     queryKey: ["quizInfo"],
     queryFn: getQuizInfo,
-    enabled: !!subEventId,
+    retry: 0,
+    onError: () => {
+      alert("잘못된 접근입니다.");
+      location.href = `${window.location.origin}/quiz`;
+    },
   });
 
   return query;

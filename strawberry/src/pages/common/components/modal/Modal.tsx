@@ -1,17 +1,18 @@
 import styled from "styled-components";
+
+import useModal from "../../hooks/useModal";
+
 import TwoButtonModal from "./TwoButtonModal";
 import OneButtonModal from "./OneButtonModal";
-import { useGlobalState } from "../../../../core/hooks/useGlobalState";
 
 export const Modal = () => {
-  const { isModalOpen, modalCategory } = useGlobalState();
+  const { isModalOpen, modalCategory } = useModal();
 
   return (
     <>
       {isModalOpen && (
         <ModalBackground>
           <ModalWrapper>
-            {/* 모달 구현 후 밑에 배치 */}
             {modalCategory === "TWO_BUTTON" && <TwoButtonModal />}
             {modalCategory === "ONE_BUTTON" && <OneButtonModal />}
           </ModalWrapper>
@@ -26,6 +27,7 @@ const ModalBackground = styled.div`
   height: 100%;
   position: fixed;
   top: 0;
+  left: 0;
   background: rgba(0, 0, 0, 0.6);
   z-index: 10000;
   display: flex;

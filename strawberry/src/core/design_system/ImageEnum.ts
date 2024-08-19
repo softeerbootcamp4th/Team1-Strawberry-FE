@@ -27,6 +27,7 @@ export const ImageEnum = {
     POPOVER: "/assets/icons/popover.svg",
     POPOVERBUTTON: "/assets/icons/popoverButton.svg",
     RETRYBUTTON: "/assets/icons/retryButton.svg",
+    RETRY_DISABLED: "/assets/icons/retry_disabled.svg",
     SILVERRANKBADGE: "/assets/icons/silverRankBadge.svg",
     UPPERRIGHTBUTTON: "/assets/icons/upperRightButton.svg",
     URLBUTTON: "/assets/icons/urlButton.svg",

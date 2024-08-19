@@ -20,6 +20,7 @@ export function useDrawingSharedQuery({
     queryKey: ["drawingShared"],
     queryFn: getDrawingShared,
     enabled: false,
+    staleTime: 4000,
   });
 
   return query;

@@ -1,13 +1,32 @@
-import { Wrapper } from "../../../../core/design_system";
+import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 
-import landingQuizEvent from "/src/assets/images/temp/LandingQuizEvent.svg";
+import {
+  theme,
+  Wrapper,
+  Label,
+  ImageEnum,
+} from "../../../../core/design_system";
+
+import { QuizOpen } from "../../../../data/entities/Landing";
+
 import LandingQuizMainContent from "./LandingQuizMainContent";
 
-function LandingQuizEvent() {
+interface LandingQuizEventProps {
+  quizMainImg: string;
+  quizInfos: QuizOpen[];
+  remainSecond: number;
+}
+
+function LandingQuizEvent(props: LandingQuizEventProps) {
+  const { quizMainImg, quizInfos, remainSecond } = props;
+
+  const navigate = useNavigate();
+
   return (
     <>
       <Wrapper $position="relative" width="100%" height="fit-content">
-        <img src={landingQuizEvent} alt="landingQuizEvent" width="100%" />
+        <img src={quizMainImg} alt="landingQuizEvent" width="100%" />
         <Wrapper
           $position="absolute"
           $zindex="10"
@@ -16,11 +35,36 @@ function LandingQuizEvent() {
           $top={`${(171 / 896) * 100}%`}
           left={`${(1001 / 1920) * 100}%`}
         >
-          <LandingQuizMainContent />
+          <LandingQuizMainContent
+            quizInfos={quizInfos}
+            remainSecond={remainSecond}
+          />
         </Wrapper>
+        <StyledButton onClick={() => navigate("/quiz")}>
+          <Label $token="Title3Regular" color={theme.Color.Common.black}>
+            이벤트 참여하기
+          </Label>
+          <img
+            src={ImageEnum.ICONS.UPPERRIGHTBUTTON}
+            alt="upperRightButton"
+            width="59px"
+            height="59px"
+          />
+        </StyledButton>
       </Wrapper>
     </>
   );
 }
 
 export default LandingQuizEvent;
+
+const StyledButton = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: ${(680 / 896) * 100}%;
+  right: ${(253.96 / 1920) * 100}%;
+  height: fit-content;
+  z-index: 10;
+`;
