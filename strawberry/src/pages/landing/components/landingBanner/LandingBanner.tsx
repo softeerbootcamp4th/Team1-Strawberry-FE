@@ -28,12 +28,13 @@ export default LandingBanner;
 const RefWrapper = styled.div`
   position: relative;
   width: 100%;
+  height: calc(100vh - 70px);
 `;
 
 const StyledImg = styled.img`
   width: 100%;
-  padding: 0;
-  margin: 0;
+  height: 100%;
+  object-fit: cover;
 `;
 
 const ScrollButtonWrapper = styled.div`
