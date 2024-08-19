@@ -16,6 +16,7 @@ import drawingFinishBG from "/src/assets/images/background/drawingFinishBG.svg";
 import useDrawingFinish from "../../hooks/useDrawingFinish.tsx";
 
 import { makeChanceMsg } from "../../services/makeChanceMsg.ts";
+import ChanceIcons from "./ChanceIcons.tsx";
 
 function DrawingFinish() {
   const {
@@ -36,16 +37,7 @@ function DrawingFinish() {
   return (
     <>
       <BGImage src={drawingFinishBG} />
-      <Wrapper
-        $margin="40px 0 0 0"
-        width="100%"
-        display="flex"
-        $flexdirection="column"
-        $justifycontent="center"
-        $alignitems="center"
-        $zindex="3"
-        $position="relative"
-      >
+      <FinishWrapper>
         <HighestScore score={Number(highestScore.toFixed(1))} />
         <Label
           $margin="40px 0 0 0"
@@ -54,6 +46,12 @@ function DrawingFinish() {
         >
           최종 점수
         </Label>
+        <IconsWrapper>
+          <ChanceIcons
+            chance={chance}
+            bonusChance={realExpectationChance + realShareChance}
+          />
+        </IconsWrapper>
         <Wrapper width="fit-content" height="fit-content" $position="relative">
           <img src={ImageEnum.IMAGES.DRAWING.CELEBRATION} width="500px" />
           <ScoreWrapper>
@@ -120,11 +118,33 @@ function DrawingFinish() {
             </RetryDisabledButton>
           )}
         </Wrapper>
-      </Wrapper>
+      </FinishWrapper>
     </>
   );
 }
 export default DrawingFinish;
+
+const FinishWrapper = styled.div`
+  margin: 40px 0 0 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 3;
+  position: relative;
+`;
+
+const IconsWrapper = styled.div`
+  position: absolute;
+  z-index: 100;
+  right: -460px;
+  top: 520px;
+  width: fit-content;
+  display: flex;
+  gap: 6px;
+`;
 
 const BGImage = styled.img`
   position: absolute;
