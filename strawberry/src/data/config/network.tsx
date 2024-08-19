@@ -1,68 +1,15 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import buildURL from "./buildURL";
+import makeHeader from "./makeHeader";
+import handleError from "./handleError";
+
+import RequestConfig from "./RequestConfig";
+import BaseResponse from "./BaseResponse";
 
 import { logRequest, logResponse } from "./logging";
 
-interface RequestConfig {
-  url: string;
-  method: "GET" | "POST" | "PUT" | "DELETE";
-  params?: Record<string, any>;
-  queryParams?: Record<string, any>;
-}
-
-interface BaseResponse<T> {
-  state: number;
-  message: string;
-  data: T;
-}
-
 interface BodyType {
   body?: object;
-}
-
-function buildURL(
-  url: string,
-  params?: Record<string, any>,
-  queryParams?: Record<string, any>,
-): string {
-  const Server_IP = `${import.meta.env.VITE_APP_Server_IP}/api/v1/`;
-  let finalURL = Server_IP + url;
-
-  if (params) {
-    Object.keys(params).forEach((key) => {
-      finalURL = finalURL.replace(`:${key}`, encodeURIComponent(params[key]));
-    });
-  }
-
-  if (queryParams) {
-    const queryString = new URLSearchParams(queryParams).toString();
-    finalURL += `?${queryString}`;
-  }
-
-  return finalURL;
-}
-
-async function handleError(response: Response): Promise<never> {
-  if (response.status === 401) {
-    throw new Error("TOKEN_ERROR");
-  } else if (response.status >= 500) {
-    throw new Error("NETWORK_ERROR");
-  }
-  throw new Error("UNKNOWN_ERROR");
-}
-
-function makeHeader(): HeadersInit {
-  const baseHeader: HeadersInit = { "Content-Type": "application/json" };
-
-  const token = localStorage.getItem("accessToken");
-
-  if (token) {
-    return {
-      ...baseHeader,
-      Authorization: `Bearer ${token}`,
-    };
-  } else {
-    return baseHeader;
-  }
 }
 
 async function fetchRequest<T>({
@@ -99,8 +46,6 @@ async function fetchRequest<T>({
     throw new Error("PARSE_ERROR");
   }
 }
-
-// HTTP method functions
 
 export function get<T>(
   url: string,
