@@ -14,29 +14,22 @@ function DrawingCanvas({ timeLimit }: DrawingCanvasProps) {
     isDrawing,
     imgPath,
     startDrawing,
-    handleMouseUp,
+    handleFinish,
     handleMouseMove,
     pointX,
     pointY,
+    handleArrive,
   } = useDrawingCanvas(timeLimit);
 
   return (
-    <Wrapper
-      $position="relative"
-      width="940px"
-      height="500px"
-      display="flex"
-      $flexdirection="column"
-      $justifycontent="center"
-      $alignitems="center"
-    >
+    <CanvasWrapper onMouseMove={handleMouseMove}>
       <StyledImage src={imgPath} alt="Car" />
       <StyledCanvas
         ref={canvasRef}
         width={940}
         height={500}
-        onMouseUp={(e) => handleMouseUp(e as unknown as MouseEvent)}
-        onMouseMove={handleMouseMove}
+        onMouseUp={handleFinish}
+        onMouseOut={handleFinish}
       />
       <Wrapper
         display="flex"
@@ -49,7 +42,8 @@ function DrawingCanvas({ timeLimit }: DrawingCanvasProps) {
       >
         <StartButton
           onMouseDown={startDrawing}
-          onMouseUp={(e) => handleMouseUp(e as unknown as MouseEvent)}
+          onMouseEnter={handleArrive}
+          onMouseUp={handleFinish}
           $disabled={isDrawing}
         />
         <Label
@@ -57,14 +51,25 @@ function DrawingCanvas({ timeLimit }: DrawingCanvasProps) {
           color={theme.Color.TextIcon.info}
           $margin="0 0 0 5px"
         >
-          start
+          {isDrawing ? "end" : "start"}
         </Label>
       </Wrapper>
-    </Wrapper>
+    </CanvasWrapper>
   );
 }
 
 export default DrawingCanvas;
+
+const CanvasWrapper = styled.div`
+  position: relative;
+  width: 940px;
+  height: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  user-select: none;
+`;
 
 const StartButton = styled.div<{ $disabled: boolean }>`
   width: 12px;
@@ -72,7 +77,7 @@ const StartButton = styled.div<{ $disabled: boolean }>`
   border-radius: 12px;
   background-color: ${({ theme }) => theme.Color.TextIcon.info};
   border: none;
-  cursor: ${({ $disabled }) => ($disabled ? "none" : "pointer")};
+  cursor: ${({ $disabled }) => ($disabled ? "default" : "pointer")};
   z-index: 10;
 `;
 
@@ -81,6 +86,8 @@ const StyledCanvas = styled.canvas`
   top: 0;
   left: 0;
   z-index: 10;
+  border: 5px dashed #c3c3c3;
+  border-radius: 15px;
 `;
 
 const StyledImage = styled.img`

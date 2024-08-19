@@ -1,11 +1,13 @@
 import { useState, useRef, useEffect } from "react";
 import rough from "roughjs/bundled/rough.esm";
 
+import { useDrawingPlayMutation } from "../../../data/queries/drawing/useDrawingPlayMutation";
 import { LineStyle, Point } from "../models";
 
 import { useDrawingPlayDispatch } from "./useDrawingPlayDispatch";
 import { useDrawingPlayState } from "./useDrawingPlayState";
-import { useDrawingPlayMutation } from "../../../data/queries/drawing/useDrawingPlayMutation";
+
+import { extractInterpolatedPoints } from "../services/extractInterpolatedPoints";
 
 const customLineStyle: LineStyle = {
   stroke: "#46474C",
@@ -16,13 +18,15 @@ const customLineStyle: LineStyle = {
   strokeWidth: 5,
 };
 
-export function useDrawingCanvas(timeLimit = 10) {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
+export function useDrawingCanvas(timeLimit = 7) {
   const [userPoints, setUserPoints] = useState<Point[]>([]);
-  const userPointsRef = useRef<Point[]>([]);
   const [timer, setTimer] = useState<number>(timeLimit);
+
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const userPointsRef = useRef<Point[]>([]);
   const timeoutRef = useRef<number | null>(null);
   const intervalRef = useRef<number | null>(null);
+
   const {
     mutate: postPoints,
     isSuccess,
@@ -31,6 +35,8 @@ export function useDrawingCanvas(timeLimit = 10) {
 
   const { stage, isDrawing, drawingInfo } = useDrawingPlayState();
   const dispatch = useDrawingPlayDispatch();
+
+  // 캔버스 크기 설정
   useEffect(() => {
     const canvas = canvasRef.current;
     if (canvas) {
@@ -39,13 +45,15 @@ export function useDrawingCanvas(timeLimit = 10) {
     }
   }, []);
 
+  // 시간이 다 되었을 때 종료 조건 설정
   useEffect(() => {
     if (timer === 0 && isDrawing) {
-      stopDrawing();
+      handleFinish();
       clearInterval(intervalRef.current as number);
     }
   }, [timer, isDrawing]);
 
+  // 점 post 성공 시 다음 설정 세팅
   useEffect(() => {
     if (isSuccess) {
       dispatch({ type: "SET_FINISH_DRAWING" });
@@ -60,6 +68,7 @@ export function useDrawingCanvas(timeLimit = 10) {
     }
   }, [isSuccess]);
 
+  // 드로잉 시작
   const startDrawing = () => {
     dispatch({ type: "SET_START_DRAWING" });
     setUserPoints([]);
@@ -76,17 +85,32 @@ export function useDrawingCanvas(timeLimit = 10) {
     }, 1000);
   };
 
-  const stopDrawing = () => {
-    postPoints({ positions: userPoints, subEventId: 4, sequence: stage });
+  const handleArrive = () => {
+    if (isDrawing) {
+      const interpolatedPoints = extractInterpolatedPoints(userPoints);
 
-    if (intervalRef.current !== null) {
-      clearInterval(intervalRef.current);
-      intervalRef.current = null;
+      setUserPoints((prevPoints) => [...prevPoints, ...interpolatedPoints]);
+      postPoints({
+        positions: userPoints,
+        subEventId: 4,
+        sequence: stage,
+      });
+
+      clearAll();
     }
+  };
 
-    if (timeoutRef.current !== null) {
-      clearTimeout(timeoutRef.current);
-      timeoutRef.current = null;
+  const handleFinish = () => {
+    if (isDrawing) {
+      const interpolatedPoints = extractInterpolatedPoints(userPoints);
+
+      postPoints({
+        positions: [...userPoints, ...interpolatedPoints],
+        subEventId: 4,
+        sequence: stage,
+      });
+
+      clearAll();
     }
   };
 
@@ -98,20 +122,6 @@ export function useDrawingCanvas(timeLimit = 10) {
         const y = e.clientY - rect.top;
         setUserPoints([{ x, y }]);
       }
-    }
-  };
-
-  const handleClick = () => {
-    if (isDrawing) {
-      stopDrawing();
-    }
-  };
-
-  const handleMouseUp = (e: MouseEvent) => {
-    if (isDrawing) {
-      e.preventDefault();
-      e.stopPropagation();
-      stopDrawing();
     }
   };
 
@@ -154,6 +164,18 @@ export function useDrawingCanvas(timeLimit = 10) {
     }
   };
 
+  const clearAll = () => {
+    if (intervalRef.current !== null) {
+      clearInterval(intervalRef.current);
+      intervalRef.current = null;
+    }
+
+    if (timeoutRef.current !== null) {
+      clearTimeout(timeoutRef.current);
+      timeoutRef.current = null;
+    }
+  };
+
   return {
     canvasRef,
     isDrawing,
@@ -161,9 +183,9 @@ export function useDrawingCanvas(timeLimit = 10) {
     pointX: drawingInfo?.gameInfos[stage - 1].startPosition.x ?? 0,
     pointY: drawingInfo?.gameInfos[stage - 1].startPosition.y ?? 0,
     startDrawing,
-    handleClick,
     handleMouseDown,
-    handleMouseUp,
+    handleFinish,
     handleMouseMove,
+    handleArrive,
   };
 }
