@@ -1,20 +1,21 @@
 import { createBrowserRouter } from "react-router-dom";
-import DefaultLayout from "../layout/DefaultLayout";
-import HeaderLayout from "../layout/HeaderLayout";
+
 import PublicRoute from "./PublicRoute";
 import ProtectedRoute from "./ProtectedRoute";
-import QuizPlayPage from "../pages/quizPlay/QuizPlayPage";
+
+import DefaultLayout from "../layout/DefaultLayout";
+import HeaderLayout from "../layout/HeaderLayout";
+
 import QuizPlayWrapper from "../pages/quizPlay/QuizPlayWrapper";
-import DrawingPlayPage from "../pages/drawing/DrawingPlayPage";
-import LoginPage from "../pages/login/LoginPage";
 import ExpectationPageWrapper from "../pages/expectation/ExpectationPageWrapper";
-import LoginRedirectedPage from "../pages/login/LoginRedirectPage";
 import QuizLandingWrapper from "../pages/quizLanding/QuizLandingWrapper";
 import DrawingLandingWrapper from "../pages/drawingLanding/DrawingLandingWrapper";
 import DrawingPlayWrapper from "../pages/drawingPlay/DrawingPlayWrapper";
 import SharedRedirectedPage from "../pages/shared/SharedRedirectedPage";
 
 import LandingPage from "../pages/landing/LandingPage";
+import LoginPage from "../pages/login/LoginPage";
+import LoginRedirectedPage from "../pages/login/LoginRedirectPage";
 import NewCarPageWrapper from "../pages/newCar/components/NewCarPageWrapper";
 
 const router = createBrowserRouter([
@@ -90,17 +91,13 @@ const router = createBrowserRouter([
           </>
         ),
       },
-      {
-        path: "drawing/result",
-        element: <>{/* <DrawingResultPage /> */}</>,
-      },
     ],
   },
   {
     path: "auth/:sns/callback",
     element: (
       <PublicRoute>
-        <LoginRedirectedPage /> {/* 리다이렉트 페이지 렌더링 */}
+        <LoginRedirectedPage />
       </PublicRoute>
     ),
   },
