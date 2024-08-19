@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useCheckLogin } from "../../../core/hooks/useCheckLogin";
 import { useDrawingLandingState } from "./useDrawingLandingState";
 import { getChanceFromLastTime } from "../services/getChanceFromLastTime";
+import { useGlobalState } from "../../../core/hooks/useGlobalState";
 
 function useDrawingBanner() {
   const [possibleChance, setPossibleChance] = useState<number>(0);
@@ -11,6 +12,7 @@ function useDrawingBanner() {
     useDrawingLandingState();
   const navigate = useNavigate();
   const checkLogin = useCheckLogin();
+  const { isLogin } = useGlobalState();
 
   const isFinished =
     landData?.endAt && new Date(landData.endAt).getTime() < Date.now();
@@ -37,6 +39,7 @@ function useDrawingBanner() {
     isFinished,
     landData,
     handleEventClick,
+    isLogin,
   };
 }
 
