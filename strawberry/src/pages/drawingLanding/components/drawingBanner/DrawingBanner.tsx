@@ -1,42 +1,14 @@
-import { useEffect, useState } from "react";
 import styled from "styled-components";
-import { useNavigate } from "react-router-dom";
 
 import { EventButton, Wrapper } from "../../../../core/design_system";
-import { useCheckLogin } from "../../../../core/hooks/useCheckLogin";
 
-import { useDrawingLandingState } from "../../hooks/useDrawingLandingState";
+import useDrawingBanner from "../../hooks/useDrawingBanner";
 
 import DrawingChance from "./DrawingChance";
 
-import { getChanceFromLastTime } from "../../services/getChanceFromLastTime";
-
 function DrawingBanner() {
-  const [possibleChance, setPossibleChance] = useState<number>(0);
-  const { drawingLandingData: landData, eventUserData: eventData } =
-    useDrawingLandingState();
-  const navigate = useNavigate();
-  const checkLogin = useCheckLogin();
-
-  const isFinished =
-    landData?.endAt && new Date(landData.endAt).getTime() < Date.now();
-
-  useEffect(() => {
-    if (eventData) {
-      setPossibleChance(
-        Math.min(
-          getChanceFromLastTime(eventData?.lastChargeAt) + eventData?.chance,
-          2,
-        ),
-      );
-    }
-  }, [eventData]);
-
-  const handleEventClick = () => {
-    checkLogin(() => {
-      navigate("/drawing/play");
-    });
-  };
+  const { possibleChance, isFinished, landData, handleEventClick } =
+    useDrawingBanner();
 
   return (
     <Wrapper $position="relative" height="calc(100vh - 70px)">
