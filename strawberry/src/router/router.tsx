@@ -12,6 +12,7 @@ import LoginRedirectedPage from "../pages/login/LoginRedirectPage";
 import QuizLandingWrapper from "../pages/quizLanding/QuizLandingWrapper";
 import DrawingLandingWrapper from "../pages/drawingLanding/DrawingLandingWrapper";
 import DrawingPlayWrapper from "../pages/drawingPlay/DrawingPlayWrapper";
+import SharedRedirectedPage from "../pages/shared/SharedRedirectedPage";
 
 import LandingPage from "../pages/landing/LandingPage";
 import NewCarPageWrapper from "../pages/newCar/components/NewCarPageWrapper";
@@ -102,6 +103,10 @@ const router = createBrowserRouter([
         <LoginRedirectedPage /> {/* 리다이렉트 페이지 렌더링 */}
       </PublicRoute>
     ),
+  },
+  {
+    path: "shared/:sharedCode",
+    element: <SharedRedirectedPage />,
   },
 ]);
 
