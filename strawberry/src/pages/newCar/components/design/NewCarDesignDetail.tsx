@@ -8,7 +8,7 @@ import DetailCarousel from "./DetailCarousel";
 import FoundationRadioButtons from "../FoundationRadioButton";
 import { useNewCarState } from "../../hooks/useNewCarState";
 import { useNewCarDispatch } from "../../hooks/useNewCarDispatch";
-import { ExteriorType, NewCarAction, NewCarState } from "../../models";
+import { ExteriorType } from "../../models";
 
 export interface DesignDetail {
   title: string;
@@ -89,7 +89,7 @@ const NewCarDesignDetail: React.FC = () => {
 
   return (
     <Wrapper $position="relative" height="fit-content">
-      <FoundationRadioButtons<ExteriorType, NewCarState, NewCarAction>
+      <FoundationRadioButtons<ExteriorType>
         buttons={buttons}
         actionCreator={actionCreator}
         selector={selector}

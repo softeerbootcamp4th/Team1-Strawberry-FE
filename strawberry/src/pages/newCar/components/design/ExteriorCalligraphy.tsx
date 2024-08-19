@@ -2,11 +2,7 @@ import { Wrapper, Label } from "../../../../core/design_system";
 import { useNewCarDispatch } from "../../hooks/useNewCarDispatch";
 
 import { useNewCarState } from "../../hooks/useNewCarState";
-import {
-  ExteriorCalligraphyType,
-  NewCarState,
-  NewCarAction,
-} from "../../models";
+import { ExteriorCalligraphyType } from "../../models";
 import FoundationRadioButtons from "../FoundationRadioButton";
 
 function ExteriorCalligraphy() {
@@ -33,11 +29,7 @@ function ExteriorCalligraphy() {
   return (
     <Wrapper>
       <Wrapper>
-        <FoundationRadioButtons<
-          ExteriorCalligraphyType,
-          NewCarState,
-          NewCarAction
-        >
+        <FoundationRadioButtons<ExteriorCalligraphyType>
           buttons={buttons}
           actionCreator={actionCreator}
           selector={selector}
