@@ -5,7 +5,7 @@ import network from "../../config/network";
 import { DrawingFinish } from "../../entities/DrawingFinish";
 
 interface UseDrawingFinishQueryProps {
-  subEventId: number;
+  subEventId: string | undefined;
 }
 
 export function useDrawingFinishQuery({

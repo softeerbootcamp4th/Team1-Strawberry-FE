@@ -5,7 +5,7 @@ import network from "../../config/network";
 import { DrawingPlay } from "../../entities/DrawingPlay";
 
 interface UseDrawingPlayQueryProps {
-  subEventId: number | undefined;
+  subEventId: string | undefined;
   eventPlayType: "NORMAL" | "EXPECTATION" | "SHARED" | undefined;
 }
 
