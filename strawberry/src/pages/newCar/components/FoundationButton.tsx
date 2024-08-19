@@ -1,18 +1,22 @@
 import styled from "styled-components";
 
 type Variant = "SOLID" | "OUTLINE";
-
 interface FoundationButtonStyle {
   variant: Variant;
 }
 
 interface FoundationButtonProps extends FoundationButtonStyle {
   title: string;
+  onClick: () => void;
 }
 
 function FoundationButton(props: FoundationButtonProps) {
-  const { variant, title } = props;
-  return <Button variant={variant}>{title}</Button>;
+  const { variant, title, onClick } = props;
+  return (
+    <Button variant={variant} onClick={onClick}>
+      {title}
+    </Button>
+  );
 }
 
 export default FoundationButton;
