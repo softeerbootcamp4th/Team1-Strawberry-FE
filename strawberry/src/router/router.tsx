@@ -18,7 +18,7 @@ import LoginPage from "../pages/login/LoginPage";
 import LoginRedirectedPage from "../pages/login/LoginRedirectPage";
 import NewCarPageWrapper from "../pages/newCar/components/NewCarPageWrapper";
 
-import NotFound from "../pages/common/components/error/NotFound";
+import NotFound from "../pages/error/NotFound";
 
 const router = createBrowserRouter([
   {

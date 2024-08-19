@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 
-import { Wrapper, Label } from "../../../../core/design_system";
+import { Wrapper, Label } from "../../core/design_system";
 
 function NotFound() {
   const navigate = useNavigate();
