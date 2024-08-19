@@ -33,8 +33,8 @@ export function makeChanceMsg({
 
   const key = [
     totalChance > 0 ? "POSSIBLE" : "IMPOSSIBLE",
-    expectationChance === -1 ? "EXPECTATION" : "",
     shareChance === -1 ? "SHARE" : "",
+    expectationChance === -1 ? "EXPECTATION" : "",
   ]
     .filter(Boolean)
     .join("_") as keyof messageType;
