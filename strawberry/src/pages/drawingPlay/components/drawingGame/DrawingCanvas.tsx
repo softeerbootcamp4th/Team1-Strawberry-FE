@@ -1,6 +1,11 @@
 import styled from "styled-components";
 
-import { Label, theme, Wrapper } from "../../../../core/design_system";
+import {
+  Label,
+  theme,
+  Wrapper,
+  ImageEnum,
+} from "../../../../core/design_system";
 
 import { useDrawingCanvas } from "../../hooks/useDrawingCanvas";
 
@@ -77,7 +82,9 @@ const StartButton = styled.div<{ $disabled: boolean }>`
   border-radius: 12px;
   background-color: ${({ theme }) => theme.Color.TextIcon.info};
   border: none;
-  cursor: ${({ $disabled }) => ($disabled ? "default" : "pointer")};
+
+  cursor: ${({ $disabled }) =>
+    $disabled ? `url(${ImageEnum.ICONS.PENCIL}) 3 2.25, pointer` : "pointer"};
   z-index: 10;
 `;
 

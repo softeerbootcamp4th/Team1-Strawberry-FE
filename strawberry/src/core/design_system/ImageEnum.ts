@@ -24,6 +24,7 @@ export const ImageEnum = {
     GOLDRANKBADGE: "/assets/icons/goldRankBadge.svg",
     GREENBADGEINFO: "/assets/icons/greenBadgeInfo.svg",
     NORMALRANKBADGE: "/assets/icons/normalRankBadge.svg",
+    PENCIL: "/assets/icons/pencil.svg",
     POPOVER: "/assets/icons/popover.svg",
     POPOVERBUTTON: "/assets/icons/popoverButton.svg",
     RETRYBUTTON: "/assets/icons/retryButton.svg",

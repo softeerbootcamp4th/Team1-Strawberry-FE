@@ -1,5 +1,10 @@
 import styled from "styled-components";
-import { Label, theme, Wrapper } from "../../../../core/design_system";
+import {
+  ImageEnum,
+  Label,
+  theme,
+  Wrapper,
+} from "../../../../core/design_system";
 
 import DrawingCanvas from "./DrawingCanvas";
 import DrawingStep from "../DrawingStep";
@@ -13,7 +18,7 @@ function DrawingGame() {
   return (
     <>
       <DrawingStep now={stage} total={totalStage} />
-      <GameWrapper>
+      <GameWrapper isDrawing={isDrawing}>
         <Label
           $token="Title2Regular"
           width="100%"
@@ -35,10 +40,12 @@ function DrawingGame() {
 
 export default DrawingGame;
 
-const GameWrapper = styled.div`
+const GameWrapper = styled.div<{ isDrawing: boolean }>`
   position: absolute;
   z-index: 10;
   left: 50%;
   top: 30px;
   transform: translateX(-50%);
+  cursor: ${({ isDrawing }) =>
+    isDrawing ? `url(${ImageEnum.ICONS.PENCIL}) 3 2.25, pointer` : "default"};
 `;
