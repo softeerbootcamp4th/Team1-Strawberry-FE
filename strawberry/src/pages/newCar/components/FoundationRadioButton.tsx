@@ -1,25 +1,21 @@
 import styled from "styled-components";
-
 import FoundationButton from "./FoundationButton";
 
 interface FoundationRadioButtonsProps<T, S, A> {
   buttons: { title: string; value: T }[];
-  dispatch: (action: A) => void;
-  actionCreator: (value: T) => A;
+  actionCreator: (value: T) => void;
   selector: string;
 }
 
 function FoundationRadioButtons<T, S, A>({
   buttons,
-  dispatch,
   actionCreator,
   selector,
 }: FoundationRadioButtonsProps<T, S, A>) {
   const selectedValue = selector;
 
   const handleButtonClick = (buttonValue: T) => {
-    const action = actionCreator(buttonValue);
-    dispatch(action);
+    actionCreator(buttonValue);
   };
 
   return (

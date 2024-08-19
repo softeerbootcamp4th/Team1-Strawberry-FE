@@ -43,10 +43,12 @@ const NewCarDesignDetail: React.FC = () => {
     { title: "Rear", value: "REAR" as ExteriorType },
   ];
 
-  const actionCreator = (value: ExteriorType): NewCarAction => ({
-    type: "SET_EXTERIOR_TYPE",
-    newType: value,
-  });
+  const actionCreator = (value: ExteriorType) => {
+    dispatch({
+      type: "SET_EXTERIOR_TYPE",
+      newType: value,
+    });
+  };
 
   const selector = state.exteriorType;
 
@@ -89,7 +91,6 @@ const NewCarDesignDetail: React.FC = () => {
     <Wrapper $position="relative" height="fit-content">
       <FoundationRadioButtons<ExteriorType, NewCarState, NewCarAction>
         buttons={buttons}
-        dispatch={dispatch}
         actionCreator={actionCreator}
         selector={selector}
       />

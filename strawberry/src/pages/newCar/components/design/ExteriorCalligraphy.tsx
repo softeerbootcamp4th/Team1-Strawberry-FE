@@ -1,6 +1,6 @@
 import { Wrapper, Label } from "../../../../core/design_system";
-
 import { useNewCarDispatch } from "../../hooks/useNewCarDispatch";
+
 import { useNewCarState } from "../../hooks/useNewCarState";
 import {
   ExteriorCalligraphyType,
@@ -21,10 +21,12 @@ function ExteriorCalligraphy() {
   const state = useNewCarState();
   const dispatch = useNewCarDispatch();
 
-  const actionCreator = (value: ExteriorCalligraphyType): NewCarAction => ({
-    type: "SET_EXTERIOR_CALLIGRAPHY_TYPE",
-    newType: value,
-  });
+  const actionCreator = (value: ExteriorCalligraphyType) => {
+    dispatch({
+      type: "SET_EXTERIOR_CALLIGRAPHY_TYPE",
+      newType: value,
+    });
+  };
 
   const selector = state.exteriorCalligraphyType;
 
@@ -37,7 +39,6 @@ function ExteriorCalligraphy() {
           NewCarAction
         >
           buttons={buttons}
-          dispatch={dispatch}
           actionCreator={actionCreator}
           selector={selector}
         />
