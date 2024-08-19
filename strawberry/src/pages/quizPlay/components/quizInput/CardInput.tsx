@@ -68,7 +68,7 @@ const CardInput = (props: CardInputProps) => {
     if (inputRef.current) {
       inputRef.current.focus();
       inputRef.current.setSelectionRange(content.length, content.length);
-      setHighlightedIndex(content.length - 1);
+      setHighlightedIndex(Math.max(0, content.length - 1));
     }
   };
 
