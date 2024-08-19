@@ -15,6 +15,8 @@ import HighestScore from "./HighestScore";
 import drawingFinishBG from "/src/assets/images/background/drawingFinishBG.svg";
 import useDrawingFinish from "../../hooks/useDrawingFinish.tsx";
 
+import { makeChanceMsg } from "../../services/makeChanceMsg.ts";
+
 function DrawingFinish() {
   const gifUrl =
     "https://s3-alpha-sig.figma.com/img/de82/685d/2752e884c15d3abd92a2193c6288551d?Expires=1724025600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=cZtbhRnyUIPmAzDki-K2F3BZTG1g2UjFubm237vFA8opEAr1ZobTFuXY14OGWp53ox3h7h1Y8HZm1qWxOeDfwvPKKFpfihaYGqUxHCB7FWvPbzyQM5SFNBJ6R3OvVkbLAKQOgiE~BcrT8yMLzGGrRiIccvJjTzuAoZWSLvMPmGKLAPptzJYypk5S2C8mDFxv04yWgjNScTR-A6CooH8-rg0MLhi6sdIpMatk-CFjzK38o3LVqxez63MBOOiK6v8r-O3XTYMsuOLs76Vzk4tLpOfmV9mWZ6jTGQZkfE43v5BqcCRo9DxsK-DdqXo7ItjQnd5Hej7622M1w0CExawoeQ__";
@@ -24,8 +26,15 @@ function DrawingFinish() {
     highestScore,
     handleSharedClick,
     chance,
+    expectationChance,
+    shareChance,
     handleRetryClick,
   } = useDrawingFinish();
+
+  const realShareChance = shareChance === -1 ? 0 : shareChance;
+  const realExpectationChance =
+    expectationChance === -1 ? 0 : expectationChance;
+  const totalChance = chance + realShareChance + realExpectationChance;
 
   return (
     <>
@@ -67,8 +76,9 @@ function DrawingFinish() {
             $token="Heading1Regular"
             color={theme.Color.TextIcon.info}
             $textalign="center"
+            width="100%"
           >
-            {`기회가 ${chance}번 남았어요!\n링크 공유 / 기대평 작성으로 추가 재도전 기회를 얻으세요!`}
+            {makeChanceMsg({ totalChance, expectationChance, shareChance })}
           </Label>
         </Wrapper>
         <Wrapper $margin="16px 0 0 0">
@@ -87,7 +97,7 @@ function DrawingFinish() {
             </Label>
           </StyledButton>
 
-          {chance > 0 ? (
+          {totalChance > 0 ? (
             <RetryDefaultButton onClick={handleRetryClick}>
               <img src={ImageEnum.ICONS.RETRYBUTTON} alt="url" width="100px" />
               <Label
