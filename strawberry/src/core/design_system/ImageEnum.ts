@@ -21,6 +21,10 @@ export const ImageEnum = {
     CLOSE_GRAY: "/assets/icons/close_gray.svg",
     COUPON_COFFEE: "/assets/icons/coupon_coffee.svg",
     DOTLINE: "/assets/icons/dotLine.svg",
+    EVENT_BADGE_BONUS: "/assets/icons/event_badge_bonus.svg",
+    EVENT_BADGE_BONUS_DISABLED: "/assets/icons/event_badge_bonus_disabled.svg",
+    EVENT_BADGE_NORMAL: "/assets/icons/event_badge_normal.svg",
+    EVENT_BADGE_NORMAL_DISABLED: "/assets/icons/event_badge_normal_disabled.svg",
     GOLDRANKBADGE: "/assets/icons/goldRankBadge.svg",
     GREENBADGEINFO: "/assets/icons/greenBadgeInfo.svg",
     NORMALRANKBADGE: "/assets/icons/normalRankBadge.svg",
@@ -35,6 +39,7 @@ export const ImageEnum = {
   },
   IMAGES: {
   DRAWING: {
+    CELEBRATION: "/assets/images/drawing/celebration.gif",
     GUIDE_01: "/assets/images/drawing/guide_01.webp",
     GUIDE_02: "/assets/images/drawing/guide_02.webp",
     GUIDE_03: "/assets/images/drawing/guide_03.webp",
