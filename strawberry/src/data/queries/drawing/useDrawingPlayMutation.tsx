@@ -6,7 +6,7 @@ import { DrawingResult } from "../../entities/DrawingResult";
 
 interface UseDrawingPlayMutationBody {
   positions: { x: number; y: number }[];
-  subEventId: number;
+  subEventId: string | undefined;
   sequence: number;
 }
 

@@ -8,6 +8,7 @@ import { useDrawingPlayDispatch } from "./useDrawingPlayDispatch";
 import { useDrawingPlayState } from "./useDrawingPlayState";
 
 import { extractInterpolatedPoints } from "../services/extractInterpolatedPoints";
+import { useParams } from "react-router-dom";
 
 const customLineStyle: LineStyle = {
   stroke: "#46474C",
@@ -19,6 +20,7 @@ const customLineStyle: LineStyle = {
 };
 
 export function useDrawingCanvas(timeLimit = 7) {
+  const { subEventId } = useParams();
   const [userPoints, setUserPoints] = useState<Point[]>([]);
   const [timer, setTimer] = useState<number>(timeLimit);
 
@@ -92,7 +94,7 @@ export function useDrawingCanvas(timeLimit = 7) {
       setUserPoints((prevPoints) => [...prevPoints, ...interpolatedPoints]);
       postPoints({
         positions: userPoints,
-        subEventId: 4,
+        subEventId: subEventId,
         sequence: stage,
       });
 
@@ -106,7 +108,7 @@ export function useDrawingCanvas(timeLimit = 7) {
 
       postPoints({
         positions: [...userPoints, ...interpolatedPoints],
-        subEventId: 4,
+        subEventId: subEventId,
         sequence: stage,
       });
 

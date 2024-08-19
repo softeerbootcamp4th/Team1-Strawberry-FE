@@ -18,9 +18,6 @@ import useDrawingFinish from "../../hooks/useDrawingFinish.tsx";
 import { makeChanceMsg } from "../../services/makeChanceMsg.ts";
 
 function DrawingFinish() {
-  const gifUrl =
-    "https://s3-alpha-sig.figma.com/img/de82/685d/2752e884c15d3abd92a2193c6288551d?Expires=1724025600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=cZtbhRnyUIPmAzDki-K2F3BZTG1g2UjFubm237vFA8opEAr1ZobTFuXY14OGWp53ox3h7h1Y8HZm1qWxOeDfwvPKKFpfihaYGqUxHCB7FWvPbzyQM5SFNBJ6R3OvVkbLAKQOgiE~BcrT8yMLzGGrRiIccvJjTzuAoZWSLvMPmGKLAPptzJYypk5S2C8mDFxv04yWgjNScTR-A6CooH8-rg0MLhi6sdIpMatk-CFjzK38o3LVqxez63MBOOiK6v8r-O3XTYMsuOLs76Vzk4tLpOfmV9mWZ6jTGQZkfE43v5BqcCRo9DxsK-DdqXo7ItjQnd5Hej7622M1w0CExawoeQ__";
-
   const {
     finalScore,
     highestScore,
@@ -58,7 +55,7 @@ function DrawingFinish() {
           최종 점수
         </Label>
         <Wrapper width="fit-content" height="fit-content" $position="relative">
-          <img src={gifUrl} />
+          <img src={ImageEnum.IMAGES.DRAWING.CELEBRATION} width="500px" />
           <ScoreWrapper>
             <DrawingScore score={Number(finalScore.toFixed(1))} />
           </ScoreWrapper>

@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { useParams } from "react-router-dom";
 
 import { useGlobalDispatch } from "../../../core/hooks/useGlobalDispatch";
 
@@ -11,12 +12,12 @@ import { useDrawingPlayQuery } from "../../../data/queries/drawing/useDrawingPla
 function useDrawingPlayPage() {
   const { status } = useDrawingPlayState();
   const { isBlocked, proceed, reset } = useNavigationBlocker();
-
+  const { subEventId } = useParams();
   const drawingPlayDispatch = useDrawingPlayDispatch();
   const dispatch = useGlobalDispatch();
 
   const { data: drawingInfo } = useDrawingPlayQuery({
-    subEventId: 4,
+    subEventId: subEventId,
     eventPlayType: "NORMAL",
   });
 

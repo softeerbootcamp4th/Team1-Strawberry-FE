@@ -5,6 +5,10 @@ import { Wrapper } from "../../../../core/design_system";
 import { Point } from "../../../drawingPlay/models";
 
 import DetailCarousel from "./DetailCarousel";
+import FoundationRadioButtons from "../FoundationRadioButton";
+import { useNewCarState } from "../../hooks/useNewCarState";
+import { useNewCarDispatch } from "../../hooks/useNewCarDispatch";
+import { ExteriorType } from "../../models";
 
 export interface DesignDetail {
   title: string;
@@ -31,6 +35,23 @@ const coordinatesData: Point[] = [
 ];
 
 const NewCarDesignDetail: React.FC = () => {
+  const state = useNewCarState();
+  const dispatch = useNewCarDispatch();
+
+  const buttons = [
+    { title: "Front", value: "FRONT" as ExteriorType },
+    { title: "Rear", value: "REAR" as ExteriorType },
+  ];
+
+  const actionCreator = (value: ExteriorType) => {
+    dispatch({
+      type: "SET_EXTERIOR_TYPE",
+      newType: value,
+    });
+  };
+
+  const selector = state.exteriorType;
+
   const imageContainerRef = useRef<HTMLImageElement | null>(null);
   const [imageSize, setImageSize] = useState<{ width: number; height: number }>(
     { width: 0, height: 0 },
@@ -68,6 +89,11 @@ const NewCarDesignDetail: React.FC = () => {
 
   return (
     <Wrapper $position="relative" height="fit-content">
+      <FoundationRadioButtons<ExteriorType>
+        buttons={buttons}
+        actionCreator={actionCreator}
+        selector={selector}
+      />
       <img
         ref={imageContainerRef}
         width="100%"

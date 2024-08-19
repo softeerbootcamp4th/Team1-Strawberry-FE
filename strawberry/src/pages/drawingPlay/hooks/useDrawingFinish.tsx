@@ -4,19 +4,20 @@ import { useGlobalDispatch } from "../../../core/hooks/useGlobalDispatch";
 
 import { useDrawingSharedQuery } from "../../../data/queries/drawing/useDrawingSharedQuery";
 import { useDrawingFinishQuery } from "../../../data/queries/drawing/useDrawingFinishQuery";
+import { useParams } from "react-router-dom";
 
 function useDrawingFinish() {
+  const { subEventId } = useParams();
   const globalDispatch = useGlobalDispatch();
   const { data: drawingFinish } = useDrawingFinishQuery({
-    subEventId: 4,
+    subEventId: subEventId,
   });
   const {
     data: sharedData,
     refetch: getSharedData,
     isStale,
   } = useDrawingSharedQuery({
-    // 컨텍스트 값으로 대체
-    subEventId: 4,
+    subEventId: subEventId,
   });
 
   useEffect(() => {
