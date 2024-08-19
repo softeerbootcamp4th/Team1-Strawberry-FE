@@ -16,7 +16,14 @@ const CountdownTimer = ({ initialTime }: CountdownTimerProps) => {
 
   useEffect(() => {
     const intervalId = setInterval(() => {
-      setTime((prevTime) => prevTime - 1);
+      setTime((prevTime) => {
+        if (prevTime > 0) {
+          return prevTime - 1;
+        } else {
+          clearInterval(intervalId);
+          return 0;
+        }
+      });
     }, 1000);
 
     return () => clearInterval(intervalId);
@@ -25,7 +32,9 @@ const CountdownTimer = ({ initialTime }: CountdownTimerProps) => {
   const { days, hours, minutes, seconds } = convertSeconds(time);
 
   const formatTime = () => {
-    return `${days}일 ${hours.toString().padStart(2, "0")} : ${minutes.toString().padStart(2, "0")} : ${seconds.toString().padStart(2, "0")}`;
+    return `${days}일 ${hours.toString().padStart(2, "0")} : ${minutes
+      .toString()
+      .padStart(2, "0")} : ${seconds.toString().padStart(2, "0")}`;
   };
 
   return <TimeDisplay>{formatTime()}</TimeDisplay>;
