@@ -48,6 +48,8 @@ function useDrawingFinish() {
     finalScore: drawingFinish?.totalScore ?? 0,
     highestScore: drawingFinish?.maxScore ?? 0,
     chance: drawingFinish?.chance ?? 0,
+    expectationChance: drawingFinish?.expectationBonusChance ?? 0,
+    shareChance: drawingFinish?.shareBonusChance ?? 0,
     handleSharedClick,
     handleRetryClick,
   };
