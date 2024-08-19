@@ -23,39 +23,56 @@ export const NewCarDispatchContext = createContext<
 >(undefined);
 
 function newCarReducer(state: NewCarState, action: NewCarAction): NewCarState {
-  const newState = state;
   switch (action.type) {
     case "SET_EXTERIOR_TYPE":
-      newState.exteriorType = action.newType;
-      break;
+      return {
+        ...state,
+        exteriorType: action.newType,
+      };
     case "SET_EXTERIOR_DETAIL_OPEN":
-      newState.isExteriorDetailOpen = action.isOpen;
-      break;
+      return {
+        ...state,
+        isExteriorDetailOpen: action.isOpen,
+      };
     case "SET_EXTERIOR_CALLIGRAPHY_TYPE":
-      newState.exteriorCalligraphyType = action.newType;
-      break;
+      return {
+        ...state,
+        exteriorCalligraphyType: action.newType,
+      };
     case "SET_EXTERIOR_CALLIGRAPHY_COLOR":
-      newState.exteriorCalligraphyColor = action.color;
-      break;
+      return {
+        ...state,
+        exteriorCalligraphyColor: action.color,
+      };
     case "SET_INTERIOR_DETAIL_OPEN":
-      newState.isInteriorDetailOpen = action.isOpen;
-      break;
+      return {
+        ...state,
+        isInteriorDetailOpen: action.isOpen,
+      };
     case "SET_INTERIOR_CALLIGRAPHY_TYPE":
-      newState.interiorCalligraphyType = action.newType;
-      break;
+      return {
+        ...state,
+        interiorCalligraphyType: action.newType,
+      };
     case "SET_INTERIOR_CALLIGRAPHY_COLOR":
-      newState.interiorCallligraphyColor = action.color;
-      break;
+      return {
+        ...state,
+        interiorCallligraphyColor: action.color,
+      };
     case "SET_SPACE_TYPE":
-      newState.spaceType = action.newType;
-      break;
+      return {
+        ...state,
+        spaceType: action.newType,
+      };
     case "SET_GALLERY_TYPE":
-      newState.galleryType = action.newType;
-      break;
+      return {
+        ...state,
+        galleryType: action.newType,
+      };
+    default:
+      return state;
   }
-  return newState;
 }
-
 export function NewCarContextProvider({ children }: { children: ReactNode }) {
   const [state, dispatch] = useReducer(newCarReducer, initialState);
 
