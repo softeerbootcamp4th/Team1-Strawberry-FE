@@ -59,6 +59,7 @@ const RankLabelWrapper = styled.div`
 
 const RankStyle = styled.div`
   width: auto;
+  margin-top: 16px;
   padding: 16px 43px;
   display: flex;
   justify-content: space-between;

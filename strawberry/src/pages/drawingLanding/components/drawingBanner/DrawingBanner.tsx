@@ -1,32 +1,29 @@
 import styled from "styled-components";
-import { useNavigate } from "react-router-dom";
 
 import { EventButton, Wrapper } from "../../../../core/design_system";
-import { useCheckLogin } from "../../../../core/hooks/useCheckLogin";
 
-import { useDrawingLandingState } from "../../hooks/useDrawingLandingState";
+import useDrawingBanner from "../../hooks/useDrawingBanner";
 
 import DrawingChance from "./DrawingChance";
 
 function DrawingBanner() {
-  const { drawingLandingData: landData } = useDrawingLandingState();
-  const navigate = useNavigate();
-  const checkLogin = useCheckLogin();
-
-  const handleEventClick = () => {
-    checkLogin(() => {
-      navigate(`/drawing/play/${landData?.subEventId}`);
-    });
-  };
+  const { possibleChance, isFinished, landData, handleEventClick } =
+    useDrawingBanner();
 
   return (
     <Wrapper $position="relative" height="calc(100vh - 70px)">
       <BannerImage src={landData?.bannerImgUrl}></BannerImage>
       <BannerContentWrapper>
-        <DrawingChance />
+        {!isFinished && <DrawingChance />}
         <EventButton
           type="DRAWING"
-          status="DEFAULT"
+          status={
+            isFinished
+              ? "EVENT_END"
+              : possibleChance === 0
+                ? "DISABLED"
+                : "DEFAULT"
+          }
           content="이벤트 참여하기"
           onClick={handleEventClick}
         />

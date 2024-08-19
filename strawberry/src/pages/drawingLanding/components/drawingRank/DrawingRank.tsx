@@ -5,8 +5,11 @@ import { useDrawingLandingState } from "../../hooks/useDrawingLandingState";
 import Rank from "./Rank";
 import MyDrawingScore from "./MyDrawingScore";
 
+import { getNowTime } from "../../../../core/utils/getNowTime";
+
 function DrawingRank() {
   const { drawingRankData: rankData } = useDrawingLandingState();
+  const { year, month, day, hours, minutes } = getNowTime();
 
   return (
     <Wrapper
@@ -30,14 +33,14 @@ function DrawingRank() {
           color={theme.Color.TextIcon.info}
           $textalign="right"
         >
-          24.07.19 10:55 업데이트
+          {`${year.slice(2, year.length)}.${month}.${day} ${hours}:${minutes} 업데이트`}
         </Label>
         {rankData?.map((data, index) => (
           <Rank
             key={index}
             rank={index + 1}
             name={data.name}
-            score={data.score ?? 0}
+            score={Number(data.score.toFixed(1)) ?? 0}
           />
         ))}
       </Wrapper>

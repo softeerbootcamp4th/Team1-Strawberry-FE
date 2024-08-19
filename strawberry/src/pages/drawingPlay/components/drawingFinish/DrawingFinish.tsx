@@ -15,14 +15,23 @@ import HighestScore from "./HighestScore";
 import drawingFinishBG from "/src/assets/images/background/drawingFinishBG.svg";
 import useDrawingFinish from "../../hooks/useDrawingFinish.tsx";
 
+import { makeChanceMsg } from "../../services/makeChanceMsg.ts";
+
 function DrawingFinish() {
   const {
     finalScore,
     highestScore,
     handleSharedClick,
     chance,
+    expectationChance,
+    shareChance,
     handleRetryClick,
   } = useDrawingFinish();
+
+  const realShareChance = shareChance === -1 ? 0 : shareChance;
+  const realExpectationChance =
+    expectationChance === -1 ? 0 : expectationChance;
+  const totalChance = chance + realShareChance + realExpectationChance;
 
   return (
     <>
@@ -64,8 +73,9 @@ function DrawingFinish() {
             $token="Heading1Regular"
             color={theme.Color.TextIcon.info}
             $textalign="center"
+            width="100%"
           >
-            {`기회가 ${chance}번 남았어요!\n링크 공유 / 기대평 작성으로 추가 재도전 기회를 얻으세요!`}
+            {makeChanceMsg({ totalChance, expectationChance, shareChance })}
           </Label>
         </Wrapper>
         <Wrapper $margin="16px 0 0 0">
@@ -84,7 +94,7 @@ function DrawingFinish() {
             </Label>
           </StyledButton>
 
-          {chance > 0 ? (
+          {totalChance > 0 ? (
             <RetryDefaultButton onClick={handleRetryClick}>
               <img src={ImageEnum.ICONS.RETRYBUTTON} alt="url" width="100px" />
               <Label

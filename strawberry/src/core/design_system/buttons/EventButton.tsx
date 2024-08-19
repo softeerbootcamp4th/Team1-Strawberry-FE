@@ -64,8 +64,8 @@ const StyledButton = styled.button<{ type: ButtonType; status: ButtonStatus }>`
   border-radius: 50px;
   ${({ theme }) => theme.Shadow.Strong};
   ${({ theme }) => theme.Typography.Title3Medium};
+  cursor: ${({ status }) => (status === "DEFAULT" ? "pointer" : "default")};
 
-  // status css
   ${({ type, status, theme }) => {
     if (type === "DRAWING" && status === "DEFAULT") {
       return css`
@@ -97,7 +97,7 @@ const StyledButton = styled.button<{ type: ButtonType; status: ButtonStatus }>`
         color: ${theme.Color.TextIcon.info};
       `;
     }
-  }}
+  }};
 `;
 
 const ContentWrapper = styled.div`
