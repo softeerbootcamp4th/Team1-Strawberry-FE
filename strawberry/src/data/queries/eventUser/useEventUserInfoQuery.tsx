@@ -28,7 +28,7 @@ export function useEventUserInfoQuery({
     queryFn: getEventUserInfo,
     enabled: !!isLogin && !!subEventId,
     onError(err) {
-      if (err.status !== 404) {
+      if (![401, 404].includes(err.status ?? 0)) {
         alert(err.message);
       }
     },
