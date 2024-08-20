@@ -1,18 +1,15 @@
 import styled from "styled-components";
 
-import {
-  ImageEnum,
-  Label,
-  theme,
-  Wrapper,
-} from "../../../../core/design_system";
+import { Label, theme, Wrapper } from "../../../../core/design_system";
 
 import useGallery from "../../hooks/useGallery";
 
-import FoundationButton from "../FoundationButton";
+import { GalleryType } from "../../models";
+
+import FoundationRadioButtons from "../FoundationRadioButton";
 
 function NewCarGallery() {
-  const { isFading, isInterior, handleInterior, handleExterior } = useGallery();
+  const { buttons, actionCreator, selector, imgs, state } = useGallery();
 
   return (
     <>
@@ -28,33 +25,14 @@ function NewCarGallery() {
               Gallery
             </Label>
             <Wrapper width="fit-content">
-              <FoundationButton
-                variant="SOLID"
-                // onClick={handleInterior}
-                title="버튼1"
-              />
-              <FoundationButton
-                variant="OUTLINE"
-                // onClick={handleExterior}
-                title="버튼2"
+              <FoundationRadioButtons<GalleryType>
+                buttons={buttons}
+                actionCreator={actionCreator}
+                selector={selector}
               />
             </Wrapper>
           </Wrapper>
-          <FadeWrapper isFading={isFading}>
-            {isInterior ? (
-              <img
-                width="100%"
-                src={ImageEnum.IMAGES.NEWCAR.GALLERY_INTERIOR}
-                alt="gallery_interior"
-              />
-            ) : (
-              <img
-                width="100%"
-                src={ImageEnum.IMAGES.NEWCAR.GALLERY_EXTERIOR}
-                alt="gallery_exterior"
-              />
-            )}
-          </FadeWrapper>
+          <img width="100%" src={imgs[state.galleryType]} />
         </Wrapper>
       </GalleryWrapper>
     </>
@@ -72,12 +50,4 @@ const GalleryWrapper = styled.div`
   align-items: center;
   background: linear-gradient(180deg, #ffe9dd 0%, #fff 100%);
   box-sizing: border-box;
-`;
-
-const FadeWrapper = styled.div<{ isFading: boolean }>`
-  display: flex;
-  justify-content: center;
-  margin-top: 24px;
-  transition: opacity 0.5s ease-in-out;
-  opacity: ${(props) => (props.isFading ? 0 : 1)};
 `;
