@@ -22,7 +22,7 @@ export function useHandleLoginRedirect() {
       localStorage.setItem("accessToken", token.accessToken);
       dispatch?.({ type: "SET_LOGIN", status: true });
 
-      navigate("/");
+      navigate(-2);
     }
 
     if (error) {
