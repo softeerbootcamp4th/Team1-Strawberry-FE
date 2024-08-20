@@ -3,8 +3,14 @@ import { theme, Wrapper, Label } from "../../../../core/design_system";
 import { useDrawingChance } from "../../hooks/useDrawingChance";
 import { useDrawingLandingState } from "../../hooks/useDrawingLandingState";
 
-function DrawingChance() {
+interface DrawingChanceProps {
+  isLogin: boolean;
+  isFirst: boolean;
+}
+
+function DrawingChance({ isLogin, isFirst }: DrawingChanceProps) {
   const { eventUserData } = useDrawingLandingState();
+
   const text = useDrawingChance(eventUserData);
 
   return (
@@ -21,7 +27,11 @@ function DrawingChance() {
         color={theme.Color.TextIcon.reverse}
         $textalign="center"
       >
-        {text}
+        {!isLogin
+          ? "자동차 따라그리기에 도전해보세요!"
+          : isFirst
+            ? "첫 게임에 도전해보세요!"
+            : text}
       </Label>
     </Wrapper>
   );
