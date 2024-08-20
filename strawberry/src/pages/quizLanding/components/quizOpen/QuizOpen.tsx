@@ -6,6 +6,7 @@ import { formatEventDateTime } from "../../../../core/utils";
 import { useQuizLandingState } from "../../hooks";
 
 import QuizOpenStep from "./QuizOpenStep";
+import QuizEventEnd from "./QuizEventEnd";
 
 function QuizOpen() {
   const { quizLandingData } = useQuizLandingState();
@@ -21,6 +22,7 @@ function QuizOpen() {
         current={quizLandingData?.quizSequence ?? 0}
       />
       <QuestionWrapper>
+        {!quizLandingData?.valid && <QuizEventEnd />}
         <Label
           width="100%"
           $textalign="center"
@@ -63,6 +65,7 @@ const QuestionWrapper = styled.div`
   padding: 33px 28px;
   background-color: ${({ theme }) => theme.Color.TextIcon.reverse};
   box-shadow: 4px 4px 20px 0px rgba(0, 0, 0, 0.1);
+  position: relative;
 `;
 
 const HintWrapper = styled.div`
