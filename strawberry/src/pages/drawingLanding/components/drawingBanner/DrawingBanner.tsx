@@ -7,20 +7,20 @@ import useDrawingBanner from "../../hooks/useDrawingBanner";
 import DrawingChance from "./DrawingChance";
 
 function DrawingBanner() {
-  const { possibleChance, isFinished, landData, handleEventClick } =
+  const { possibleChance, isFinished, landData, handleEventClick, isLogin } =
     useDrawingBanner();
 
   return (
     <Wrapper $position="relative" height="calc(100vh - 70px)">
       <BannerImage src={landData?.bannerImgUrl}></BannerImage>
       <BannerContentWrapper>
-        {!isFinished && <DrawingChance />}
+        {!isFinished && isLogin && <DrawingChance />}
         <EventButton
           type="DRAWING"
           status={
             isFinished
               ? "EVENT_END"
-              : possibleChance === 0
+              : possibleChance === 0 && isLogin
                 ? "DISABLED"
                 : "DEFAULT"
           }
