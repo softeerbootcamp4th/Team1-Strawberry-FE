@@ -22,7 +22,9 @@ function useDrawingFinish() {
 
   useEffect(() => {
     if (sharedData?.sharedUrl && !isStale) {
-      navigator.clipboard.writeText(sharedData.sharedUrl);
+      navigator.clipboard.writeText(
+        `https://front.softeer1.site/shared/${sharedData.sharedUrl}`,
+      );
       globalDispatch({
         type: "CLOSE_TOAST",
       });
