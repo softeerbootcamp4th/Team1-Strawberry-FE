@@ -22,10 +22,10 @@ function NewCarCarousel(props: NewCarCarouselProps) {
         <ContentWrapper xPosition={-currentIndex * translationStep}>
           <Wrapper height="100%" width="470px" $margin="0 177px 0 0">
             <Label $token="Display2Medium" color={theme.Color.TextIcon.default}>
-              {item.title}
+              {datas.title}
             </Label>
             <Label $token="Heading1Regular" color={theme.Color.TextIcon.sub}>
-              {item.description}
+              {datas.description}
             </Label>
           </Wrapper>
           <Wrapper
@@ -34,7 +34,7 @@ function NewCarCarousel(props: NewCarCarouselProps) {
             $margin="0 24px 0 0"
             width="fit-content"
           >
-            {item.items.map((item, index) => (
+            {datas.items.map((item, index) => (
               <Wrapper
                 key={index}
                 width="665px"
