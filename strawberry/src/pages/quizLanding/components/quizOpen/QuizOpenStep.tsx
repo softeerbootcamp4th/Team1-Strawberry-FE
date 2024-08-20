@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 import { DotLine, Wrapper, theme } from "../../../../core/design_system";
+import useQuizOpenStep from "../../hooks/useQuizOpenStep";
 
 interface QuizOpenStepProps {
   total: number;
@@ -9,6 +10,7 @@ interface QuizOpenStepProps {
 
 function QuizOpenStep(props: QuizOpenStepProps) {
   const { total, current } = props;
+  const { isOpened, isClosed } = useQuizOpenStep();
 
   return (
     <Wrapper display="flex" height="38px">
@@ -16,10 +18,12 @@ function QuizOpenStep(props: QuizOpenStepProps) {
         <Wrapper display="flex" $alignitems="center">
           <Step
             key={index}
-            $isFinished={index + 1 < current}
-            $isSelected={index + 1 === current}
+            $isFinished={isClosed(index, current)}
+            $isSelected={isOpened(index, current)}
           >
-            {index + 1}차 오픈
+            {isClosed(index, current)
+              ? `${index + 1}차 마감`
+              : `${index + 1}차 오픈`}
           </Step>
           <DotLine $backgroundcolor={theme.Color.Neutral.neutral90} />
         </Wrapper>
