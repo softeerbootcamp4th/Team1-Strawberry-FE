@@ -14,7 +14,11 @@ function QuizOpenStep(props: QuizOpenStepProps) {
     <Wrapper display="flex" height="38px">
       {Array.from({ length: total - 1 }, (_, index) => (
         <Wrapper display="flex" $alignitems="center">
-          <Step key={index} $isSelected={index + 1 === current}>
+          <Step
+            key={index}
+            $isFinished={index + 1 < current}
+            $isSelected={index + 1 === current}
+          >
             {index + 1}차 오픈
           </Step>
           <DotLine $backgroundcolor={theme.Color.Neutral.neutral90} />
@@ -29,6 +33,7 @@ export default QuizOpenStep;
 
 interface StepStyle {
   $isSelected: boolean;
+  $isFinished: boolean;
 }
 
 const Step = styled.div<StepStyle>`
@@ -54,5 +59,12 @@ const Step = styled.div<StepStyle>`
       color: ${theme.Color.TextIcon.reverse};
       box-shadow: 4px 2px 6px 0px rgba(0, 0, 0, 0.18);
       background-color: ${theme.Color.Neutral.neutral22};
+    `}
+  ${({ $isFinished, theme }) =>
+    $isFinished &&
+    `
+      color: ${theme.Color.TextIcon.disable};
+      box-shadow: 4px 2px 6px 0px rgba(0, 0, 0, 0.18);
+      background-color: ${theme.Color.Neutral.neutral60};
     `}
 `;
