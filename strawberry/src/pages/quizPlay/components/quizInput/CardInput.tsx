@@ -16,6 +16,7 @@ const CardInput = (props: CardInputProps) => {
 
   const inputRef = useRef<HTMLInputElement>(null);
   const [highlightedIndex, setHighlightedIndex] = useState<number | null>(null);
+  const [isFocused, setIsFocused] = useState<boolean>(false);
 
   const { isModalOpen } = useGlobalState();
   const { answer: content } = useQuizPlayState();
@@ -81,10 +82,15 @@ const CardInput = (props: CardInputProps) => {
         onChange={handleChange}
         onKeyDown={handleKeyDown}
         maxLength={length}
+        onFocus={() => setIsFocused(true)}
+        onBlur={() => setIsFocused(false)}
       />
       <VisibleContent>
         {Array.from({ length }).map((_, index) => (
-          <CharacterBox key={index} isHighlighted={index === highlightedIndex}>
+          <CharacterBox
+            key={index}
+            isHighlighted={isFocused && index === highlightedIndex}
+          >
             <Character isFilled={Boolean(content[index])}>
               {content[index] || placeholder[index]}
             </Character>
