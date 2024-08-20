@@ -4,6 +4,7 @@ import useModal from "../../hooks/useModal";
 
 import TwoButtonModal from "./TwoButtonModal";
 import OneButtonModal from "./OneButtonModal";
+import ProgressModal from "./ProgressModal";
 
 export const Modal = () => {
   const { isModalOpen, modalCategory } = useModal();
@@ -15,6 +16,7 @@ export const Modal = () => {
           <ModalWrapper>
             {modalCategory === "TWO_BUTTON" && <TwoButtonModal />}
             {modalCategory === "ONE_BUTTON" && <OneButtonModal />}
+            {modalCategory === "PROGRESS" && <ProgressModal />}
           </ModalWrapper>
         </ModalBackground>
       )}
