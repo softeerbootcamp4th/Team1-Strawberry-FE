@@ -31,8 +31,10 @@ function QuizBanner() {
         >
           <EventButton
             type="QUIZ"
-            status="DEFAULT"
-            content="이벤트 참여하기"
+            status={data?.valid ? "DEFAULT" : "EVENT_END"}
+            content={
+              data?.valid ? "이벤트 참여하기" : "이벤트가 종료되었습니다."
+            }
             onClick={handleEventClick}
           ></EventButton>
         </Wrapper>
