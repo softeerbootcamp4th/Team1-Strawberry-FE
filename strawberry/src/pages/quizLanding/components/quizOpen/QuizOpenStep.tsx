@@ -28,7 +28,12 @@ function QuizOpenStep(props: QuizOpenStepProps) {
           <DotLine $backgroundcolor={theme.Color.Neutral.neutral90} />
         </Wrapper>
       ))}
-      <Step $isSelected={total === current}>{total}차 오픈</Step>
+      <Step
+        $isFinished={isClosed(total - 1, current)}
+        $isSelected={isOpened(total - 1, current)}
+      >
+        {isClosed(total - 1, current) ? `${total}차 마감` : `${total}차 오픈`}
+      </Step>
     </Wrapper>
   );
 }

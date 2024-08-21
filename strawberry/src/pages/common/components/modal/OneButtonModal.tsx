@@ -13,8 +13,16 @@ function OneButtonModal() {
     globalDispatch?.({ type: "CLOSE_MODAL" });
   }
 
-  const { title, imgPath, info, primaryBtnContent, onPrimaryBtnClick, enter } =
-    useGlobalState().modalProps || {};
+  const {
+    title,
+    imgPath,
+    info,
+    whiteBtnContent,
+    onWhiteBtnClick,
+    primaryBtnContent,
+    onPrimaryBtnClick,
+    enter,
+  } = useGlobalState().modalProps || {};
 
   useEffect(() => {
     if (enter) {
@@ -64,11 +72,20 @@ function OneButtonModal() {
           $margin="48px 0 0 0"
           $gap="15px"
         >
-          <ModalButton
-            modalType="PRIMARY_SMALL"
-            content={primaryBtnContent || ""}
-            onClick={onPrimaryBtnClick || closeModal}
-          />
+          {primaryBtnContent && (
+            <ModalButton
+              modalType="PRIMARY_SMALL"
+              content={primaryBtnContent || ""}
+              onClick={onPrimaryBtnClick || closeModal}
+            />
+          )}
+          {whiteBtnContent && (
+            <ModalButton
+              modalType="WHITE_SMALL"
+              content={whiteBtnContent || ""}
+              onClick={onWhiteBtnClick || closeModal}
+            />
+          )}
         </Wrapper>
       </Wrapper>
     </>

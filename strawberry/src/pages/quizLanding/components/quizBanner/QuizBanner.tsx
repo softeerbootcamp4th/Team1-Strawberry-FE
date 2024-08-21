@@ -1,23 +1,13 @@
 import styled from "styled-components";
-import { useNavigate } from "react-router-dom";
 
 import { Wrapper, EventButton } from "../../../../core/design_system";
-import { useCheckLogin } from "../../../../core/hooks/useCheckLogin";
 
-import { useQuizLandingState } from "../../hooks";
+import { useQuizBanner } from "../../hooks";
 
 import QuizBannerTimer from "./QuizBannerTimer";
 
 function QuizBanner() {
-  const navigate = useNavigate();
-  const checkLogin = useCheckLogin();
-  const { quizLandingData: data } = useQuizLandingState();
-
-  const handleEventClick = () => {
-    checkLogin(() => {
-      navigate(`/quiz/play/${data?.subEventId}`);
-    });
-  };
+  const { data, handleEventClick } = useQuizBanner();
 
   return (
     <Wrapper $position="relative" height="calc(100vh - 70px)">
