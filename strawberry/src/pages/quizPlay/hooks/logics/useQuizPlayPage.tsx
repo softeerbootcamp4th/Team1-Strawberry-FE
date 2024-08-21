@@ -31,6 +31,17 @@ function useQuizPlayPage() {
     return () => clearTimeout(timeoutId);
   }, [isLoading, globalDispatch]);
 
+  const showBlankModal = () =>
+    globalDispatch?.({
+      type: "OPEN_MODAL",
+      modalCategory: "ONE_BUTTON",
+      modalProps: {
+        title: "공백만 제출할 수 없습니다.",
+        info: "올바른 답안을 제출해주세요.",
+        primaryBtnContent: "닫기",
+      },
+    });
+
   const {
     description,
     question,
@@ -58,6 +69,7 @@ function useQuizPlayPage() {
     answer,
     subEventId,
     postQuiz,
+    showBlankModal,
     handleSubmit,
     isSubmitted,
   };
