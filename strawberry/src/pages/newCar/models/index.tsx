@@ -7,8 +7,8 @@ import {
 } from "./NewCarTypes";
 import {
   NewCarCarouselItem,
-  drivingData,
-  spaceDatas,
+  technologyDatas,
+  hybridDatas,
 } from "./NewCarCarouselItem";
 import { NewCarState } from "./NewCarState";
 import { Part } from "./Part";
@@ -24,6 +24,5 @@ export type {
   NewCarCarouselItem,
   Part,
   NewCarAction,
-  drivingData,
-  spaceDatas,
 };
+export { technologyDatas, hybridDatas };

@@ -5,13 +5,14 @@ import useNewCarCarousel from "../../login/hooks/useNewCarCarousel";
 import { NewCarCarouselItem } from "../models/NewCarCarouselItem";
 
 interface NewCarCarouselProps {
-  item: NewCarCarouselItem;
+  datas: NewCarCarouselItem;
 }
 
 function NewCarCarousel(props: NewCarCarouselProps) {
-  const { item } = props;
+  const { datas } = props;
 
-  const length = item.imgs.length;
+  const length = datas.items.length;
+
   const { currentIndex, translationStep, handlePrev, handleNext } =
     useNewCarCarousel(length);
 
@@ -21,10 +22,10 @@ function NewCarCarousel(props: NewCarCarouselProps) {
         <ContentWrapper xPosition={-currentIndex * translationStep}>
           <Wrapper height="100%" width="470px" $margin="0 177px 0 0">
             <Label $token="Display2Medium" color={theme.Color.TextIcon.default}>
-              {item.title}
+              {datas.title}
             </Label>
             <Label $token="Heading1Regular" color={theme.Color.TextIcon.sub}>
-              {item.description}
+              {datas.description}
             </Label>
           </Wrapper>
           <Wrapper
@@ -33,9 +34,33 @@ function NewCarCarousel(props: NewCarCarouselProps) {
             $margin="0 24px 0 0"
             width="fit-content"
           >
-            {item.imgs.map((url, index) => (
-              <Wrapper key={index} width="665px" $margin="0 48px 0 0">
-                <img width="100%" src={url} alt={`Slide ${index + 1}`} />
+            {datas.items.map((item, index) => (
+              <Wrapper
+                key={index}
+                width="665px"
+                $margin="0 48px 0 0"
+                display="flex"
+                $flexdirection="column"
+              >
+                <img width="100%" src={item.img} alt={`Slide ${index + 1}`} />
+                <Label
+                  $margin="26px 0 0 0"
+                  $token="Title2Medium"
+                  color={
+                    item.isHint === true
+                      ? "#FF8126"
+                      : theme.Color.TextIcon.default
+                  }
+                >
+                  {item.subTitle}
+                </Label>
+                <Label
+                  $margin="12px 0 0 0"
+                  $token="Heading2Regular"
+                  color={theme.Color.TextIcon.sub}
+                >
+                  {item.subDescription}
+                </Label>
               </Wrapper>
             ))}
           </Wrapper>
