@@ -6,6 +6,7 @@ interface OpenModalProps {
   isCorrect: boolean;
   isWinner: boolean;
   prizeImgUrl: string;
+  isParticipant: boolean;
 }
 
 function usePrizeModal() {
@@ -13,6 +14,15 @@ function usePrizeModal() {
   const navigate = useNavigate();
 
   const modalConfigurations = {
+    duplicatedParticipant: {
+      title: "이미 참여하셨습니다.",
+      info: "다음주 이벤트에 다시 도전할 수 있어요!",
+      primaryBtnContent: "확인",
+      onPrimaryBtnClick: () => {
+        globalDispatch?.({ type: "CLOSE_MODAL" });
+        navigate("/quiz");
+      },
+    },
     incorrectAnswer: {
       title: "정답이 아니에요 😔",
       info: "힌트를 활용해서\n다시 답변할 수 있어요!",
@@ -43,7 +53,12 @@ function usePrizeModal() {
     }),
   };
 
-  function openModal({ isCorrect, isWinner, prizeImgUrl }: OpenModalProps) {
+  function openModal({
+    isCorrect,
+    isWinner,
+    prizeImgUrl,
+    isParticipant,
+  }: OpenModalProps) {
     let modalProps;
 
     if (!isCorrect) {
@@ -54,6 +69,9 @@ function usePrizeModal() {
     }
     if (isCorrect && isWinner) {
       modalProps = modalConfigurations.winner(prizeImgUrl);
+    }
+    if (isParticipant) {
+      modalProps = modalConfigurations.duplicatedParticipant;
     }
 
     if (modalProps) {
