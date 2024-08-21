@@ -10,6 +10,7 @@ const queryClient = new QueryClient({
       retry: 1,
       retryDelay: 1000,
       onError: handleQueryError,
+      refetchOnWindowFocus: false,
     },
     mutations: {
       onError: handleQueryError,
