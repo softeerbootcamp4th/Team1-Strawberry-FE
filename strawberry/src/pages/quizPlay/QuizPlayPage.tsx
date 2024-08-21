@@ -3,6 +3,7 @@ import CardInput from "./components/quizInput/CardInput";
 import QuizBoard from "./components/quizBoard/QuizBoard";
 import useQuizPlayData from "./hooks/useQuizPlayData";
 import useQuizPlayPage from "./hooks/logics/useQuizPlayPage";
+import { checkOnlyBlank } from "../../core/utils";
 
 function QuizPlayPage() {
   useQuizPlayData();
@@ -15,9 +16,14 @@ function QuizPlayPage() {
     answer,
     subEventId,
     postQuiz,
+    showBlankModal,
   } = useQuizPlayPage();
 
   function handleSubmit() {
+    if (checkOnlyBlank(answer)) {
+      showBlankModal();
+      return;
+    }
     if (subEventId) {
       postQuiz({ body: { answer: answer, subEventId: subEventId } });
     }
