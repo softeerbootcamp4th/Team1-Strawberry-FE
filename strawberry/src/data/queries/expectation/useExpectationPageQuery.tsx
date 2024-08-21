@@ -11,6 +11,7 @@ export function useExpectationPageQuery() {
   const query = useQuery<ExpectationLand, Error>({
     queryKey: ["expectationPage"],
     queryFn: getExpectationPage,
+    refetchOnWindowFocus: true,
   });
 
   return query;
