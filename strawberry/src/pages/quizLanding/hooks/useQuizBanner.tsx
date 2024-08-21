@@ -30,6 +30,7 @@ export const useQuizBanner = () => {
         },
       });
     }
+    return dispatch?.({ type: "CLOSE_MODAL" });
   }, [data?.valid, dispatch]);
 
   return {
