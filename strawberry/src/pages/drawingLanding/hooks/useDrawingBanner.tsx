@@ -25,7 +25,10 @@ function useDrawingBanner() {
     if (eventData) {
       setPossibleChance(
         Math.min(
-          getChanceFromLastTime(eventData?.lastChargeAt) + eventData?.chance,
+          getChanceFromLastTime(eventData?.lastChargeAt) +
+          eventData?.chance +
+          Math.max(0, eventData.expectationBonusChance) +
+          Math.max(0, eventData.shareBonusChance),
           2,
         ),
       );
