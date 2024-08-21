@@ -20,7 +20,7 @@ export function useDrawingFinishQuery({
   };
 
   const query = useQuery<DrawingFinish, Error>({
-    queryKey: ["drawingInfo"],
+    queryKey: ["drawingFinish"],
     queryFn: getDrawingFinish,
   });
 
