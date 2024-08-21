@@ -22,7 +22,11 @@ function GuideCarouselWrapper() {
 
   return (
     <Wrapper height="440px" $position="relative">
-      <Carousel curr={guideIndex} onSlideChange={handleSlideChange}>
+      <Carousel
+        type="GUIDE"
+        curr={guideIndex}
+        onSlideChange={handleSlideChange}
+      >
         {visibleGuides.map((guide, index) => (
           <GuideSlide key={index}>
             <img width="100%" src={guide.image} alt={`Guide ${index + 1}`} />
