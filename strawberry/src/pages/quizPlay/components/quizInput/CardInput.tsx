@@ -40,7 +40,8 @@ const CardInput = (props: CardInputProps) => {
     const value = event.target.value;
 
     if (value.length <= length) {
-      dispatch({ type: "SET_ANSWER", payload: value });
+      dispatch?.({ type: "SET_ANSWER", payload: value });
+      dispatch?.({ type: "SET_SUBMITTED", payload: false });
 
       if (value.length > content.length) {
         setHighlightedIndex(value.length - 1);

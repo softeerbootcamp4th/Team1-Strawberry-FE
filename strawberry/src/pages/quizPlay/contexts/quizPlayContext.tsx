@@ -20,7 +20,7 @@ type QuizPlayActionType =
   | { type: "SET_PLACEHOLDER"; payload: string }
   | { type: "SET_SUB_EVENT_ID"; payload: number }
   | { type: "SET_ANSWER"; payload: string }
-  | { type: "SET_SUBMITTED" };
+  | { type: "SET_SUBMITTED"; payload: boolean };
 
 // 초기 상태
 const initialState: QuizPlayContextType = {
@@ -55,7 +55,7 @@ const reducer = (
     case "SET_ANSWER":
       return { ...state, answer: action.payload };
     case "SET_SUBMITTED":
-      return { ...state, isSubmitted: true };
+      return { ...state, isSubmitted: action.payload };
     default:
       return state;
   }
