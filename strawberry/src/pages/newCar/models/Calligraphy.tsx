@@ -1,15 +1,15 @@
 import {
   ExteriorCalligraphyType,
-  ExteriorCalligraphyColor,
+  InteriorCalligraphyType,
 } from "./NewCarTypes";
 
 export interface ExteriorCalligraphy {
-  type: ExteriorCalligraphyType;
-  color: ExteriorCalligraphyColor;
+  type: ExteriorCalligraphyType | InteriorCalligraphyType;
+  color: string;
   name: string;
 }
 
-export const calligraphyDatas: ExteriorCalligraphy[] = [
+export const exteriorCalligraphyColors: ExteriorCalligraphy[] = [
   {
     type: "NORMAL",
     color: "BROWN",
@@ -64,5 +64,53 @@ export const calligraphyDatas: ExteriorCalligraphy[] = [
     type: "BLACKINK",
     color: "BLACK",
     name: "어비스 블랙 펄",
+  },
+];
+
+export const interiorCalligraphyColors: ExteriorCalligraphy[] = [
+  {
+    type: "NORMAL",
+    color: "BLACK",
+    name: "블랙 원톤",
+  },
+  {
+    type: "NORMAL",
+    color: "BEIGE",
+    name: "라이트 베이지 투톤",
+  },
+  {
+    type: "NORMAL",
+    color: "BROWN",
+    name: "피칸 브라운 투톤",
+  },
+  {
+    type: "NORMAL",
+    color: "BLACKINK",
+    name: "블랙 원톤(블랙 잉크 전용)",
+  },
+  {
+    type: "PRESTIGE",
+    color: "FAKEBLACK",
+    name: "블랙 원톤(인조가죽 시트)",
+  },
+  {
+    type: "PRESTIGE",
+    color: "GRAY",
+    name: "그레이 투톤",
+  },
+  {
+    type: "PRESTIGE",
+    color: "BROWN",
+    name: "피칸 브라운 투톤",
+  },
+  {
+    type: "PRESTIGE",
+    color: "REALBLACK",
+    name: "블랙 원톤(천연가죽 시트)",
+  },
+  {
+    type: "EXCLUSIVE",
+    color: "FAKEBLACK",
+    name: "블랙 원톤(인조가죽 시트)",
   },
 ];

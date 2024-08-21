@@ -8,12 +8,14 @@ import {
 
 export interface NewCarState {
   exteriorType: ExteriorType;
-  isExteriorDetailOpen: boolean;
+  exteriorDetailIndex: number | undefined;
+  exterionDetailCarouselIndex: number;
   exteriorCalligraphyType: ExteriorCalligraphyType;
   exteriorCalligraphyColor: string;
-  isInteriorDetailOpen: boolean;
+  interiorDetailIndex: number | undefined;
+  interiorDetailCarouselIndex: number;
   interiorCalligraphyType: InteriorCalligraphyType;
-  interiorCallligraphyColor: string;
+  interiorCalligraphyColor: string;
   spaceType: SpaceType;
   galleryType: GalleryType;
 }

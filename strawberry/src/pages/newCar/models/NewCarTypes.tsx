@@ -1,10 +1,12 @@
+type DesignType = "EXTERIOR" | "INTERIOR";
 type ExteriorType = "FRONT" | "REAR";
 type ExteriorCalligraphyType = "NORMAL" | "BLACKINK";
-type InteriorCalligraphyType = "CALLIGRAPHY" | "PRESTIGE" | "EXCLUSIVE";
+type InteriorCalligraphyType = "NORMAL" | "PRESTIGE" | "EXCLUSIVE";
 type SpaceType = "5" | "6" | "7";
 type GalleryType = "EXTERIOR" | "INTTERIOR";
 
 export type {
+  DesignType,
   ExteriorType,
   ExteriorCalligraphyType,
   InteriorCalligraphyType,

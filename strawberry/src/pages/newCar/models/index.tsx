@@ -1,29 +1,56 @@
+import { ExteriorCalligraphy, exteriorCalligraphyColors } from "./Calligraphy";
 import {
-  ExteriorType,
-  ExteriorCalligraphyType,
-  InteriorCalligraphyType,
-  SpaceType,
-  GalleryType,
-} from "./NewCarTypes";
+  DesignDetail,
+  detailFrontData,
+  detailFrontCoordinates,
+  detailInteriorCoordinates,
+  detailInteriorData,
+  detailRearData,
+  detailRearCoordinates,
+} from "./DesignDetail";
+import { DesignTitle, designTitles } from "./DesginTitle";
+import { Part } from "./Part";
+import { NewCarAction } from "./NewCarAction";
 import {
   NewCarCarouselItem,
   drivingData,
   spaceDatas,
 } from "./NewCarCarouselItem";
 import { NewCarState } from "./NewCarState";
-import { Part } from "./Part";
-import { NewCarAction } from "./NewCarAction";
-
-export type {
-  ExteriorType,
+import {
+  DesignType,
   ExteriorCalligraphyType,
+  ExteriorType,
+  GalleryType,
   InteriorCalligraphyType,
   SpaceType,
+} from "./NewCarTypes";
+
+export type {
+  DesignDetail,
+  DesignTitle,
+  DesignType,
+  ExteriorCalligraphy,
+  ExteriorCalligraphyType,
+  ExteriorType,
   GalleryType,
-  NewCarState,
-  NewCarCarouselItem,
-  Part,
+  InteriorCalligraphyType,
   NewCarAction,
+  NewCarCarouselItem,
+  NewCarState,
+  Part,
+  SpaceType,
+};
+
+export {
   drivingData,
   spaceDatas,
+  designTitles,
+  detailFrontCoordinates,
+  detailFrontData,
+  detailInteriorCoordinates,
+  detailInteriorData,
+  detailRearCoordinates,
+  detailRearData,
+  exteriorCalligraphyColors,
 };
