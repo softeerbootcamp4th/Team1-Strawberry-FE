@@ -12,8 +12,12 @@ export function useDrawingChance(eventUserData: EventUserInfo | undefined) {
 
     let chance: number = eventUserData.chance ?? 0;
     const bonusChance: number =
-      (eventUserData.expectationBonusChance ?? 0) +
-      (eventUserData.shareBonusChance ?? 0);
+      (eventUserData.expectationBonusChance === -1
+        ? 0
+        : (eventUserData.expectationBonusChance ?? 0)) +
+      (eventUserData.shareBonusChance === -1
+        ? 0
+        : (eventUserData.shareBonusChance ?? 0));
 
     const lastPlayTime: string = eventUserData.lastChargeAt ?? "";
 
@@ -28,6 +32,8 @@ export function useDrawingChance(eventUserData: EventUserInfo | undefined) {
       } else {
         text = `${chance}회 도전할 수 있어요!`;
       }
+    } else if (bonusChance > 0) {
+      text = `보너스 기회로 ${bonusChance}회 도전할 수 있어요!`;
     } else {
       text = `${formatTimeUntilNextChance(lastPlayTime)}`;
     }

@@ -1,6 +1,8 @@
 import { useQuery } from "react-query";
 
 import network from "../../config/network";
+import { CustomError } from "../../config/customError";
+
 import { ExpectationList } from "../../entities/ExpectationList";
 
 export function useExpectationListQuery(page: number) {
@@ -12,11 +14,18 @@ export function useExpectationListQuery(page: number) {
     });
   };
 
-  const query = useQuery<ExpectationList, Error>(
+  const query = useQuery<ExpectationList, CustomError>(
     ["expectationList", page],
     getExpectationList,
     {
       enabled: page !== undefined && page > 0,
+      onError(err) {
+        if (err.status !== 404) {
+          alert(err.message);
+        }
+      },
+      retry: 0,
+      refetchOnWindowFocus: true,
     },
   );
 

@@ -5,10 +5,13 @@ import { useGlobalDispatch } from "../../../../core/hooks/useGlobalDispatch";
 import { useQuizPlayMutation } from "../../../../data/queries/quiz/useQuizPlayMutation";
 
 import { useQuizPlayState } from "../useQuizPlayState";
+import { useQuizPlayDispatch } from "../useQuizPlayDispatch";
+import { checkOnlyBlank } from "../../../../core/utils/checkOnlyBlank";
 
 function useQuizPlayPage() {
   const { mutate: postQuiz, isLoading } = useQuizPlayMutation();
   const globalDispatch = useGlobalDispatch();
+  const quizPlayDispatch = useQuizPlayDispatch();
 
   useEffect(() => {
     let timeoutId: number | undefined;
@@ -47,7 +50,15 @@ function useQuizPlayPage() {
     hint,
     answer,
     subEventId,
+    isSubmitted,
   } = useQuizPlayState();
+
+  function handleSubmit() {
+    if (subEventId && !isSubmitted) {
+      quizPlayDispatch?.({ type: "SET_SUBMITTED", payload: true });
+      postQuiz({ body: { answer: answer, subEventId: subEventId } });
+    }
+  }
 
   return {
     description,
@@ -59,6 +70,8 @@ function useQuizPlayPage() {
     subEventId,
     postQuiz,
     showBlankModal,
+    handleSubmit,
+    isSubmitted,
   };
 }
 
