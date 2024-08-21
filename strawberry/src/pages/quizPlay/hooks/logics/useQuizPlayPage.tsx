@@ -6,12 +6,9 @@ import { useQuizPlayMutation } from "../../../../data/queries/quiz/useQuizPlayMu
 
 import { useQuizPlayState } from "../useQuizPlayState";
 
-import usePrizeModal from "../usePrizeModal";
-
 function useQuizPlayPage() {
   const { mutate: postQuiz, isLoading } = useQuizPlayMutation();
   const globalDispatch = useGlobalDispatch();
-  const prizeModal = usePrizeModal();
 
   useEffect(() => {
     let timeoutId: number | undefined;
