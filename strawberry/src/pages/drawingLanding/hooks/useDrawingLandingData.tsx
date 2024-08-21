@@ -6,11 +6,24 @@ import {
   useEventUserInfoQuery,
   useDrawingLandingQuery,
 } from "../../../data/queries";
+import { useDrawingLandingState } from "./useDrawingLandingState";
 
 export function useDrawingLandingData() {
+  const state = useDrawingLandingState();
+
   const { data: landData } = useDrawingLandingQuery();
-  const { data: rankData } = useDrawingRankQuery();
-  const { data: eventUserData } = useEventUserInfoQuery();
+  const { data: rankData, refetch: fetchRank } = useDrawingRankQuery({
+    subEventId: state.drawingLandingData?.subEventId,
+  });
+  const { data: eventUserData, refetch: fetchEventInfo } =
+    useEventUserInfoQuery({ subEventId: state.drawingLandingData?.subEventId });
+
+  useEffect(() => {
+    if (state.drawingLandingData?.subEventId) {
+      fetchRank();
+      fetchEventInfo();
+    }
+  }, [state.drawingLandingData?.subEventId]);
 
   const dispatch = useDrawingLandingDispatch();
 

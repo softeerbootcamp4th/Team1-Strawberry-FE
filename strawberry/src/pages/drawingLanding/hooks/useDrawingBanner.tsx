@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { useCheckLogin } from "../../../core/hooks/useCheckLogin";
-import { useDrawingLandingState } from "./useDrawingLandingState";
-import { getChanceFromLastTime } from "../services/getChanceFromLastTime";
 import { useGlobalState } from "../../../core/hooks/useGlobalState";
+import { useCheckLogin } from "../../../core/hooks/useCheckLogin";
+
+import { useDrawingLandingState } from "./useDrawingLandingState";
+
+import { getChanceFromLastTime } from "../services/getChanceFromLastTime";
 
 function useDrawingBanner() {
   const [possibleChance, setPossibleChance] = useState<number>(0);
@@ -13,6 +15,8 @@ function useDrawingBanner() {
   const navigate = useNavigate();
   const checkLogin = useCheckLogin();
   const { isLogin } = useGlobalState();
+
+  const isFirst = eventData === undefined ? true : false;
 
   const isFinished =
     landData?.endAt && new Date(landData.endAt).getTime() < Date.now();
@@ -40,6 +44,7 @@ function useDrawingBanner() {
     landData,
     handleEventClick,
     isLogin,
+    isFirst,
   };
 }
 
