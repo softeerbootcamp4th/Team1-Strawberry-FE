@@ -9,9 +9,11 @@ import { useExpectationState } from "./useExpectationState";
 function useExpectationData() {
   const state = useExpectationState();
   const { data: pageData } = useExpectationPageQuery();
-  const { data: listData, refetch: refetchList } = useExpectationListQuery(
-    state.nowPage,
-  );
+  const {
+    data: listData,
+    refetch: refetchList,
+    error: listError,
+  } = useExpectationListQuery(state.nowPage);
   const dispatch = useExpectationDispatch();
 
   useEffect(() => {
@@ -36,7 +38,7 @@ function useExpectationData() {
     }
   }, [listData, dispatch]);
 
-  return { refetchList };
+  return { refetchList, listError };
 }
 
 export default useExpectationData;

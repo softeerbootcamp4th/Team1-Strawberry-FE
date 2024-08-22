@@ -15,9 +15,14 @@ import {
 } from "./components";
 
 function ExpectationPage() {
-  const { expectationList, nowPage, totalPage, changePage, bannerImg } =
-    useExpectationPage();
-
+  const {
+    expectationList,
+    nowPage,
+    totalPage,
+    changePage,
+    bannerImg,
+    listError,
+  } = useExpectationPage();
   return (
     <>
       <ExpectationWrapper>
@@ -48,16 +53,24 @@ function ExpectationPage() {
             $alignitems="center"
             $minheight="1276px"
           >
-            {expectationList?.map(({ name, comment }, idx) => (
-              <ExpectationList key={idx} name={name} comment={comment} />
-            ))}
-            <Wrapper $margin="0 0 80px 0">
-              <Pagination
-                totalPages={totalPage}
-                currentPage={nowPage}
-                onPageChange={(page) => changePage(page)}
-              />
-            </Wrapper>
+            {listError?.status === 404 ? (
+              <NoExpectationWrapper>
+                첫 기대평을 작성해주세요!
+              </NoExpectationWrapper>
+            ) : (
+              <>
+                {expectationList?.map(({ name, comment }, idx) => (
+                  <ExpectationList key={idx} name={name} comment={comment} />
+                ))}
+                <Wrapper $margin="0 0 80px 0">
+                  <Pagination
+                    totalPages={totalPage}
+                    currentPage={nowPage}
+                    onPageChange={(page) => changePage(page)}
+                  />
+                </Wrapper>
+              </>
+            )}
           </Wrapper>
         </ExpectationContentWrapper>
         <EventNotice title="기대평 유의사항" notices={notices} />
@@ -67,6 +80,19 @@ function ExpectationPage() {
 }
 
 export default ExpectationPage;
+
+const NoExpectationWrapper = styled.div`
+  width: 100%;
+  max-width: 960px;
+  height: 250px;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  ${({ theme }) => theme.Typography.Display2Medium};
+  color: ${({ theme }) => theme.Color.TextIcon.info};
+`;
 
 const ExpectationWrapper = styled.div`
   position: relative;
