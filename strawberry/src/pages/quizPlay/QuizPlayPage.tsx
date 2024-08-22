@@ -19,6 +19,7 @@ function QuizPlayPage() {
     subEventId,
     postQuiz,
     showBlankModal,
+    token,
   } = useQuizPlayPage();
 
   function handleSubmit() {
@@ -27,7 +28,9 @@ function QuizPlayPage() {
       return;
     }
     if (subEventId) {
-      postQuiz({ body: { answer: answer, subEventId: subEventId } });
+      postQuiz({
+        body: { answer: answer, subEventId: subEventId, token: token },
+      });
     }
   }
 

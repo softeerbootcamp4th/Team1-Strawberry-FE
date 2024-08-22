@@ -4,6 +4,7 @@ import { QuizLandingState, QuizLandingAction } from "../models";
 
 const initialState: QuizLandingState = {
   quizLandingData: undefined,
+  quizToken: undefined,
 };
 
 export const QuizLandingStateContext = createContext<
@@ -21,6 +22,8 @@ function quizLandingReducer(
   switch (action.type) {
     case "SET_DATA":
       return { ...state, quizLandingData: action.data };
+    case "SET_QUIZ_TOKEN":
+      return { ...state, quizToken: action.token };
     default:
       throw new Error("ACTION NOT FOUND");
   }

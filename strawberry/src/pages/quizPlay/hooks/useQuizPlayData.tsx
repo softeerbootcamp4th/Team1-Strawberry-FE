@@ -30,8 +30,8 @@ const keyMap: Record<keyof QuizPlayContextType, keyof QuizDataType> = {
 };
 
 function useQuizPlayData() {
-  const { subEventId } = useParams();
-  const { data } = useQuizPlayQuery(subEventId);
+  const { subEventId, token } = useParams();
+  const { data } = useQuizPlayQuery({ subEventId: subEventId, token: token });
   const dispatch = useQuizPlayDispatch();
 
   useEffect(() => {

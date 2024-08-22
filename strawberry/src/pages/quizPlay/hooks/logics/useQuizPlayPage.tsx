@@ -7,29 +7,13 @@ import { useQuizPlayMutation } from "../../../../data/queries/quiz/useQuizPlayMu
 import { useQuizPlayState } from "../useQuizPlayState";
 import { useQuizPlayDispatch } from "../useQuizPlayDispatch";
 import { checkOnlyBlank } from "../../../../core/utils/checkOnlyBlank";
+import { useParams } from "react-router-dom";
 
 function useQuizPlayPage() {
-  const { mutate: postQuiz, isLoading } = useQuizPlayMutation();
+  const { token } = useParams();
+  const { mutate: postQuiz } = useQuizPlayMutation();
   const globalDispatch = useGlobalDispatch();
   const quizPlayDispatch = useQuizPlayDispatch();
-
-  useEffect(() => {
-    let timeoutId: number | undefined;
-
-    if (isLoading) {
-      timeoutId = setTimeout(() => {
-        globalDispatch?.({
-          type: "OPEN_MODAL",
-          modalCategory: "PROGRESS",
-          modalProps: {},
-        });
-      }, 200); // 0.2초 안에 결과가 나오면 로딩창 안 보여줌
-    } else {
-      clearTimeout(timeoutId);
-    }
-
-    return () => clearTimeout(timeoutId);
-  }, [isLoading, globalDispatch]);
 
   const showBlankModal = () =>
     globalDispatch?.({
@@ -56,7 +40,9 @@ function useQuizPlayPage() {
   function handleSubmit() {
     if (subEventId && !isSubmitted) {
       quizPlayDispatch?.({ type: "SET_SUBMITTED", payload: true });
-      postQuiz({ body: { answer: answer, subEventId: subEventId } });
+      postQuiz({
+        body: { answer: answer, subEventId: subEventId, token: token ?? "" },
+      });
     }
   }
 
@@ -72,6 +58,7 @@ function useQuizPlayPage() {
     showBlankModal,
     handleSubmit,
     isSubmitted,
+    token,
   };
 }
 
