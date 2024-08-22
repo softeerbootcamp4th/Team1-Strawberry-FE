@@ -138,6 +138,7 @@ export function GlobalContextProvider({ children }: { children: ReactNode }) {
     isModalOpen: false,
     modalCategory: null,
     modalProps: null,
+    waitingModalProps: null,
     isToastOpen: false,
     toastProps: null,
   });
