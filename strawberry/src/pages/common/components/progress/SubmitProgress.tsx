@@ -1,13 +1,13 @@
 import styled from "styled-components";
-
 import { useSubmitProgress } from "../../hooks/useSubmitProgress";
 
 interface SubmitProgressProps {
-  limitTime: number;
+  total: number;
+  remaining: number;
 }
 
-const SubmitProgress = ({ limitTime }: SubmitProgressProps) => {
-  const { progress, isMounted } = useSubmitProgress(limitTime);
+const SubmitProgress = ({ total, remaining }: SubmitProgressProps) => {
+  const { progress, isMounted } = useSubmitProgress(total, remaining);
 
   return (
     <SubmitProgressContainer>
