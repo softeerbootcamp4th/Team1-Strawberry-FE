@@ -19,6 +19,7 @@ export const useQuizBanner = () => {
   const [isEnter, setIsEnter] = useState<boolean>(false);
   const { quizLandingData, quizToken } = useQuizLandingState();
   const dispatchQuizLanding = useQuizLandingDispatch();
+  const [isOpened, setIsOpened] = useState(false);
 
   const {
     mutate,
