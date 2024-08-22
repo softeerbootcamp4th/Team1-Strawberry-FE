@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { useCheckLogin } from "../../../core/hooks/useCheckLogin";
@@ -11,6 +11,7 @@ export const useQuizBanner = () => {
   const checkLogin = useCheckLogin();
   const dispatch = useGlobalDispatch();
   const { quizLandingData: data } = useQuizLandingState();
+  const [isOpened, setIsOpened] = useState<boolean>(false);
 
   const handleEventClick = () => {
     checkLogin(() => {
@@ -36,5 +37,7 @@ export const useQuizBanner = () => {
   return {
     data,
     handleEventClick,
+    isOpened,
+    setIsOpened,
   };
 };

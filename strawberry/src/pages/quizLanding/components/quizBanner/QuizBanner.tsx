@@ -5,11 +5,9 @@ import { Wrapper, EventButton } from "../../../../core/design_system";
 import { useQuizBanner } from "../../hooks";
 
 import QuizBannerTimer from "./QuizBannerTimer";
-import { useState } from "react";
 
 function QuizBanner() {
-  const { data, handleEventClick } = useQuizBanner();
-  const [isOpened, setIsOpened] = useState<boolean>(false);
+  const { data, handleEventClick, isOpened, setIsOpened } = useQuizBanner();
 
   return (
     <Wrapper $position="relative" height="calc(100vh - 70px)">
