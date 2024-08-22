@@ -48,7 +48,7 @@ function usePrizeModal() {
       imgPath: prizeImgUrl,
       onPrimaryBtnClick: () => {
         globalDispatch?.({ type: "CLOSE_MODAL" });
-        navigate("/drawing");
+        navigate("/quiz");
       },
     }),
   };
