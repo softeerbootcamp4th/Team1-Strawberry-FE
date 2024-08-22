@@ -20,7 +20,7 @@ function usePrizeModal() {
       primaryBtnContent: "확인",
       onPrimaryBtnClick: () => {
         globalDispatch?.({ type: "CLOSE_MODAL" });
-        navigate("/quiz");
+        location.href = "/quiz";
       },
     },
     incorrectAnswer: {
@@ -38,7 +38,7 @@ function usePrizeModal() {
       primaryBtnContent: "확인",
       onPrimaryBtnClick: () => {
         globalDispatch?.({ type: "CLOSE_MODAL" });
-        navigate("/quiz");
+        location.href = "/quiz";
       },
     },
     winner: (prizeImgUrl: string) => ({
@@ -48,7 +48,7 @@ function usePrizeModal() {
       imgPath: prizeImgUrl,
       onPrimaryBtnClick: () => {
         globalDispatch?.({ type: "CLOSE_MODAL" });
-        navigate("/quiz");
+        location.href = "/quiz";
       },
     }),
   };
