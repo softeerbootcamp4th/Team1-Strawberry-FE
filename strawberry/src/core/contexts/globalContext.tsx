@@ -12,7 +12,7 @@ export type UserData = {
   name: string;
 };
 
-type ModalCategoryType = "TWO_BUTTON" | "ONE_BUTTON" | "PROGRESS" | null;
+type ModalCategoryType = "TWO_BUTTON" | "ONE_BUTTON" | "WAITING" | null;
 
 type ModalPropsType = {
   title?: string;
@@ -25,6 +25,11 @@ type ModalPropsType = {
   enter?: boolean;
 } | null;
 
+type WaitingModalPropsType = {
+  total: number;
+  remaining: number;
+};
+
 // Global State Types
 export type GlobalState = {
   isLogin: boolean;
@@ -32,6 +37,7 @@ export type GlobalState = {
   isModalOpen: boolean;
   modalCategory: ModalCategoryType;
   modalProps: ModalPropsType;
+  waitingModalProps: WaitingModalPropsType;
   isToastOpen: boolean;
   toastContent: string;
 };
@@ -62,6 +68,14 @@ type Action =
   }
   | {
     type: "CLOSE_TOAST";
+  }
+  | {
+    type: "OPEN_WAITING_MODAL";
+    watingModalProps: WaitingModalPropsType;
+  }
+  | {
+    type: "SET_WAITING_REMAINING";
+    remaining: number;
   };
 
 // Reducer
@@ -96,6 +110,21 @@ function globalReducer(state: GlobalState, action: Action): GlobalState {
         ...state,
         isToastOpen: false,
       };
+    case "OPEN_WAITING_MODAL":
+      return {
+        ...state,
+        isModalOpen: true,
+        modalCategory: "WAITING",
+        waitingModalProps: action.watingModalProps,
+      };
+    case "SET_WAITING_REMAINING":
+      return {
+        ...state,
+        waitingModalProps: {
+          ...state.waitingModalProps,
+          remaining: action.remaining,
+        },
+      };
     default:
       throw new Error("ACTION NOT FOUND");
   }
@@ -109,6 +138,7 @@ export function GlobalContextProvider({ children }: { children: ReactNode }) {
     isModalOpen: false,
     modalCategory: null,
     modalProps: null,
+    waitingModalProps: null,
     isToastOpen: false,
     toastProps: null,
   });

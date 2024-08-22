@@ -8,11 +8,12 @@ import { throttle } from "../../../../core/utils";
 import { useExpectationMutation } from "../../../../data/queries/expectation/useExpectationMutation";
 
 import useLengthValidation from "../useLengthValidation";
+import { checkOnlyBlank } from "../../../../core/utils";
 
 function useExpectationInput() {
   const { mutate: postExpectation, isSuccess } = useExpectationMutation();
   const [isFocused, setIsFocused] = useState(false);
-  const { content, handleChange } = useLengthValidation({
+  const { content, handleChange, resetContent } = useLengthValidation({
     initialContent: "",
     maxLength: 300,
   });
@@ -29,6 +30,12 @@ function useExpectationInput() {
   }, [isSuccess]);
 
   const handleSubmit = throttle()(() => {
+    if (checkOnlyBlank(content)) {
+      alert("공백만 제출할 수 없습니다.");
+      resetContent();
+      return;
+    }
+
     if (content.length === 0) {
       alert("내용을 입력해주세요.");
       return;

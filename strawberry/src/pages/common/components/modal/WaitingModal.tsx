@@ -1,12 +1,14 @@
 import { theme, Wrapper, Label } from "../../../../core/design_system";
 
 import { useGlobalDispatch } from "../../../../core/hooks/useGlobalDispatch";
+import { useGlobalState } from "../../../../core/hooks/useGlobalState";
 
 import ModalButton from "../buttons/ModalButton";
 import SubmitProgress from "../progress/SubmitProgress";
 
-function ProgressModal() {
+function WaitingModal() {
   const globalDispatch = useGlobalDispatch();
+  const { waitingModalProps } = useGlobalState();
 
   function closeModal() {
     globalDispatch?.({ type: "CLOSE_MODAL" });
@@ -21,10 +23,13 @@ function ProgressModal() {
         $alignitems="center"
       >
         <Label $token="Title1Medium" color={theme.Color.Primary.normal}>
-          답변을 제출하고 있습니다.
+          퀴즈 이벤트에 입장 중입니다.
         </Label>
         <Wrapper $margin="24px 0 0 0">
-          <SubmitProgress limitTime={5} />
+          <SubmitProgress
+            remaining={waitingModalProps.remaining - 1}
+            total={waitingModalProps.total}
+          />
         </Wrapper>
         <Label
           width="100%"
@@ -33,9 +38,7 @@ function ProgressModal() {
           color={theme.Color.TextIcon.sub}
           $textalign="center"
         >
-          {
-            "현재 답변을 제출하고 있습니다!\n잠시만 기다리시면 답변 제출이 완료됩니다."
-          }
+          {`현재 고객님의 앞에 ${waitingModalProps.remaining - 1}명의 대기자가 있습니다.\n새로고침 시 순번이 뒤로 밀려나게 되니 주의해주시기 바랍니다.`}
         </Label>
         <Wrapper
           width="100%"
@@ -56,4 +59,4 @@ function ProgressModal() {
   );
 }
 
-export default ProgressModal;
+export default WaitingModal;
