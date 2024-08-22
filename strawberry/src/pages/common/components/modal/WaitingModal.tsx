@@ -27,7 +27,7 @@ function WaitingModal() {
         </Label>
         <Wrapper $margin="24px 0 0 0">
           <SubmitProgress
-            remaining={waitingModalProps.remaining}
+            remaining={waitingModalProps.remaining - 1}
             total={waitingModalProps.total}
           />
         </Wrapper>
@@ -38,7 +38,7 @@ function WaitingModal() {
           color={theme.Color.TextIcon.sub}
           $textalign="center"
         >
-          {`현재 고객님의 앞에 ${waitingModalProps.remaining}명이 기다리고 있습니다!\n새로고침 하실 경우 대기열이 새로 시작됩니다.`}
+          {`현재 고객님의 앞에 ${waitingModalProps.remaining - 1}명이 기다리고 있습니다!\n새로고침 하실 경우 대기열이 새로 시작됩니다.`}
         </Label>
         <Wrapper
           width="100%"
