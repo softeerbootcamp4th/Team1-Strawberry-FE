@@ -25,11 +25,7 @@ export function useQuizWaitingQuery({
 
   const query = useQuery<QuizWaitingRemaining, CustomError>({
     queryKey: ["quizWaiting"],
-    queryFn: async () => {
-      const t = await getQuizWaiting();
-      console.log(t);
-      return t;
-    },
+    queryFn: getQuizWaiting,
     refetchInterval: 500,
     enabled: !!subEventId && !!token,
   });
