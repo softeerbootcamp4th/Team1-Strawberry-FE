@@ -1,13 +1,14 @@
-import { useEffect } from "react";
+import { useMemo } from "react";
+import { useParams } from "react-router-dom";
 
+import { checkOnlyBlank } from "../../../../core/utils/checkOnlyBlank";
 import { useGlobalDispatch } from "../../../../core/hooks/useGlobalDispatch";
+import { throttle } from "../../../../core/utils";
 
 import { useQuizPlayMutation } from "../../../../data/queries/quiz/useQuizPlayMutation";
 
 import { useQuizPlayState } from "../useQuizPlayState";
 import { useQuizPlayDispatch } from "../useQuizPlayDispatch";
-import { checkOnlyBlank } from "../../../../core/utils/checkOnlyBlank";
-import { useParams } from "react-router-dom";
 
 function useQuizPlayPage() {
   const { token } = useParams();
@@ -38,13 +39,21 @@ function useQuizPlayPage() {
   } = useQuizPlayState();
 
   function handleSubmit() {
+    quizPlayDispatch?.({ type: "SET_SUBMITTED", payload: true });
+    if (checkOnlyBlank(answer)) {
+      showBlankModal();
+      return;
+    }
     if (subEventId && !isSubmitted) {
-      quizPlayDispatch?.({ type: "SET_SUBMITTED", payload: true });
       postQuiz({
         body: { answer: answer, subEventId: subEventId, token: token ?? "" },
       });
     }
   }
+
+  const throttledHandleSubmit = useMemo(() => {
+    return throttle()(handleSubmit);
+  }, [answer]);
 
   return {
     description,
@@ -53,14 +62,8 @@ function useQuizPlayPage() {
     placeholder,
     hint,
     answer,
-    subEventId,
-    postQuiz,
-    handleSubmit,
     isSubmitted,
-    showBlankModal,
-    handleSubmit,
-    isSubmitted,
-    token,
+    handleSubmit: throttledHandleSubmit,
   };
 }
 

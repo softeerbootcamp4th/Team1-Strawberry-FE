@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { useGlobalState } from "../../../../core/hooks/useGlobalState";
@@ -29,7 +29,7 @@ function useExpectationInput() {
     }
   }, [isSuccess]);
 
-  const handleSubmit = throttle()(() => {
+  const handleSubmit = () => {
     if (checkOnlyBlank(content)) {
       alert("공백만 제출할 수 없습니다.");
       resetContent();
@@ -58,14 +58,17 @@ function useExpectationInput() {
       });
       return;
     }
-
     postExpectation({ comment: content });
-  });
+  };
+
+  const throttledSubmit = useMemo(() => {
+    return throttle()(handleSubmit);
+  }, [content]);
 
   function handleKeyDown(event: React.KeyboardEvent<HTMLTextAreaElement>) {
     if (event.key === "Enter") {
       event.preventDefault();
-      handleSubmit();
+      throttledSubmit();
     }
   }
 
@@ -73,7 +76,7 @@ function useExpectationInput() {
     content,
     handleChange,
     handleKeyDown,
-    handleSubmit,
+    handleSubmit: throttledSubmit,
     isFocused,
     setIsFocused,
   };

@@ -1,6 +1,8 @@
-import { useEffect } from "react";
+import { useEffect, useMemo, useCallback } from "react";
 
 import { useGlobalDispatch } from "../../../core/hooks/useGlobalDispatch";
+
+import { throttle } from "../../../core/utils";
 
 import { useDrawingSharedQuery } from "../../../data/queries/drawing/useDrawingSharedQuery";
 import { useDrawingFinishQuery } from "../../../data/queries/drawing/useDrawingFinishQuery";
@@ -37,11 +39,15 @@ function useDrawingFinish() {
     }
   }, [isStale, sharedData?.sharedUrl, globalDispatch]);
 
-  const handleSharedClick = () => {
+  const handleSharedClick = useCallback(() => {
     if (isStale) {
       getSharedData();
     }
-  };
+  }, [isStale, getSharedData]);
+
+  const throttledSharedClick = useMemo(() => {
+    return throttle()(handleSharedClick);
+  }, [handleSharedClick]);
 
   const handleRetryClick = () => {
     location.reload();
@@ -53,7 +59,7 @@ function useDrawingFinish() {
     chance: drawingFinish?.chance ?? 0,
     expectationChance: drawingFinish?.expectationBonusChance ?? 0,
     shareChance: drawingFinish?.shareBonusChance ?? 0,
-    handleSharedClick,
+    handleSharedClick: throttledSharedClick,
     handleRetryClick,
   };
 }
