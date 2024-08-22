@@ -8,6 +8,7 @@ import usePrizeModal from "../../../pages/quizPlay/hooks/usePrizeModal";
 export interface UseQuizPlayMutationBodyType {
   answer: string;
   subEventId: number;
+  token: string;
 }
 
 export function useQuizPlayMutation() {

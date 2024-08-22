@@ -4,11 +4,17 @@ import network from "../../config/network";
 
 import { QuizInfo } from "../../entities/QuizInfo";
 
-export function useQuizPlayQuery(subEventId: string | undefined) {
+interface UseQuizPlayQueryProps {
+  subEventId: string | undefined;
+  token: string | undefined;
+}
+
+export function useQuizPlayQuery({ subEventId, token }: UseQuizPlayQueryProps) {
   const getQuizInfo = async () => {
     return await network.get<QuizInfo>("firstcome/quiz/info", {
       queryParams: {
         subEventId: subEventId,
+        token: token,
       },
     });
   };
