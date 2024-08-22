@@ -58,6 +58,7 @@ function useQuizPlayPage() {
     showBlankModal,
     handleSubmit,
     isSubmitted,
+    token,
   };
 }
 
