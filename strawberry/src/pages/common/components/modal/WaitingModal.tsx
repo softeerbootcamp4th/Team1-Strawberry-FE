@@ -38,7 +38,7 @@ function WaitingModal() {
           color={theme.Color.TextIcon.sub}
           $textalign="center"
         >
-          {`현재 고객님의 앞에 ${waitingModalProps.remaining - 1}명이 기다리고 있습니다!\n새로고침 하실 경우 대기열이 새로 시작됩니다.`}
+          {`현재 고객님의 앞에 ${waitingModalProps.remaining - 1}명의 대기자가 있습니다.\n새로고침 시 순번이 뒤로 밀려나게 되니 주의해주시기 바랍니다.`}
         </Label>
         <Wrapper
           width="100%"
