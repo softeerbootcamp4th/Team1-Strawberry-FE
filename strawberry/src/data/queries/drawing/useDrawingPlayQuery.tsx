@@ -6,7 +6,7 @@ import { DrawingPlay } from "../../entities/DrawingPlay";
 import { CustomError } from "../../config/customError";
 
 interface UseDrawingPlayQueryProps {
-  subEventId: number | undefined;
+  subEventId: string | undefined;
   eventPlayType: "NORMAL" | "EXPECTATION" | "SHARED" | undefined;
 }
 
@@ -26,13 +26,11 @@ export function useDrawingPlayQuery({
   const query = useQuery<DrawingPlay, CustomError>({
     queryKey: ["drawingInfo"],
     queryFn: getDrawingInfo,
-    // retry: 0,
-    // refetchOnWindowFocus: false,
-    // // onError: (err) => {
-    // //   console.log(err.status);
-    // //   alert(err.message);
-    // //   // location.href = `${window.location.origin}/drawing`;
-    // // },
+    retry: 0,
+    onError: (err) => {
+      alert(err.message);
+      location.href = `${window.location.origin}/drawing`;
+    },
   });
 
   return query;

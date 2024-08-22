@@ -13,7 +13,7 @@ function MyDrawingScore() {
         내 최고 점수
       </Label>
       <Label $token="Title3Medium" color={theme.Color.TextIcon.strong}>
-        {eventUserData?.gameScore}점
+        {eventUserData?.gameScore.toFixed(1) || "-  "}점
       </Label>
     </MyScore>
   );

@@ -1,13 +1,13 @@
 import { Wrapper } from "../../../../core/design_system";
 
-import { drivingData } from "../../models/NewCarCarouselItem";
+import { hybridDatas } from "../../models";
 
 import NewCarCarousel from "../NewCarCarousel";
 
 function DrivingCarousel() {
   return (
     <Wrapper $padding="80px 0">
-      <NewCarCarousel item={drivingData} />
+      <NewCarCarousel datas={hybridDatas} />
     </Wrapper>
   );
 }

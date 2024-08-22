@@ -1,27 +1,13 @@
-import { useState, useEffect } from "react";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
-const SubmitProgress = ({ limitTime }) => {
-  const [progress, setProgress] = useState(0);
-  const [isMounted, setIsMounted] = useState(true);
+import { useSubmitProgress } from "../../hooks/useSubmitProgress";
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setProgress((prevProgress) => {
-        if (prevProgress >= 100) {
-          setIsMounted(false);
-          setTimeout(() => {
-            setProgress(0);
-            setIsMounted(true);
-          }, 100);
-          return prevProgress;
-        }
-        return prevProgress + 100 / limitTime;
-      });
-    }, 1000); // 1초마다 업데이트
+interface SubmitProgressProps {
+  limitTime: number;
+}
 
-    return () => clearInterval(interval);
-  }, [limitTime]);
+const SubmitProgress = ({ limitTime }: SubmitProgressProps) => {
+  const { progress, isMounted } = useSubmitProgress(limitTime);
 
   return (
     <SubmitProgressContainer>
@@ -45,10 +31,8 @@ const SubmitProgressContainer = styled.div`
   overflow: hidden;
 `;
 
-const SubmitProgressFill = styled.div`
+const SubmitProgressFill = styled.div<{ progress: number }>`
   height: 100%;
   background-color: #002c5f;
-  ${({ progress }) => css`
-    transition: width 1s linear;
-  `}
+  transition: width 1s linear;
 `;

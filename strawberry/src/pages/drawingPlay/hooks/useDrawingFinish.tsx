@@ -4,24 +4,27 @@ import { useGlobalDispatch } from "../../../core/hooks/useGlobalDispatch";
 
 import { useDrawingSharedQuery } from "../../../data/queries/drawing/useDrawingSharedQuery";
 import { useDrawingFinishQuery } from "../../../data/queries/drawing/useDrawingFinishQuery";
+import { useParams } from "react-router-dom";
 
 function useDrawingFinish() {
+  const { subEventId } = useParams();
   const globalDispatch = useGlobalDispatch();
   const { data: drawingFinish } = useDrawingFinishQuery({
-    subEventId: 4,
+    subEventId: subEventId,
   });
   const {
     data: sharedData,
     refetch: getSharedData,
     isStale,
   } = useDrawingSharedQuery({
-    // 컨텍스트 값으로 대체
-    subEventId: 4,
+    subEventId: subEventId,
   });
 
   useEffect(() => {
     if (sharedData?.sharedUrl && !isStale) {
-      navigator.clipboard.writeText(sharedData.sharedUrl);
+      navigator.clipboard.writeText(
+        `https://front.softeer1.site/shared/${sharedData.sharedUrl}`,
+      );
       globalDispatch({
         type: "CLOSE_TOAST",
       });
@@ -48,6 +51,8 @@ function useDrawingFinish() {
     finalScore: drawingFinish?.totalScore ?? 0,
     highestScore: drawingFinish?.maxScore ?? 0,
     chance: drawingFinish?.chance ?? 0,
+    expectationChance: drawingFinish?.expectationBonusChance ?? 0,
+    shareChance: drawingFinish?.shareBonusChance ?? 0,
     handleSharedClick,
     handleRetryClick,
   };

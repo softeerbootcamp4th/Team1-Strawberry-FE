@@ -2,6 +2,7 @@ import React, { useRef, useEffect, useState } from "react";
 import styled from "styled-components";
 
 import { useGlobalState } from "../../../../core/hooks/useGlobalState";
+
 import { useQuizPlayState } from "../../hooks/useQuizPlayState";
 import { useQuizPlayDispatch } from "../../hooks/useQuizPlayDispatch";
 
@@ -16,6 +17,7 @@ const CardInput = (props: CardInputProps) => {
 
   const inputRef = useRef<HTMLInputElement>(null);
   const [highlightedIndex, setHighlightedIndex] = useState<number | null>(null);
+  const [isFocused, setIsFocused] = useState<boolean>(false);
 
   const { isModalOpen } = useGlobalState();
   const { answer: content } = useQuizPlayState();
@@ -39,7 +41,8 @@ const CardInput = (props: CardInputProps) => {
     const value = event.target.value;
 
     if (value.length <= length) {
-      dispatch({ type: "SET_ANSWER", payload: value });
+      dispatch?.({ type: "SET_ANSWER", payload: value });
+      dispatch?.({ type: "SET_SUBMITTED", payload: false });
 
       if (value.length > content.length) {
         setHighlightedIndex(value.length - 1);
@@ -81,10 +84,15 @@ const CardInput = (props: CardInputProps) => {
         onChange={handleChange}
         onKeyDown={handleKeyDown}
         maxLength={length}
+        onFocus={() => setIsFocused(true)}
+        onBlur={() => setIsFocused(false)}
       />
       <VisibleContent>
         {Array.from({ length }).map((_, index) => (
-          <CharacterBox key={index} isHighlighted={index === highlightedIndex}>
+          <CharacterBox
+            key={index}
+            isHighlighted={isFocused && index === highlightedIndex}
+          >
             <Character isFilled={Boolean(content[index])}>
               {content[index] || placeholder[index]}
             </Character>

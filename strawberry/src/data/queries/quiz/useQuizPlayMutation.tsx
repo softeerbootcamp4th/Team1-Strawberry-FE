@@ -29,6 +29,7 @@ export function useQuizPlayMutation() {
           isCorrect: data?.isCorrect,
           isWinner: data?.isWinner,
           prizeImgUrl: data?.prizeImgUrl,
+          isParticipant: data?.isParticipant,
         });
       }
     },

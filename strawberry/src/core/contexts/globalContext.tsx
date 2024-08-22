@@ -12,7 +12,7 @@ export type UserData = {
   name: string;
 };
 
-type ModalCategoryType = "TWO_BUTTON" | "ONE_BUTTON" | null;
+type ModalCategoryType = "TWO_BUTTON" | "ONE_BUTTON" | "PROGRESS" | null;
 
 type ModalPropsType = {
   title?: string;

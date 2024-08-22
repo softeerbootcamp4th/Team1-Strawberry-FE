@@ -18,6 +18,8 @@ import LoginPage from "../pages/login/LoginPage";
 import LoginRedirectedPage from "../pages/login/LoginRedirectPage";
 import NewCarPageWrapper from "../pages/newCar/components/NewCarPageWrapper";
 
+import NotFound from "../pages/error/NotFound";
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -84,7 +86,7 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "drawing/play",
+        path: "drawing/play/:subEventId",
         element: (
           <>
             <DrawingPlayWrapper />
@@ -104,6 +106,14 @@ const router = createBrowserRouter([
   {
     path: "shared/:sharedCode",
     element: <SharedRedirectedPage />,
+  },
+  {
+    path: "*",
+    element: (
+      <HeaderLayout>
+        <NotFound />
+      </HeaderLayout>
+    ),
   },
 ]);
 

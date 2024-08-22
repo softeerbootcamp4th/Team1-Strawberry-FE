@@ -22,7 +22,11 @@ function useLengthValidation({
     setContent(event.target.value);
   }
 
-  return { content, handleChange };
+  function resetContent() {
+    setContent("");
+  }
+
+  return { content, handleChange, resetContent };
 }
 
 export default useLengthValidation;

@@ -5,7 +5,7 @@ import network from "../../config/network";
 import { DrawingFinish } from "../../entities/DrawingFinish";
 
 interface UseDrawingFinishQueryProps {
-  subEventId: number;
+  subEventId: string | undefined;
 }
 
 export function useDrawingFinishQuery({
@@ -20,7 +20,7 @@ export function useDrawingFinishQuery({
   };
 
   const query = useQuery<DrawingFinish, Error>({
-    queryKey: ["drawingInfo"],
+    queryKey: ["drawingFinish"],
     queryFn: getDrawingFinish,
   });
 

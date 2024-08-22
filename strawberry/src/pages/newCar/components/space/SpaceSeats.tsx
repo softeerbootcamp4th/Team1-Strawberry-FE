@@ -1,20 +1,35 @@
-import { useState } from "react";
+import styled from "styled-components";
 
 import { Wrapper, ImageEnum } from "../../../../core/design_system";
 
-type seatsType = 5 | 6 | 7;
+import { SpaceType } from "../../models";
 
-import styled from "styled-components";
-import FoundationButton from "../FoundationButton";
+import { useNewCarDispatch } from "../../hooks/useNewCarDispatch";
+import { useNewCarState } from "../../hooks/useNewCarState";
+
+import FoundationRadioButtons from "../FoundationRadioButton";
 
 function SpaceSeats() {
-  const [seats, setSeats] = useState<seatsType>(5);
+  const state = useNewCarState();
+  const dispatch = useNewCarDispatch();
+
+  const buttons = [
+    { title: "5인승", value: "5" as SpaceType },
+    { title: "6인승", value: "6" as SpaceType },
+    { title: "7인승", value: "7" as SpaceType },
+  ];
 
   const imgs = {
-    5: ImageEnum.IMAGES.NEWCAR.SPACE_5,
-    6: ImageEnum.IMAGES.NEWCAR.SPACE_6,
-    7: ImageEnum.IMAGES.NEWCAR.SPACE_7,
+    "5": ImageEnum.IMAGES.NEWCAR.SPACE_5,
+    "6": ImageEnum.IMAGES.NEWCAR.SPACE_6,
+    "7": ImageEnum.IMAGES.NEWCAR.SPACE_7,
   };
+
+  const actionCreator = (value: SpaceType) => {
+    dispatch?.({ type: "SET_SPACE_TYPE", newType: value });
+  };
+
+  const selector = state.spaceType;
 
   return (
     <>
@@ -25,24 +40,14 @@ function SpaceSeats() {
           $justifycontent="flex-end"
           $margin="0 0 24px 0"
         >
-          <FoundationButton
-            variant="SOLID"
-            // onClick={() => setSeats(5)}
-            title="5인승"
-          />
-          <FoundationButton
-            variant="OUTLINE"
-            // onClick={() => setSeats(6)}
-            title="6인승"
-          />
-          <FoundationButton
-            variant="OUTLINE"
-            // onClick={() => setSeats(7)}
-            title="7인승"
+          <FoundationRadioButtons<SpaceType>
+            buttons={buttons}
+            actionCreator={actionCreator}
+            selector={selector}
           />
         </Wrapper>
         <Wrapper>
-          <img src={imgs[seats]} alt="img" width="100%" />
+          <img src={imgs[state.spaceType]} alt="img" width="100%" />
         </Wrapper>
       </NewCarSeatsWrapper>
     </>

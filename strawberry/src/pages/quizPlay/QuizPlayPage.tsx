@@ -1,8 +1,11 @@
 import { EventButton, Label, Wrapper, theme } from "../../core/design_system";
-import CardInput from "./components/quizInput/CardInput";
-import QuizBoard from "./components/quizBoard/QuizBoard";
+import { checkOnlyBlank } from "../../core/utils";
+
 import useQuizPlayData from "./hooks/useQuizPlayData";
 import useQuizPlayPage from "./hooks/logics/useQuizPlayPage";
+
+import CardInput from "./components/quizInput/CardInput";
+import QuizBoard from "./components/quizBoard/QuizBoard";
 
 function QuizPlayPage() {
   useQuizPlayData();
@@ -15,9 +18,14 @@ function QuizPlayPage() {
     answer,
     subEventId,
     postQuiz,
+    showBlankModal,
   } = useQuizPlayPage();
 
   function handleSubmit() {
+    if (checkOnlyBlank(answer)) {
+      showBlankModal();
+      return;
+    }
     if (subEventId) {
       postQuiz({ body: { answer: answer, subEventId: subEventId } });
     }

@@ -8,4 +8,5 @@ export interface DrawingLanding {
   eventImgUrls: EventImageUrl;
   startAt: string;
   endAt: string;
+  subEventId: number;
 }

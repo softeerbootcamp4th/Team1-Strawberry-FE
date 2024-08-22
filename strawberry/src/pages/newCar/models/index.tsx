@@ -13,8 +13,8 @@ import { Part } from "./Part";
 import { NewCarAction } from "./NewCarAction";
 import {
   NewCarCarouselItem,
-  drivingData,
-  spaceDatas,
+  technologyDatas,
+  hybridDatas,
 } from "./NewCarCarouselItem";
 import { NewCarState } from "./NewCarState";
 import {
@@ -54,3 +54,4 @@ export {
   detailRearData,
   exteriorCalligraphyColors,
 };
+export { technologyDatas, hybridDatas };

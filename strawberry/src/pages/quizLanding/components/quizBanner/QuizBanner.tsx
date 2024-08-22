@@ -1,23 +1,13 @@
 import styled from "styled-components";
-import { useNavigate } from "react-router-dom";
 
 import { Wrapper, EventButton } from "../../../../core/design_system";
-import { useCheckLogin } from "../../../../core/hooks/useCheckLogin";
 
-import { useQuizLandingState } from "../../hooks";
+import { useQuizBanner } from "../../hooks";
 
 import QuizBannerTimer from "./QuizBannerTimer";
 
 function QuizBanner() {
-  const navigate = useNavigate();
-  const checkLogin = useCheckLogin();
-  const { quizLandingData: data } = useQuizLandingState();
-
-  const handleEventClick = () => {
-    checkLogin(() => {
-      navigate(`/quiz/play/${data?.subEventId}`);
-    });
-  };
+  const { data, handleEventClick, isOpened, setIsOpened } = useQuizBanner();
 
   return (
     <Wrapper $position="relative" height="calc(100vh - 70px)">
@@ -31,12 +21,16 @@ function QuizBanner() {
         >
           <EventButton
             type="QUIZ"
-            status="DEFAULT"
-            content="이벤트 참여하기"
+            status={
+              !data?.valid ? "EVENT_END" : isOpened ? "DEFAULT" : "DISABLED"
+            }
+            content={
+              data?.valid ? "이벤트 참여하기" : "이벤트가 종료되었습니다."
+            }
             onClick={handleEventClick}
           ></EventButton>
         </Wrapper>
-        <QuizBannerTimer></QuizBannerTimer>
+        <QuizBannerTimer setIsOpened={setIsOpened} />
       </Wrapper>
     </Wrapper>
   );
