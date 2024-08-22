@@ -1,13 +1,14 @@
-import { useEffect } from "react";
+import { useMemo } from "react";
+import { useParams } from "react-router-dom";
 
+import { checkOnlyBlank } from "../../../../core/utils/checkOnlyBlank";
 import { useGlobalDispatch } from "../../../../core/hooks/useGlobalDispatch";
+import { throttle } from "../../../../core/utils";
 
 import { useQuizPlayMutation } from "../../../../data/queries/quiz/useQuizPlayMutation";
 
 import { useQuizPlayState } from "../useQuizPlayState";
 import { useQuizPlayDispatch } from "../useQuizPlayDispatch";
-import { checkOnlyBlank } from "../../../../core/utils/checkOnlyBlank";
-import { useParams } from "react-router-dom";
 
 function useQuizPlayPage() {
   const { token } = useParams();
@@ -50,6 +51,10 @@ function useQuizPlayPage() {
     }
   }
 
+  const throttledHandleSubmit = useMemo(() => {
+    return throttle()(handleSubmit);
+  }, [answer]);
+
   return {
     description,
     question,
@@ -58,7 +63,7 @@ function useQuizPlayPage() {
     hint,
     answer,
     isSubmitted,
-    handleSubmit,
+    handleSubmit: throttledHandleSubmit,
   };
 }
 
