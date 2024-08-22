@@ -38,8 +38,12 @@ function useQuizPlayPage() {
   } = useQuizPlayState();
 
   function handleSubmit() {
+    quizPlayDispatch?.({ type: "SET_SUBMITTED", payload: true });
+    if (checkOnlyBlank(answer)) {
+      showBlankModal();
+      return;
+    }
     if (subEventId && !isSubmitted) {
-      quizPlayDispatch?.({ type: "SET_SUBMITTED", payload: true });
       postQuiz({
         body: { answer: answer, subEventId: subEventId, token: token ?? "" },
       });
@@ -53,14 +57,8 @@ function useQuizPlayPage() {
     placeholder,
     hint,
     answer,
-    subEventId,
-    postQuiz,
-    handleSubmit,
     isSubmitted,
-    showBlankModal,
     handleSubmit,
-    isSubmitted,
-    token,
   };
 }
 
