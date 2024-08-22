@@ -16,6 +16,8 @@ function QuizPlayPage() {
     placeholder,
     hint,
     answer,
+    handleSubmit,
+    isSubmitted,
     subEventId,
     postQuiz,
     showBlankModal,
@@ -74,7 +76,9 @@ function QuizPlayPage() {
         <EventButton
           type="QUIZ"
           status={
-            answer?.length === placeholder?.length ? "DEFAULT" : "DISABLED"
+            !isSubmitted && answer?.length === placeholder?.length
+              ? "DEFAULT"
+              : "DISABLED"
           }
           content="답변 제출하기"
           onClick={handleSubmit}

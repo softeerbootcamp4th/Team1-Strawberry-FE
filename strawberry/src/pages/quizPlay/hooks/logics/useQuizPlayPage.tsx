@@ -55,6 +55,8 @@ function useQuizPlayPage() {
     answer,
     subEventId,
     postQuiz,
+    handleSubmit,
+    isSubmitted,
     showBlankModal,
     handleSubmit,
     isSubmitted,
