@@ -15,7 +15,7 @@ export function useQuizWaitingQuery({
   token,
 }: UseQuizWaitingQueryProps) {
   const getQuizWaiting = async () => {
-    return network.get<QuizWaitingRemaining>("firstcome/waiting", {
+    return network.get<QuizWaitingRemaining>("firstcome/quiz/waiting", {
       queryParams: {
         token: token,
         subEventId: subEventId,
@@ -25,8 +25,12 @@ export function useQuizWaitingQuery({
 
   const query = useQuery<QuizWaitingRemaining, CustomError>({
     queryKey: ["quizWaiting"],
-    queryFn: getQuizWaiting,
-    staleTime: 1000,
+    queryFn: async () => {
+      const t = await getQuizWaiting();
+      console.log(t);
+      return t;
+    },
+    refetchInterval: 500,
     enabled: !!subEventId && !!token,
   });
 

@@ -14,7 +14,7 @@ export function useQuizPlayMutation() {
   }: {
     body: UseQuizWaitingMutationBodyType;
   }) => {
-    return await network.post<QuizWaiting>("firstcome/waiting", body);
+    return await network.post<QuizWaiting>("firstcome/quiz/waiting", body);
   };
 
   const mutation = useMutation({
