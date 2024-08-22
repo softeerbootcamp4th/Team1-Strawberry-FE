@@ -2,8 +2,6 @@ import DefaultButton from "../../../core/design_system/styles/DefaultButton";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
-// 하단 요소 버튼에 리액트 라우터 적용 후 Link 태그 추가
-
 function HeaderMenuButtons() {
   return (
     <Ul>
@@ -18,9 +16,9 @@ function HeaderMenuButtons() {
         </Link>
       </li>
       <li>
-        <Link to="/quiz">
+        <button onClick={() => (location.href = "/quiz")}>
           <MenuButton>초성 퀴즈 이벤트</MenuButton>
-        </Link>
+        </button>
       </li>
       <li>
         <Link to="/drawing">
