@@ -7,7 +7,6 @@ import {
 } from "../../../../core/design_system";
 
 import { useDrawingResult } from "../../hooks/useDrawingResult";
-
 import DrawingStep from "../DrawingStep";
 import DrawingScore from "../DrawingScore";
 import ImageResult from "./ImageResult";
@@ -38,10 +37,10 @@ function DrawingResult() {
           {title}
         </Label>
         <Wrapper $margin="16px 0 0 0" display="flex" $justifycontent="center">
-          <CanvasContainer>
-            <StyledImage src={imgPath} alt="Car" />
+          <CanvasContainer id="canvas-container">
+            <StyledImage src={imgPath} alt="Car" crossOrigin="anonymous" />
             <ImageResult />
-            <ScoreWrapper>
+            <ScoreWrapper id="score-wrapper">
               <DrawingScore score={Number(score.toFixed(1))} />
             </ScoreWrapper>
           </CanvasContainer>
@@ -76,6 +75,7 @@ function DrawingResult() {
     </>
   );
 }
+
 export default DrawingResult;
 
 const ScoreWrapper = styled.div`
@@ -90,7 +90,7 @@ const DescriptionWrapper = styled.div`
   height: 100px;
   background-color: ${({ theme }) => theme.Color.Ivory.ivory400};
   border: ${({ theme }) => `1px solid ${theme.Color.Ivory.ivory600}`};
-  border-radius: 10;
+  border-radius: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
