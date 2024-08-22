@@ -7,16 +7,6 @@ export function useSubmitProgress(total: number, remaining: number) {
   useEffect(() => {
     const calculatedProgress = ((total - remaining) / total) * 100;
     setProgress(calculatedProgress);
-
-    if (remaining <= 0) {
-      setIsMounted(false);
-      setTimeout(() => {
-        setProgress(0);
-        setIsMounted(true);
-      }, 100);
-    } else {
-      setIsMounted(true);
-    }
   }, [total, remaining]);
 
   return { progress, isMounted };
