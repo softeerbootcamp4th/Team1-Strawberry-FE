@@ -3,8 +3,11 @@ import styled from "styled-components";
 
 import { Wrapper, ImageEnum } from "../../../../core/design_system";
 
+type CarouselType = "GUIDE" | "DESIGN";
+
 interface CarouselProps {
   children: React.ReactNode;
+  type: CarouselType;
   curr: number;
   onSlideChange: (index: number) => void;
 }
@@ -18,11 +21,13 @@ interface SlidesWrapperProps {
 }
 
 interface IndicatorProps {
+  type: CarouselType;
   active: boolean;
   onClick: () => void;
 }
 
-export function Carousel({ children, curr, onSlideChange }: CarouselProps) {
+export function Carousel(props: CarouselProps) {
+  const { children, type, curr, onSlideChange } = props;
   const totalSlides = React.Children.count(children);
 
   const prev = () => onSlideChange(curr === 0 ? curr : curr - 1);
@@ -36,22 +41,46 @@ export function Carousel({ children, curr, onSlideChange }: CarouselProps) {
             <Slide key={index}>{child}</Slide>
           ))}
         </SlidesWrapper>
-        <LeftControlButton onClick={prev} disabled={curr === 0}>
-          <img src={ImageEnum.ICONS.CHEVRON_PREV} width={40} />
-        </LeftControlButton>
-        <RightControlButton onClick={next} disabled={curr === totalSlides - 1}>
-          <img src={ImageEnum.ICONS.CHEVRON_NEXT} width={40} />
-        </RightControlButton>
+        {totalSlides > 1 && (
+          <>
+            <LeftControlButton onClick={prev} disabled={curr === 0}>
+              <img
+                src={
+                  type === "GUIDE"
+                    ? ImageEnum.ICONS.CHEVRON_PREV
+                    : ImageEnum.ICONS.ARROW_BACKWARD_IOS
+                }
+                width={40}
+              />
+            </LeftControlButton>
+            <RightControlButton
+              onClick={next}
+              disabled={curr === totalSlides - 1}
+            >
+              <img
+                src={
+                  type === "GUIDE"
+                    ? ImageEnum.ICONS.CHEVRON_NEXT
+                    : ImageEnum.ICONS.ARROW_FORWARD_IOS
+                }
+                width={40}
+              />
+            </RightControlButton>
+          </>
+        )}
       </CarouselContainer>
-      <Indicators>
-        {Array.from({ length: totalSlides }).map((_, i) => (
-          <Indicator
-            key={i}
-            active={curr === i}
-            onClick={() => onSlideChange(i)}
-          />
-        ))}
-      </Indicators>
+      {totalSlides > 1 && (
+        <Indicators>
+          {Array.from({ length: totalSlides }).map((_, i) => (
+            <Indicator
+              key={i}
+              type={type}
+              active={curr === i}
+              onClick={() => onSlideChange(i)}
+            />
+          ))}
+        </Indicators>
+      )}
     </Wrapper>
   );
 }
