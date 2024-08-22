@@ -7,7 +7,7 @@ import { useQuizBanner } from "../../hooks";
 import QuizBannerTimer from "./QuizBannerTimer";
 
 function QuizBanner() {
-  const { data, handleEventClick } = useQuizBanner();
+  const { data, handleEventClick, isOpened, setIsOpened } = useQuizBanner();
 
   return (
     <Wrapper $position="relative" height="calc(100vh - 70px)">
@@ -21,14 +21,16 @@ function QuizBanner() {
         >
           <EventButton
             type="QUIZ"
-            status={data?.valid ? "DEFAULT" : "EVENT_END"}
+            status={
+              !data?.valid ? "EVENT_END" : isOpened ? "DEFAULT" : "DISABLED"
+            }
             content={
               data?.valid ? "이벤트 참여하기" : "이벤트가 종료되었습니다."
             }
             onClick={handleEventClick}
           ></EventButton>
         </Wrapper>
-        <QuizBannerTimer></QuizBannerTimer>
+        <QuizBannerTimer setIsOpened={setIsOpened} />
       </Wrapper>
     </Wrapper>
   );

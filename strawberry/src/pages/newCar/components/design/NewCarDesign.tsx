@@ -1,6 +1,6 @@
 import { Wrapper } from "../../../../core/design_system";
-import DesignBanner from "./DesignBanner";
 
+import DesignBanner from "./DesignBanner";
 import NewCarExterior from "./NewCarExterior";
 import NewCarInterior from "./NewCarInterior";
 

@@ -109,5 +109,7 @@ export const useQuizBanner = () => {
   return {
     data: quizLandingData,
     handleEventClick,
+    isOpened,
+    setIsOpened,
   };
 };
