@@ -4,12 +4,14 @@ import { NewCarState, NewCarAction } from "../models";
 
 const initialState: NewCarState = {
   exteriorType: "FRONT",
-  isExteriorDetailOpen: true,
+  exteriorDetailIndex: undefined,
+  exterionDetailCarouselIndex: 0,
   exteriorCalligraphyType: "NORMAL",
-  exteriorCalligraphyColor: "brown",
-  isInteriorDetailOpen: true,
-  interiorCalligraphyType: "CALLIGRAPHY",
-  interiorCallligraphyColor: "black",
+  exteriorCalligraphyColor: "BROWN",
+  interiorDetailIndex: undefined,
+  interiorDetailCarouselIndex: 0,
+  interiorCalligraphyType: "NORMAL",
+  interiorCalligraphyColor: "BLACK",
   spaceType: "5",
   galleryType: "EXTERIOR",
 };
@@ -28,36 +30,62 @@ function newCarReducer(state: NewCarState, action: NewCarAction): NewCarState {
       return {
         ...state,
         exteriorType: action.newType,
+        exteriorDetailIndex: 0,
       };
-    case "SET_EXTERIOR_DETAIL_OPEN":
+    case "SET_EXTERIOR_DETAIL_INDEX":
       return {
         ...state,
-        isExteriorDetailOpen: action.isOpen,
+        exteriorDetailIndex: action.index,
+        exterionDetailCarouselIndex: 0,
       };
+    case "SET_EXTERIOR_DETAIL_CAROUSEL_INDEX":
+      return { ...state, exterionDetailCarouselIndex: action.index };
     case "SET_EXTERIOR_CALLIGRAPHY_TYPE":
       return {
         ...state,
         exteriorCalligraphyType: action.newType,
+        exteriorCalligraphyColor:
+          action.newType === "NORMAL" ? "BROWN" : "WHITEPEARL",
       };
     case "SET_EXTERIOR_CALLIGRAPHY_COLOR":
       return {
         ...state,
         exteriorCalligraphyColor: action.color,
       };
-    case "SET_INTERIOR_DETAIL_OPEN":
+    case "SET_INTERIOR_DETAIL_INDEX":
       return {
         ...state,
-        isInteriorDetailOpen: action.isOpen,
+        interiorDetailIndex: action.index,
+        interiorDetailCarouselIndex: 0,
       };
-    case "SET_INTERIOR_CALLIGRAPHY_TYPE":
+    case "SET_INTERIOR_DETAIL_CAROUSEL_INDEX":
+      return { ...state, interiorDetailCarouselIndex: action.index };
+    case "SET_INTERIOR_CALLIGRAPHY_TYPE": {
+      let defaultColor: string;
+      switch (action.newType) {
+        case "NORMAL":
+          defaultColor = "BLACK";
+          break;
+        case "PRESTIGE":
+          defaultColor = "FAKEBLACK";
+          break;
+        case "EXCLUSIVE":
+          defaultColor = "FAKEBLACK";
+          break;
+        default:
+          throw Error("CANNOT FIND INTERIOR TYPE");
+      }
+
       return {
         ...state,
         interiorCalligraphyType: action.newType,
+        interiorCalligraphyColor: defaultColor,
       };
+    }
     case "SET_INTERIOR_CALLIGRAPHY_COLOR":
       return {
         ...state,
-        interiorCallligraphyColor: action.color,
+        interiorCalligraphyColor: action.color,
       };
     case "SET_SPACE_TYPE":
       return {
@@ -73,14 +101,15 @@ function newCarReducer(state: NewCarState, action: NewCarAction): NewCarState {
       return state;
   }
 }
+
 export function NewCarContextProvider({ children }: { children: ReactNode }) {
   const [state, dispatch] = useReducer(newCarReducer, initialState);
 
   return (
-    <NewCarDispatchContext.Provider value={dispatch}>
-      <NewCarStateContext.Provider value={state}>
+    <NewCarStateContext.Provider value={state}>
+      <NewCarDispatchContext.Provider value={dispatch}>
         {children}
-      </NewCarStateContext.Provider>
-    </NewCarDispatchContext.Provider>
+      </NewCarDispatchContext.Provider>
+    </NewCarStateContext.Provider>
   );
 }

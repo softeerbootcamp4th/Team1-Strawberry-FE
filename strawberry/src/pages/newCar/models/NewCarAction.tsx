@@ -12,8 +12,12 @@ export type NewCarAction =
       newType: ExteriorType;
     }
   | {
-      type: "SET_EXTERIOR_DETAIL_OPEN";
-      isOpen: boolean;
+      type: "SET_EXTERIOR_DETAIL_INDEX";
+      index: number | undefined;
+    }
+  | {
+      type: "SET_EXTERIOR_DETAIL_CAROUSEL_INDEX";
+      index: number;
     }
   | {
       type: "SET_EXTERIOR_CALLIGRAPHY_TYPE";
@@ -24,8 +28,12 @@ export type NewCarAction =
       color: string;
     }
   | {
-      type: "SET_INTERIOR_DETAIL_OPEN";
-      isOpen: boolean;
+      type: "SET_INTERIOR_DETAIL_INDEX";
+      index: number | undefined;
+    }
+  | {
+      type: "SET_INTERIOR_DETAIL_CAROUSEL_INDEX";
+      index: number;
     }
   | {
       type: "SET_INTERIOR_CALLIGRAPHY_TYPE";
