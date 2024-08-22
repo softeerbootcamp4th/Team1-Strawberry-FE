@@ -17,6 +17,7 @@ function convertSeconds(totalSeconds: number) {
     hours,
     minutes,
     seconds,
+    totalSeconds,
   };
 }
 

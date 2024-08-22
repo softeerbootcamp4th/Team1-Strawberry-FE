@@ -5,12 +5,25 @@ import { theme, Wrapper } from "../../../../core/design_system";
 import { useTimeConversion, useQuizLandingState } from "../../hooks";
 
 import TimerSection from "./TimerSection";
+import { useEffect } from "react";
 
-function QuizBannerTimer() {
+interface QuizBannerTimerProps {
+  setIsOpened: (bool: boolean) => void;
+}
+
+function QuizBannerTimer({ setIsOpened }: QuizBannerTimerProps) {
   const { quizLandingData } = useQuizLandingState();
   const remainSecond = quizLandingData?.remainSecond;
 
   const time = useTimeConversion(remainSecond || 0);
+
+  useEffect(() => {
+    if (time.totalSeconds === 0) {
+      setIsOpened(true);
+    } else {
+      setIsOpened(false);
+    }
+  }, [time.totalSeconds]);
 
   return (
     <Wrapper
