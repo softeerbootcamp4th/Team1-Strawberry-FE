@@ -6,7 +6,7 @@ import { CustomError } from "../../config/customError";
 import { QuizWaitingRemaining } from "../../entities/QuizWaitingRemaining";
 
 interface UseQuizWaitingQueryProps {
-  subEventId: string | undefined;
+  subEventId: number | undefined;
   token: string | undefined;
 }
 
@@ -26,6 +26,8 @@ export function useQuizWaitingQuery({
   const query = useQuery<QuizWaitingRemaining, CustomError>({
     queryKey: ["quizWaiting"],
     queryFn: getQuizWaiting,
+    staleTime: 1000,
+    enabled: !!subEventId && !!token,
   });
 
   return query;
