@@ -7,6 +7,8 @@ import ProtectedRoute from "./ProtectedRoute";
 import DefaultLayout from "../layout/DefaultLayout";
 import HeaderLayout from "../layout/HeaderLayout";
 
+import LoginRedirectedPage from "../pages/login/LoginRedirectPage";
+
 // Dynamically import pages
 const QuizPlayWrapper = React.lazy(
   () => import("../pages/quizPlay/QuizPlayWrapper"),
@@ -28,9 +30,9 @@ const SharedRedirectedPage = React.lazy(
 );
 const LandingPage = React.lazy(() => import("../pages/landing/LandingPage"));
 const LoginPage = React.lazy(() => import("../pages/login/LoginPage"));
-const LoginRedirectedPage = React.lazy(
-  () => import("../pages/login/LoginRedirectPage"),
-);
+// const LoginRedirectedPage = React.lazy(
+//   () => import("../pages/login/LoginRedirectPage"),
+// );
 const NewCarPageWrapper = React.lazy(
   () => import("../pages/newCar/NewCarPageWrapper"),
 );
