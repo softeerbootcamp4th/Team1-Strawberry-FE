@@ -11,10 +11,10 @@ export function useDrawingBadges(eventUserData: EventUserInfo | undefined) {
     const blueBadgeShareDescription = "게임 최초 공유 시\n1개가 주어져요!";
 
     const isAcquiredExpectationBonus: boolean =
-      (eventUserData?.expectationBonusChance ?? -1) > 0;
+      (eventUserData?.expectationBonusChance ?? -1) >= 0;
 
     const isAcquiredShareBonus: boolean =
-      (eventUserData?.shareBonusChance ?? -1) > 0;
+      (eventUserData?.shareBonusChance ?? -1) >= 0;
 
     return {
       greenBadgeDescription,
