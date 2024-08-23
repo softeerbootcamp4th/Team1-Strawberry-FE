@@ -43,8 +43,6 @@ export type {
 };
 
 export {
-  drivingData,
-  spaceDatas,
   designTitles,
   detailFrontCoordinates,
   detailFrontData,

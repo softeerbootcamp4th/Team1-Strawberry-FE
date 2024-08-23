@@ -32,7 +32,7 @@ function SpaceSeats() {
   const selector = state.spaceType;
 
   return (
-    <>
+    <section>
       <NewCarSeatsWrapper>
         <Wrapper
           width="100%"
@@ -47,10 +47,15 @@ function SpaceSeats() {
           />
         </Wrapper>
         <Wrapper>
-          <img src={imgs[state.spaceType]} alt="img" width="100%" />
+          <img
+            loading="lazy"
+            src={imgs[state.spaceType]}
+            alt="img"
+            width="100%"
+          />
         </Wrapper>
       </NewCarSeatsWrapper>
-    </>
+    </section>
   );
 }
 

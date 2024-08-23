@@ -1,22 +1,30 @@
-import styled from "styled-components";
-
+import React from "react";
+import styled, { keyframes } from "styled-components";
 import {
   ImageEnum,
   Label,
   theme,
   Wrapper,
 } from "../../../../core/design_system";
-
 import Carousel from "../../../common/components/carousel/Carousel";
-
 import { DesignDetail, DesignType } from "../../models";
-
 import { useDesignDetailCarousel } from "../../hooks/useDesignDetailCarousel";
-
 import {
   getDesignDetailTitle,
   getDesignDetailSubtitle,
 } from "../../services/designDetailCarouselService";
+
+// Define the flip-in-ver-left animation
+const flipInVerLeft = keyframes`
+  0% {
+    transform: rotateY(80deg);
+    opacity: 0;
+  }
+  100% {
+    transform: rotateY(0);
+    opacity: 1;
+  }
+`;
 
 interface DesignDetailCarouselProps {
   designType: DesignType;
@@ -34,7 +42,7 @@ function DesignDetailCarousel({
     <DetailCarouselWrapper>
       <Wrapper display="flex" $justifycontent="right" height="32px">
         <button onClick={handleClose}>
-          <img src={ImageEnum.ICONS.CLOSE} />
+          <img loading="lazy" src={ImageEnum.ICONS.CLOSE} />
         </button>
       </Wrapper>
       <Wrapper
@@ -68,6 +76,7 @@ function DesignDetailCarousel({
           {detail.map((item, index) => (
             <CarouselSlide key={index}>
               <img
+                loading="lazy"
                 src={item.imageURL}
                 width="100%"
                 alt={`Design detail ${index + 1}`}
@@ -77,7 +86,7 @@ function DesignDetailCarousel({
         </Carousel>
       </Wrapper>
       <Wrapper height="18px" display="flex" $alignitems="center">
-        <img height="200%" src={ImageEnum.ICONS.DESIGNDETAIL} />
+        <img loading="lazy" height="200%" src={ImageEnum.ICONS.DESIGNDETAIL} />
         <Label $token="CaptionRegular" color={theme.Color.TextIcon.sub}>
           를 누르면 다른 사양을 확인하실 수 있습니다.
         </Label>
@@ -105,6 +114,8 @@ const DetailCarouselWrapper = styled.div`
 
   box-shadow: 0px 4.613px 34.6px 0px rgba(97, 129, 177, 0.2);
   backdrop-filter: blur(7.5px);
+
+  animation: ${flipInVerLeft} 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 `;
 
 const CarouselSlide = styled.div`

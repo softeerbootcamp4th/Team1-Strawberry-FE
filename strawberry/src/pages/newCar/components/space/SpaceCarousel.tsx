@@ -6,9 +6,11 @@ import NewCarCarousel from "../NewCarCarousel";
 
 function SpaceCarousel() {
   return (
-    <Wrapper $padding="80px 0">
-      <NewCarCarousel datas={technologyDatas} />
-    </Wrapper>
+    <section>
+      <Wrapper $padding="80px 0">
+        <NewCarCarousel datas={technologyDatas} />
+      </Wrapper>
+    </section>
   );
 }
 

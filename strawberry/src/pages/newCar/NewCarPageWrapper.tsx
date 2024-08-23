@@ -1,5 +1,5 @@
-import { NewCarContextProvider } from "../contexts/NewCarContext";
-import NewCarPage from "../NewCarPage";
+import { NewCarContextProvider } from "./contexts/NewCarContext";
+import NewCarPage from "./NewCarPage";
 
 function NewCarPageWrapper() {
   return (
