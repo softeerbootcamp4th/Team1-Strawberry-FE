@@ -4,16 +4,18 @@ import { Link } from "react-router-dom";
 
 function NewCarBottom() {
   return (
-    <NewCarBottomWrapper>
-      <StyledButton
-        as={Link}
-        to="https://www.hyundai.com/kr/ko/e/vehicles/the-all-new-santafe/intro"
-      >
-        <Label $token="Heading2Regular" color={theme.Color.TextIcon.reverse}>
-          디 올 뉴 싼타페 자세히 보기
-        </Label>
-      </StyledButton>
-    </NewCarBottomWrapper>
+    <section>
+      <NewCarBottomWrapper>
+        <StyledButton
+          as={Link}
+          to="https://www.hyundai.com/kr/ko/e/vehicles/the-all-new-santafe/intro"
+        >
+          <Label $token="Heading2Regular" color={theme.Color.TextIcon.reverse}>
+            디 올 뉴 싼타페 자세히 보기
+          </Label>
+        </StyledButton>
+      </NewCarBottomWrapper>
+    </section>
   );
 }
 

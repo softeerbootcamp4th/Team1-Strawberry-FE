@@ -10,6 +10,7 @@ import { getPositionStyle } from "../../services/getPositionStyle";
 
 import DesignDetailCarousel from "./DesignDetailCarousel";
 import FoundationRadioButtons from "../FoundationRadioButton";
+import DesignDetailTitle from "./DesignDetailTitle";
 
 interface DesignDetailProps {
   designType: DesignType;
@@ -29,54 +30,75 @@ function DesignDetail(props: DesignDetailProps) {
   } = useDesignDetailByType(designType);
 
   return (
-    <Wrapper height="fit-content">
+    <section>
       <Wrapper
-        width="fit-content"
-        height="fit-content"
+        width="1440px"
         $margin="0 auto"
-        $padding={designType === "EXTERIOR" ? "24px 0 32px 0" : "0 0 32px 0"}
+        height="fit-content"
+        $padding="80px 0"
       >
-        {buttons && actionCreator && selector && (
-          <FoundationRadioButtons<ExteriorType>
-            buttons={buttons}
-            actionCreator={actionCreator}
-            selector={selector}
-          />
-        )}
-      </Wrapper>
-      <Wrapper $position="relative">
-        <img width="100%" src={backgroundImg} alt="Background" />
-        {detailCoordinates.map((coordinate, index) => {
-          const { x, y } = coordinate;
-          const positionStyle = getPositionStyle(x, y);
-
-          return (
-            <StyledButton
-              key={index}
-              style={positionStyle}
-              onClick={() => handleCoordinatesClick(index)}
-            >
-              <img
-                src={ImageEnum.ICONS.DESIGNDETAIL}
-                alt={`Design detail ${index + 1}`}
+        <DesignDetailTitle designType={designType} />
+        <Wrapper height="fit-content">
+          <Wrapper
+            width="fit-content"
+            height="fit-content"
+            $margin="0 auto"
+            $padding={
+              designType === "EXTERIOR" ? "24px 0 32px 0" : "0 0 32px 0"
+            }
+          >
+            {buttons && actionCreator && selector && (
+              <FoundationRadioButtons<ExteriorType>
+                buttons={buttons}
+                actionCreator={actionCreator}
+                selector={selector}
               />
-            </StyledButton>
-          );
-        })}
-        <Wrapper
-          $position="absolute"
-          $top="0"
-          right="0"
-          width="42%"
-          $padding="21px 16px"
-          $boxsizing="border-box"
-        >
-          {detailData && (
-            <DesignDetailCarousel designType={designType} detail={detailData} />
-          )}
+            )}
+          </Wrapper>
+          <Wrapper $position="relative">
+            <img
+              loading="lazy"
+              width="100%"
+              src={backgroundImg}
+              alt="Background"
+            />
+            {detailCoordinates.map((coordinate, index) => {
+              const { x, y } = coordinate;
+              const positionStyle = getPositionStyle(x, y);
+
+              return (
+                <StyledButton
+                  key={index}
+                  style={positionStyle}
+                  onClick={() => handleCoordinatesClick(index)}
+                >
+                  <img
+                    loading="lazy"
+                    src={ImageEnum.ICONS.DESIGNDETAIL}
+                    alt={`Design detail ${index + 1}`}
+                  />
+                </StyledButton>
+              );
+            })}
+            <Wrapper
+              $position="absolute"
+              $top="0"
+              right="0"
+              width="42%"
+              $padding="21px 16px"
+              $boxsizing="border-box"
+            >
+              {detailData && (
+                <DesignDetailCarousel
+                  designType={designType}
+                  detail={detailData}
+                />
+              )}
+            </Wrapper>
+          </Wrapper>
         </Wrapper>
       </Wrapper>
-    </Wrapper>
+    </section>
   );
 }
 

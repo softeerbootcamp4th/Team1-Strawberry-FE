@@ -42,7 +42,12 @@ function NewCarCarousel(props: NewCarCarouselProps) {
                 display="flex"
                 $flexdirection="column"
               >
-                <img width="100%" src={item.img} alt={`Slide ${index + 1}`} />
+                <img
+                  loading="lazy"
+                  width="100%"
+                  src={item.img}
+                  alt={`Slide ${index + 1}`}
+                />
                 <Label
                   $margin="26px 0 0 0"
                   $token="Title2Medium"
@@ -68,6 +73,7 @@ function NewCarCarousel(props: NewCarCarouselProps) {
         <ButtonWrapper>
           <ArrowButton onClick={handlePrev}>
             <img
+              loading="lazy"
               src={
                 currentIndex === 0
                   ? ImageEnum.ICONS.ARROW_LEFT_DISABLED
@@ -78,6 +84,7 @@ function NewCarCarousel(props: NewCarCarouselProps) {
           </ArrowButton>
           <ArrowButton onClick={handleNext}>
             <img
+              loading="lazy"
               src={
                 currentIndex === length - 1
                   ? ImageEnum.ICONS.ARROW_RIGHT_DISABLED

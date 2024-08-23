@@ -25,7 +25,13 @@ function useNewCarCarousel(length: number) {
     );
   };
 
-  return { currentIndex, translationStep, handlePrev, handleNext };
+  return {
+    currentIndex,
+    translationStep,
+    handlePrev,
+    handleNext,
+    setCurrentIndex,
+  };
 }
 
 export default useNewCarCarousel;

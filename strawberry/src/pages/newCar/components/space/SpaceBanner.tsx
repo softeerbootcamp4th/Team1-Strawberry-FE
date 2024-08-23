@@ -8,21 +8,24 @@ import {
 
 function SpaceBanner() {
   return (
-    <Wrapper $padding="100px 0" height="fit-content" $position="relative">
-      <img
-        src={ImageEnum.IMAGES.NEWCAR.SPACE_BANNER}
-        alt="spaceBanner"
-        width="100%"
-      />
-      <BannerContentWrapper>
-        <Label $token="Display1Medium" color={theme.Color.TextIcon.reverse}>
-          Space
-        </Label>
-        <Label $token="Title2Regular" color={theme.Color.TextIcon.assistive}>
-          일상과 아웃도어를 넘나들며 다양하게 공간을 활용할 수 있습니다.
-        </Label>
-      </BannerContentWrapper>
-    </Wrapper>
+    <section>
+      <Wrapper $padding="100px 0" height="fit-content" $position="relative">
+        <img
+          loading="lazy"
+          src={ImageEnum.IMAGES.NEWCAR.SPACE_BANNER}
+          alt="spaceBanner"
+          width="100%"
+        />
+        <BannerContentWrapper>
+          <Label $token="Display1Medium" color={theme.Color.TextIcon.reverse}>
+            Space
+          </Label>
+          <Label $token="Title2Regular" color={theme.Color.TextIcon.assistive}>
+            일상과 아웃도어를 넘나들며 다양하게 공간을 활용할 수 있습니다.
+          </Label>
+        </BannerContentWrapper>
+      </Wrapper>
+    </section>
   );
 }
 

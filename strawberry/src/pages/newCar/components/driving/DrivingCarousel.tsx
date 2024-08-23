@@ -6,9 +6,11 @@ import NewCarCarousel from "../NewCarCarousel";
 
 function DrivingCarousel() {
   return (
-    <Wrapper $padding="80px 0">
-      <NewCarCarousel datas={hybridDatas} />
-    </Wrapper>
+    <section>
+      <Wrapper $padding="80px 0">
+        <NewCarCarousel datas={hybridDatas} />
+      </Wrapper>
+    </section>
   );
 }
 

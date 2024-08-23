@@ -12,7 +12,7 @@ function NewCarGallery() {
   const { buttons, actionCreator, selector, imgs, state } = useGallery();
 
   return (
-    <>
+    <section>
       <GalleryWrapper>
         <Wrapper width="1440px">
           <Wrapper
@@ -32,10 +32,10 @@ function NewCarGallery() {
               />
             </Wrapper>
           </Wrapper>
-          <img width="100%" src={imgs[state.galleryType]} />
+          <img loading="lazy" width="100%" src={imgs[state.galleryType]} />
         </Wrapper>
       </GalleryWrapper>
-    </>
+    </section>
   );
 }
 
