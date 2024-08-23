@@ -1,31 +1,43 @@
+import React, { useState, useCallback, useRef } from "react";
 import styled from "styled-components";
 
 import { Wrapper } from "../../../../core/design_system";
-
-import useLengthValidation from "../../../expectation/hooks/useLengthValidation";
+import { useGlobalDispatch } from "../../../../core/hooks/useGlobalDispatch";
 
 import { useExpectationMutation } from "../../../../data/queries";
-import { useGlobalDispatch } from "../../../../core/hooks/useGlobalDispatch";
-import { useState } from "react";
+
+import useLengthValidation from "../../../expectation/hooks/useLengthValidation";
 
 function DrawingInput() {
   const globalDispatch = useGlobalDispatch();
   const { mutate: postExpectation } = useExpectationMutation();
   const [isSubmitted, setIsSubmitted] = useState<boolean>(false);
+  const inputRef = useRef(null);
 
   const { content, handleChange } = useLengthValidation({
     initialContent: "",
     maxLength: 300,
   });
 
-  function handleClick() {
+  const handleClick = useCallback(() => {
     postExpectation({ comment: content });
     globalDispatch({
       type: "OPEN_TOAST",
       toastContent: "기대평이 등록되었습니다",
     });
     setIsSubmitted(true);
-  }
+  }, [content, postExpectation, globalDispatch]);
+
+  const handleKeyDown = useCallback(
+    (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
+      if (event.currentTarget && event.key === "Enter" && !event.shiftKey) {
+        event.preventDefault();
+        handleClick();
+        event.currentTarget.blur();
+      }
+    },
+    [handleClick],
+  );
 
   return (
     <Wrapper
@@ -35,9 +47,11 @@ function DrawingInput() {
       $justifycontent="space-between"
     >
       <StyledInput
+        ref={inputRef}
         placeholder="디 올 뉴 싼타페에 대한 기대평을 작성해주세요"
         value={content}
         onChange={handleChange}
+        onKeyDown={handleKeyDown}
       />
       <StyledButton disabled={isSubmitted} onClick={handleClick}>
         등록
