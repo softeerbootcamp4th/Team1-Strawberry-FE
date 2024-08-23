@@ -70,6 +70,7 @@ const RefWrapper = styled.div`
   width: 100%;
   height: calc(100vh - 70px);
   overflow-y: hidden;
+  overflow-x: hidden;
 
   background-color: ${({ theme }) => theme.Color.TextIcon.disable};
 `;
