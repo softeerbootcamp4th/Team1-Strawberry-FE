@@ -35,9 +35,16 @@ interface WrapperProps extends WrapperStyleProps {
   children: React.ReactNode;
 }
 
-function Wrapper({ children, ...props }: WrapperProps) {
-  return <StyledWrapper {...props}>{children}</StyledWrapper>;
-}
+// forwardRef를 사용하여 ref를 전달받을 수 있도록 수정
+const Wrapper = React.forwardRef<HTMLDivElement, WrapperProps>(
+  ({ children, ...props }, ref) => {
+    return (
+      <StyledWrapper ref={ref} {...props}>
+        {children}
+      </StyledWrapper>
+    );
+  },
+);
 
 export default Wrapper;
 
@@ -46,7 +53,7 @@ const StyledWrapper = styled.div<WrapperStyleProps>`
   ${({ $maxwidth }) => $maxwidth && `max-width: ${$maxwidth}`};
   height: ${({ height }) => height || "100%"};
   ${({ $minheight }) => $minheight && `min-height: ${$minheight}`};
-  ${({ $maxheight }) => $maxheight && `max-height: ${$maxheight}`}
+  ${({ $maxheight }) => $maxheight && `max-height: ${$maxheight}`};
 
   ${({ $position }) => $position && `position: ${$position}`};
 
@@ -55,13 +62,13 @@ const StyledWrapper = styled.div<WrapperStyleProps>`
 
   ${({ $backgroundcolor }) =>
     $backgroundcolor && `background-color: ${$backgroundcolor}`};
-  ${({ borderRadius }) => borderRadius && `border-radius: ${borderRadius}`}
+  ${({ borderRadius }) => borderRadius && `border-radius: ${borderRadius}`};
 
-  ${({ $bottom }) => $bottom && `bottom: ${$bottom};`};
-  ${({ left }) => left && `left: ${left};`};
-  ${({ right }) => right && `right: ${right};`};
-  ${({ $top }) => $top && `top: ${$top};`};
-  ${({ $zindex }) => $zindex && `z-index: ${$zindex};`};
+  ${({ $bottom }) => $bottom && `bottom: ${$bottom}`};
+  ${({ left }) => left && `left: ${left}`};
+  ${({ right }) => right && `right: ${right}`};
+  ${({ $top }) => $top && `top: ${$top}`};
+  ${({ $zindex }) => $zindex && `z-index: ${$zindex}`};
 
   ${({ display }) => display && `display: ${display}`};
   ${({ $flexdirection }) =>
