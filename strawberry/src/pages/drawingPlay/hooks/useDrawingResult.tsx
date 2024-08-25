@@ -64,7 +64,6 @@ export function useDrawingResult() {
         },
       });
     }
-    console.log(buildURL("lottery/drawing/image"));
   };
 
   const handleFinish = () => {
