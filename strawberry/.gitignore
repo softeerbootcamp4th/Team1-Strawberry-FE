@@ -11,8 +11,6 @@ node_modules
 dist
 dist-ssr
 *.local
-fonts
-fonts/
 .env
 
 # Editor directories and files
