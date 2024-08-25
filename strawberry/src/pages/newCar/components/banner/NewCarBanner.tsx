@@ -4,6 +4,7 @@ import { ImageEnum } from "../../../../core/design_system";
 import AnimText from "../../../../core/design_system/styles/AnimText";
 import ScrollButton from "../../../common/components/buttons/scrollButton/ScrollButton";
 import useLandingBanner from "../../../landing/hooks/useLandingBanner";
+import { useLocation } from "react-router-dom";
 
 const moveAndScale = keyframes`
   0% {
@@ -28,6 +29,7 @@ export const kenburnsTop = keyframes`
 
 function NewCarBanner() {
   const { heightRef, scrollHeight } = useLandingBanner();
+  const location = useLocation();
 
   // Calculate delay based on the first label's content and delay per character
   const firstLabelContent = "일상과 낭만 사이";
@@ -55,9 +57,11 @@ function NewCarBanner() {
           loading="lazy"
           src={ImageEnum.IMAGES.NEWCAR.NEWCAR_BANNER_CAR}
         />
-        <ScrollButtonWrapper>
-          <ScrollButton scrollHeight={scrollHeight} />
-        </ScrollButtonWrapper>
+        {!location.pathname.includes("/introduce") && (
+          <ScrollButtonWrapper>
+            <ScrollButton scrollHeight={scrollHeight} />
+          </ScrollButtonWrapper>
+        )}
       </RefWrapper>
     </section>
   );
