@@ -15,6 +15,7 @@ export interface DrawingPlayState {
   isDrawing: boolean;
   drawingInfo: DrawingPlay | undefined;
   drawingResult: DrawingResult | undefined;
+  drawingImg: FormData | null;
 }
 
 export default DrawingPlayState;

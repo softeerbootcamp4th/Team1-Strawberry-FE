@@ -14,6 +14,7 @@ const initialState: DrawingPlayState = {
   isDrawing: false,
   drawingInfo: undefined,
   drawingResult: undefined,
+  drawingImg: null,
 };
 
 // 리듀서 함수
@@ -48,6 +49,8 @@ const drawingPlayReducer = (
       return { ...state, drawingInfo: action.payload };
     case "SET_DRAWING_RESULT":
       return { ...state, drawingResult: action.payload };
+    case "SET_DRAWING_IMG":
+      return { ...state, drawingImg: action.payload };
     default:
       return state;
   }
