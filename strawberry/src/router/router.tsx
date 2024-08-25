@@ -58,14 +58,6 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "introduce",
-        element: (
-          <Suspense fallback={<Loading />}>
-            <NewCarPageWrapper />
-          </Suspense>
-        ),
-      },
-      {
         path: "expectation",
         element: (
           <Suspense fallback={<Loading />}>
@@ -137,6 +129,16 @@ const router = createBrowserRouter([
       <Suspense fallback={<Loading />}>
         <HeaderLayout>
           <NotFound />
+        </HeaderLayout>
+      </Suspense>
+    ),
+  },
+  {
+    path: "introduce",
+    element: (
+      <Suspense fallback={<Loading />}>
+        <HeaderLayout>
+          <NewCarPageWrapper />
         </HeaderLayout>
       </Suspense>
     ),

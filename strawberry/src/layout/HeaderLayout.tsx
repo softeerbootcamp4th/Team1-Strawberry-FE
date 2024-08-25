@@ -21,7 +21,13 @@ function HeaderLayout({ children }: HeaderLayoutProps) {
         <Modal />
         <Toast />
         {/* HeaderWrapper */}
-        <Wrapper width="100%" height="70px" $position="fixed" $top="0">
+        <Wrapper
+          width="100%"
+          height="70px"
+          $position="fixed"
+          $zindex="10000"
+          $top="0"
+        >
           <Header />
         </Wrapper>
         {/* PageWrapper */}
