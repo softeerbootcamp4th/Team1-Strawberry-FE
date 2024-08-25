@@ -33,8 +33,6 @@ export const useExteriorDesignDetail = () => {
   );
 
   const handleCoordinatesClick = (index: number) => {
-    console.log(index);
-
     dispatch({
       type: "SET_EXTERIOR_DETAIL_INDEX",
       index: index,

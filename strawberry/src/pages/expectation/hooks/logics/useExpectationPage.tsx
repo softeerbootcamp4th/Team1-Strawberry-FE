@@ -28,7 +28,6 @@ function useExpectationPage(): UseExpectationPageType {
   }, [nowPage, refetchList]);
 
   const changePage = throttle()((page: number) => {
-    console.log("click");
     dispatch({ type: "SET_NOW_PAGE", payload: page });
   });
 
