@@ -6,8 +6,8 @@ import ProtectedRoute from "./ProtectedRoute";
 
 import DefaultLayout from "../layout/DefaultLayout";
 import HeaderLayout from "../layout/HeaderLayout";
-
 import LoginRedirectedPage from "../pages/login/LoginRedirectPage";
+import SharedRedirectedPage from "../pages/shared/SharedRedirectedPage";
 
 // Dynamically import pages
 const QuizPlayWrapper = React.lazy(
@@ -25,14 +25,8 @@ const DrawingLandingWrapper = React.lazy(
 const DrawingPlayWrapper = React.lazy(
   () => import("../pages/drawingPlay/DrawingPlayWrapper"),
 );
-const SharedRedirectedPage = React.lazy(
-  () => import("../pages/shared/SharedRedirectedPage"),
-);
 const LandingPage = React.lazy(() => import("../pages/landing/LandingPage"));
 const LoginPage = React.lazy(() => import("../pages/login/LoginPage"));
-// const LoginRedirectedPage = React.lazy(
-//   () => import("../pages/login/LoginRedirectPage"),
-// );
 const NewCarPageWrapper = React.lazy(
   () => import("../pages/newCar/NewCarPageWrapper"),
 );
@@ -128,20 +122,14 @@ const router = createBrowserRouter([
   {
     path: "auth/:sns/callback",
     element: (
-      <Suspense fallback={<Loading />}>
-        <PublicRoute>
-          <LoginRedirectedPage />
-        </PublicRoute>
-      </Suspense>
+      <PublicRoute>
+        <LoginRedirectedPage />
+      </PublicRoute>
     ),
   },
   {
     path: "shared/:sharedCode",
-    element: (
-      <Suspense fallback={<Loading />}>
-        <SharedRedirectedPage />
-      </Suspense>
-    ),
+    element: <SharedRedirectedPage />,
   },
   {
     path: "*",
