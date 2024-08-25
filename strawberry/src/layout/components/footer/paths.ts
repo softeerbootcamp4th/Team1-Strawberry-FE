@@ -1,0 +1,17 @@
+export const PATHS = {
+  APP: "https://www.hyundai.com/kr/ko/app-download",
+  COPYRIGHT: "https://www.hyundai.com/kr/ko/copyright",
+  POLICY: "https://privacy.hyundai.com/overview/full-policy",
+  AGREEMENT: "https://www.hyundai.com/kr/ko/agreements",
+  PRIVACY: "https://privacy.hyundai.com/",
+  ADUIT: "https://audit.hyundai.com/",
+  CCTV: "https://www.hyundai.com/kr/ko/cctv",
+  SITEMAP: "https://www.hyundai.com/kr/ko/e/sitemap",
+  YOUTUBE: "https://www.youtube.com/@hyundai_kor",
+  INSTAGRAM: "https://www.instagram.com/hyundai_kor/",
+  FACEBOOK: "https://www.facebook.com/hyundai.kor",
+  X: "https://x.com/hyundai_kor",
+  ITEM1: "https://post.naver.com/abouthyundai",
+  ITEM2: "https://www.youtube.com/c/HYUNDAITRUCKBUS",
+  ITEM3: "https://post.naver.com/my.nhn?memberNo=42666250",
+};
