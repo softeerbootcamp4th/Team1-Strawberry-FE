@@ -14,4 +14,5 @@ export type DrawingPlayAction =
   | { type: "SET_START_DRAWING" }
   | { type: "SET_FINISH_DRAWING" }
   | { type: "SET_DRAWING_INFO"; payload: DrawingPlay }
-  | { type: "SET_DRAWING_RESULT"; payload: DrawingResult };
+  | { type: "SET_DRAWING_RESULT"; payload: DrawingResult }
+  | { type: "SET_DRAWING_IMG"; payload: FormData | null };

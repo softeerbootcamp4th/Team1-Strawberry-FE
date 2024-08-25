@@ -1,6 +1,7 @@
 import React, { useRef, useEffect } from "react";
 import styled, { keyframes } from "styled-components";
 import RenderOnViewportEntry from "./RenderOnViewportEntry";
+import Footer from "../../layout/components/footer";
 
 const NewCarPage: React.FC = () => {
   const scrollerRef = useRef<HTMLDivElement>(null);
@@ -86,6 +87,7 @@ const NewCarPage: React.FC = () => {
       <RenderOnViewportEntry style={{ minHeight: "200px" }}>
         <NewCarBottom />
       </RenderOnViewportEntry>
+      <Footer />
     </Scroller>
   );
 };
@@ -144,4 +146,10 @@ const Scroller = styled.div`
     scroll-snap-align: start;
     animation: ${fadeIn} 0.8s ease-out both;
   }
+
+  :-webkit-scrollbar {
+    display: none;
+  }
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 `;

@@ -1,7 +1,7 @@
 import React, { useState, useCallback, useRef } from "react";
 import styled from "styled-components";
 
-import { Wrapper } from "../../../../core/design_system";
+import { theme, Wrapper } from "../../../../core/design_system";
 import { useGlobalDispatch } from "../../../../core/hooks/useGlobalDispatch";
 
 import { useExpectationMutation } from "../../../../data/queries";
@@ -52,6 +52,7 @@ function DrawingInput() {
         value={content}
         onChange={handleChange}
         onKeyDown={handleKeyDown}
+        disabled={isSubmitted}
       />
       <StyledButton disabled={isSubmitted} onClick={handleClick}>
         등록
@@ -79,13 +80,17 @@ const StyledInput = styled.textarea`
   &:focus {
     outline: ${({ theme }) => `1px solid ${theme.Color.Primary.active}`};
   }
+
+  background-color: ${({ disabled }) =>
+    disabled ? `${theme.Color.TextIcon.disable}` : "white"};
+  /* background-color: ${({ disabled }) => (disabled ? `#C3C3C3` : "white")}; */
 `;
 
 const StyledButton = styled.button`
   height: 100%;
   padding: 12px 32.5px;
   background-color: ${({ theme, disabled }) =>
-    disabled ? theme.Color.TextIcon.disable : theme.Color.Primary.normal};
+    disabled ? "#C3C3C3" : theme.Color.Primary.normal};
   color: ${({ theme, disabled }) =>
     disabled ? theme.Color.TextIcon.info : theme.Color.TextIcon.reverse};
   box-sizing: border-box;

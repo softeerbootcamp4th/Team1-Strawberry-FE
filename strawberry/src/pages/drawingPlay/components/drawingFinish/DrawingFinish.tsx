@@ -82,7 +82,9 @@ function DrawingFinish() {
         <Wrapper
           display="flex"
           $justifycontent="center"
-          $margin="50px 0 0 0"
+          $position="absolute"
+          $bottom="-180px"
+          height="fit-content"
           $gap="80px"
         >
           <StyledButton onClick={handleSharedClick}>

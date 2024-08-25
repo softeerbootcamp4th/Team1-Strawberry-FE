@@ -1,14 +1,17 @@
 import html2canvas from "html2canvas";
 import { useDrawingPlayDispatch } from "./useDrawingPlayDispatch";
 import { useDrawingPlayState } from "./useDrawingPlayState";
-import { useDrawingImageMutation } from "../../../data/queries/drawing/useDrawingImageMutation";
+import buildURL from "../../../data/config/buildURL";
 
 export function useDrawingResult() {
   const dispatch = useDrawingPlayDispatch();
-  const { stage, totalStage, canvasImg, drawingResult } = useDrawingPlayState();
-  const { mutate: postDrawingImage } = useDrawingImageMutation();
+  const { stage, totalStage, canvasImg, drawingResult, drawingImg } =
+    useDrawingPlayState();
 
   const handleNextStage = () => {
+    if (stage === 1) {
+      storeImg();
+    }
     dispatch({ type: "SET_ON_BOARDING" });
     dispatch({ type: "SET_NEXT_STAGE" });
   };
@@ -46,10 +49,20 @@ export function useDrawingResult() {
     }
   };
 
-  const sendImage = async () => {
+  const storeImg = async () => {
     const formData = await getDrawingFormData();
-    if (formData) {
-      postDrawingImage({ image: formData });
+    dispatch?.({ type: "SET_DRAWING_IMG", payload: formData });
+  };
+
+  const sendImage = async () => {
+    if (drawingImg) {
+      await fetch(buildURL("lottery/drawing/image"), {
+        method: "POST",
+        body: drawingImg,
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        },
+      });
     }
   };
 

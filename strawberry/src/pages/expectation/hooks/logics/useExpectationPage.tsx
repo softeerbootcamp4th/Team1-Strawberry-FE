@@ -15,6 +15,7 @@ interface UseExpectationPageType {
   changePage: () => void;
   bannerImg: string;
   listError: CustomError | null;
+  refetchList: () => void;
 }
 
 function useExpectationPage(): UseExpectationPageType {
@@ -28,7 +29,6 @@ function useExpectationPage(): UseExpectationPageType {
   }, [nowPage, refetchList]);
 
   const changePage = throttle()((page: number) => {
-    console.log("click");
     dispatch({ type: "SET_NOW_PAGE", payload: page });
   });
 
@@ -43,6 +43,7 @@ function useExpectationPage(): UseExpectationPageType {
     changePage: throttledChangePage,
     bannerImg,
     listError,
+    refetchList,
   };
 }
 
