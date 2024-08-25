@@ -7,6 +7,7 @@ import { useQuizLandingState } from "../../hooks";
 
 import QuizOpenStep from "./QuizOpenStep";
 import QuizEventEnd from "./QuizEventEnd";
+import { useNavigate } from "react-router-dom";
 
 function QuizOpen() {
   const { quizLandingData } = useQuizLandingState();
@@ -14,6 +15,8 @@ function QuizOpen() {
     quizLandingData?.startAt,
     quizLandingData?.endAt,
   );
+
+  const navigate = useNavigate();
 
   return (
     <Wrapper width="66%" $margin="0 auto" $padding="42px 0 120px 0">
@@ -51,9 +54,11 @@ function QuizOpen() {
         </Label>
         <HintWrapper>
           <Label $token="Heading1Regular" color={theme.Color.Neutral.neutral60}>
-            Hint. {quizLandingData?.hint}
+            {"Hint.   ‘디 올 뉴 싼타페’ 신차 소개 페이지"}
           </Label>
-          <UnderLineButton>바로가기</UnderLineButton>
+          <UnderLineButton onClick={() => navigate(`/introduce`)}>
+            바로가기
+          </UnderLineButton>
         </HintWrapper>
       </QuestionWrapper>
     </Wrapper>
