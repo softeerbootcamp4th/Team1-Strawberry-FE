@@ -52,8 +52,10 @@ function useQuizPlayPage() {
   }
 
   const throttledHandleSubmit = useMemo(() => {
-    return throttle()(handleSubmit);
-  }, [answer]);
+    if (!isSubmitted) {
+      return throttle()(handleSubmit);
+    }
+  }, [answer, isSubmitted]);
 
   return {
     description,
