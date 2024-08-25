@@ -6,7 +6,11 @@ import useExpectationInput from "../hooks/logics/useExpectationInput";
 
 import SubmitButton from "./SubmitButton";
 
-function ExpectationInput() {
+interface ExpecationInputProps {
+  refetchList: () => void;
+}
+
+function ExpectationInput({ refetchList }: ExpecationInputProps) {
   const {
     content,
     handleChange,
@@ -14,7 +18,7 @@ function ExpectationInput() {
     handleSubmit,
     isFocused,
     setIsFocused,
-  } = useExpectationInput();
+  } = useExpectationInput({ refetchList });
 
   return (
     <Wrapper width="960px" display="flex" $justifycontent="space-between">

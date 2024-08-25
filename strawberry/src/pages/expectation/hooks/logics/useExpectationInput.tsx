@@ -3,20 +3,26 @@ import { useNavigate } from "react-router-dom";
 
 import { useGlobalState } from "../../../../core/hooks/useGlobalState";
 import { useGlobalDispatch } from "../../../../core/hooks/useGlobalDispatch";
-import { throttle } from "../../../../core/utils";
+import { scrollTop, throttle } from "../../../../core/utils";
 
 import { useExpectationMutation } from "../../../../data/queries/expectation/useExpectationMutation";
 
 import useLengthValidation from "../useLengthValidation";
 import { checkOnlyBlank } from "../../../../core/utils";
+import { useExpectationDispatch } from "../useExpectationDispatch";
 
-function useExpectationInput() {
+interface UseExpecationInputProps {
+  refetchList: () => void;
+}
+
+function useExpectationInput({ refetchList }: UseExpecationInputProps) {
   const { mutate: postExpectation, isSuccess } = useExpectationMutation();
   const [isFocused, setIsFocused] = useState(false);
   const { content, handleChange, resetContent } = useLengthValidation({
     initialContent: "",
     maxLength: 300,
   });
+  const dispatch = useExpectationDispatch();
 
   const { isLogin } = useGlobalState();
   const navigate = useNavigate();
@@ -25,7 +31,10 @@ function useExpectationInput() {
 
   useEffect(() => {
     if (isSuccess) {
-      location.reload();
+      refetchList();
+      dispatch?.({ type: "SET_NOW_PAGE", payload: 1 });
+      scrollTop(0);
+      resetContent();
     }
   }, [isSuccess]);
 

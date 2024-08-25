@@ -22,6 +22,7 @@ function ExpectationPage() {
     changePage,
     bannerImg,
     listError,
+    refetchList,
   } = useExpectationPage();
   return (
     <>
@@ -44,7 +45,7 @@ function ExpectationPage() {
             $justifycontent="center"
             $alignitems="center"
           >
-            <ExpectationInput />
+            <ExpectationInput refetchList={refetchList} />
           </Wrapper>
           <Wrapper
             display="flex"

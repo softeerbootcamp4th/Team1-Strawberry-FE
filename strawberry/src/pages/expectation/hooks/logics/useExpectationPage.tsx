@@ -15,6 +15,7 @@ interface UseExpectationPageType {
   changePage: () => void;
   bannerImg: string;
   listError: CustomError | null;
+  refetchList: () => void;
 }
 
 function useExpectationPage(): UseExpectationPageType {
@@ -42,6 +43,7 @@ function useExpectationPage(): UseExpectationPageType {
     changePage: throttledChangePage,
     bannerImg,
     listError,
+    refetchList,
   };
 }
 
