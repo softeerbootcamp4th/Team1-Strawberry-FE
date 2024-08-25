@@ -5,7 +5,7 @@
 
 @font-face {
 	font-family: "Hyundai Sans Head KR";
-	src: url("/assets/fonts/Hyundai_Sans_Head_KR_Regular.ttf") format("truetype");
+	src: url("/src/assets/fonts/Hyundai_Sans_Head_KR_Medium") format("truetype");
 }
 
 /* ----------------------------------------------
@@ -21,24 +21,27 @@
  * ----------------------------------------
  */
 @-webkit-keyframes slide-top {
-  0% {
-    -webkit-transform: translateY(150px);
-            transform: translateY(200px);
-  }
-  100% {
-    -webkit-transform: translateY(0px);
-            transform: translateY(0px);
-  }
+	0% {
+		-webkit-transform: translateY(150px);
+		transform: translateY(200px);
+	}
+
+	100% {
+		-webkit-transform: translateY(0px);
+		transform: translateY(0px);
+	}
 }
+
 @keyframes slide-top {
-  0% {
-    -webkit-transform: translateY(150px);
-            transform: translateY(150px);
-  }
-  100% {
-    -webkit-transform: translateY(0px);
-            transform: translateY(0px);
-  }
+	0% {
+		-webkit-transform: translateY(150px);
+		transform: translateY(150px);
+	}
+
+	100% {
+		-webkit-transform: translateY(0px);
+		transform: translateY(0px);
+	}
 }
 
 /* ----------------------------------------------
@@ -53,35 +56,38 @@
  * animation kenburns-top
  * ----------------------------------------
  */
- @-webkit-keyframes kenburns-top {
+@-webkit-keyframes kenburns-top {
 	0% {
-	  -webkit-transform: scale(1) translateY(0);
-			  transform: scale(1) translateY(0);
-	  -webkit-transform-origin: 50% 16%;
-			  transform-origin: 50% 16%;
+		-webkit-transform: scale(1) translateY(0);
+		transform: scale(1) translateY(0);
+		-webkit-transform-origin: 50% 16%;
+		transform-origin: 50% 16%;
 	}
+
 	100% {
-	  -webkit-transform: scale(1.25) translateY(-15px);
-			  transform: scale(1.25) translateY(-15px);
-	  -webkit-transform-origin: top;
-			  transform-origin: top;
+		-webkit-transform: scale(1.25) translateY(-15px);
+		transform: scale(1.25) translateY(-15px);
+		-webkit-transform-origin: top;
+		transform-origin: top;
 	}
-  }
-  @keyframes kenburns-top {
+}
+
+@keyframes kenburns-top {
 	0% {
-	  -webkit-transform: scale(1) translateY(0);
-			  transform: scale(1) translateY(0);
-	  -webkit-transform-origin: 50% 16%;
-			  transform-origin: 50% 16%;
+		-webkit-transform: scale(1) translateY(0);
+		transform: scale(1) translateY(0);
+		-webkit-transform-origin: 50% 16%;
+		transform-origin: 50% 16%;
 	}
+
 	100% {
-	  -webkit-transform: scale(1.25) translateY(-15px);
-			  transform: scale(1.25) translateY(-15px);
-	  -webkit-transform-origin: top;
-			  transform-origin: top;
+		-webkit-transform: scale(1.25) translateY(-15px);
+		transform: scale(1.25) translateY(-15px);
+		-webkit-transform-origin: top;
+		transform-origin: top;
 	}
-  }
-  
+}
+
 
 :root {
 	font-family: 'Hyundai Sans Head KR';
