@@ -33,23 +33,49 @@
 
 <br>
 
-## 프로젝트 구현 예정 기능
+## 주요 페이지 기능
+
+### 시연 영상
+https://youtu.be/TuaAZ3bZ9uA
 
 ### 1. 랜딩 페이지
 
 -   유저가 페이지에 처음 접속했을 때 볼 수 있는 페이지입니다.
 -   신차에 대한 간략한 소개와 진행하는 이벤트의 설명을 확인할 수 있습니다.
 
+<img width="1715" alt="image" src="https://github.com/user-attachments/assets/10baf279-de79-4c7e-8741-deb193fbf1df">
+<img width="1715" alt="image" src="https://github.com/user-attachments/assets/a10e0ba4-2315-4eae-a2e9-82cef44035de">
+<img width="1715" alt="image" src="https://github.com/user-attachments/assets/a89e8af1-52df-44b8-ae72-450f136398bf">
+<img width="1714" alt="image" src="https://github.com/user-attachments/assets/645096aa-6528-4aae-8eed-2026c029a76d">
+
 ### 2. 신차 소개 페이지
 
 -   신차에 대한 상세한 설명을 볼 수 있는 페이지입니다.
 -   각종 디자인 요소들과, 스크롤 이벤트, 캐러셀, 모달, 선택한 옵션의 차량 렌더링 등을 통해 사용자 경험 향상을 위합니다.
+
+<img width="1715" alt="image" src="https://github.com/user-attachments/assets/ad80dbed-eb43-43af-acca-b04a1cb05c06">
+<img width="1715" alt="image" src="https://github.com/user-attachments/assets/152bdc0d-b5fb-49c8-9a5b-240921d96014">
+<img width="1716" alt="image" src="https://github.com/user-attachments/assets/73edf471-f27f-4eb3-9da9-ec14cea84967">
+<img width="1706" alt="image" src="https://github.com/user-attachments/assets/563da52a-f1a7-4abf-ac04-c411476af6ab">
+<img width="1715" alt="image" src="https://github.com/user-attachments/assets/9ace5058-06b0-49a7-ae13-28d98224fa4f">
+<img width="1714" alt="image" src="https://github.com/user-attachments/assets/57d69fb7-b6b0-4971-9188-786a09340e15">
+<img width="1714" alt="image" src="https://github.com/user-attachments/assets/d4223935-27b0-47e1-882c-b4e89b88f898">
+<img width="1713" alt="image" src="https://github.com/user-attachments/assets/6670f56f-646a-43fd-9a41-9427e762ad21">
+<img width="1715" alt="image" src="https://github.com/user-attachments/assets/1c4b48b6-aa7b-4ac4-bdce-a7382a0d1eee">
+<img width="1713" alt="image" src="https://github.com/user-attachments/assets/ba707468-a68e-463e-9208-c9b7b2e4f611">
+<img width="1714" alt="image" src="https://github.com/user-attachments/assets/9cf6d87f-038e-42fa-9785-c24e1e4030af">
+<img width="1717" alt="image" src="https://github.com/user-attachments/assets/3f5d0a8f-230a-4a17-a27d-eb2de1e3e384">
 
 ### 3. 선착순 퀴즈 이벤트 페이지
 
 -   선착순으로 퀴즈를 맞추는 이벤트를 진행하는 페이지입니다.
 -   소개 페이지와 진행 페이지로 나뉩니다.
 -   이벤트 진행 페이지에서 퀴즈를 진행한 후 바로 결과를 확인할 수 있습니다.
+
+<img width="1712" alt="image" src="https://github.com/user-attachments/assets/42565089-8d2a-472e-9190-828fd3ba7f0b">
+<img width="1714" alt="image" src="https://github.com/user-attachments/assets/46e3591b-0cf8-4de9-af5b-c36d21cf0b2b">
+<img width="1712" alt="image" src="https://github.com/user-attachments/assets/055d2599-1f8b-4b98-a7e9-48abb92aa141">
+<img width="1715" alt="image" src="https://github.com/user-attachments/assets/2a18e3b4-18e1-4843-97a7-ea18b9048425">
 
 ### 4. 드로잉 이벤트 페이지
 
@@ -59,11 +85,24 @@
 -   Canvas API를 사용하여 3단계의 드로잉 게임을 구현할 예정입니다.
 -   사용자는 게임 진행 후 결과를 확인하고 이를 링크 공유할 수 있습니다.
 
+<img width="1713" alt="image" src="https://github.com/user-attachments/assets/eff1a4b6-0500-45fe-99a1-8a35435fb273">
+<img width="1720" alt="image" src="https://github.com/user-attachments/assets/e8a6550c-3da3-46d2-adea-104ba9d67e20">
+<img width="1728" alt="image" src="https://github.com/user-attachments/assets/ad25c012-a0e4-4873-b4c9-61558c5cac88">
+<img width="1728" alt="image" src="https://github.com/user-attachments/assets/c4135e7d-a764-47d3-882a-1fb27a164bf8">
+<img width="1728" alt="image" src="https://github.com/user-attachments/assets/c308eb11-e8bc-4e7d-8adf-08a684fd7724">
+<img width="1716" alt="image" src="https://github.com/user-attachments/assets/065ac5a2-04fe-44ea-aa30-b2666f8e341c">
+<img width="1716" alt="image" src="https://github.com/user-attachments/assets/09b02546-154f-43f3-9155-5a86816e92cc">
+
 ### 5. 기대평 페이지
 
 -   신차에 대한 기대평을 작성할 수 있는 페이지입니다.
 -   고객은 기대평을 작성하거나 타인의 댓글을 확인할 수 있습니다.
 -   지정한 단어를 사용하면 경고창이 뜨는 비속어 필터 기능을 추가할 예정입니다.
+
+<img width="1715" alt="image" src="https://github.com/user-attachments/assets/9631cf7c-27c3-4bd3-af7e-0dbd36e2ed8b">
+<img width="1713" alt="image" src="https://github.com/user-attachments/assets/a8e58e96-c166-4855-842a-bb16402a98c6">
+
+
 
 <br>
 
