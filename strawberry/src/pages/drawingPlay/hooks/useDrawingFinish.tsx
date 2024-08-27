@@ -25,7 +25,7 @@ function useDrawingFinish() {
   useEffect(() => {
     if (sharedData?.sharedUrl && !isStale) {
       navigator.clipboard.writeText(
-        `https://back.softeer1.site/api/v1/lottery/drawing/preview?sharedUrl=${sharedData.sharedUrl}`,
+        `https://back.softeer1.site/${sharedData.sharedUrl}`,
       );
       globalDispatch({
         type: "CLOSE_TOAST",
